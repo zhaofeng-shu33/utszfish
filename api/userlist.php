@@ -18,28 +18,28 @@ $uid=$_SESSION['openid'];
 
 $db = getDb();
 $sql="select count(id) from ".getTablePrefix()."_members where area=1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area1=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area1=mysqli_fetch_row($res);
 
 $sql="select count(id) from ".getTablePrefix()."_members where area=2";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area2=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area2=mysqli_fetch_row($res);
 
 $sql="select count(id) from ".getTablePrefix()."_members where area=3";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area3=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area3=mysqli_fetch_row($res);
 
 $sql="select count(id) from ".getTablePrefix()."_members where area=4";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area4=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area4=mysqli_fetch_row($res);
 
 $sql="select count(id) from ".getTablePrefix()."_members where area=5";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area5=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area5=mysqli_fetch_row($res);
 
 $sql="select count(id) from ".getTablePrefix()."_members where area=0";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$area0=mysql_fetch_row($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$area0=mysqli_fetch_row($res);
 
 $result= array(array('name'=>'燕堤西街7号院','count' => $area1[0]),
 			   array('name'=>'燕堤西街6号院','count' => $area2[0]),
@@ -49,11 +49,11 @@ $result= array(array('name'=>'燕堤西街7号院','count' => $area1[0]),
 			   array('name'=>'未填写院区','count' => $area0[0]));
 
 $sql = "select * from ".getTablePrefix()."_members order by lastlogin desc LIMIT 30";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 
 $loginlist = array();
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 	
 	$loginlist[] = getUserSimpleInfo($row['openid']);
 }

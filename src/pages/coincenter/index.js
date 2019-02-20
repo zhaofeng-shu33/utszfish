@@ -16,7 +16,7 @@ Page({
   },
   btnTalent:function(){
     wx.navigateTo({
-      url: '/pages/talent/list?keyword=积分',
+      url: '/pages/talent/list',
     })
   },
   btnBook: function () {
@@ -202,7 +202,7 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: "一键呼叫物业，点餐，邻里集市在家开店赚钱。"+app.getAppName()+"邻居都在用",
+      title: "深圳大学城闲置物品交换平台"+app.getAppName()+"学生都在用",
       path: '/pages/billboard/index',
       imageUrl:app.ServerUrl()+"/images/thumb.jpg",
       success: function (res) {

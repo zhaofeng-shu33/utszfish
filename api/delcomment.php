@@ -33,11 +33,11 @@ if($userInfo['type']==1){
 	$sql = "UPDATE ".getTablePrefix()."_comment set deleted=1 where `id` = '$commentid' and authorid='$uid' LIMIT 1";
 }
 
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $sql="select `deleted` from ".getTablePrefix()."_comment where `id`='$commentid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 if($row['deleted']==1){
 	if($userInfo['type']==1)exitJson(0,'删除成功!');

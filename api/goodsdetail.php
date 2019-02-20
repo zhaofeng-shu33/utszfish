@@ -20,12 +20,12 @@ session_start();
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `type` = '$type' and `id`='$goodsid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 if($row['id']){
 	$sql2="update `".getTablePrefix()."_articles` set viewcount=viewcount+1 where `id`='$goodsid' LIMIT 1";
-	mysql_query($sql2,$db) or die(mysql_error());
+	mysqli_query($db, $sql2) or die(mysqli_error($db)());
 }
 
 $uid=$_SESSION['openid'];

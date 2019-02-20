@@ -10,7 +10,7 @@ Page({
     result:[],
     isowner:false,
     commentstr:'',
-    replyid: '',
+    replyid: 0,
     replyprefix: '',
     canloadmore: false,
     page: 0,
@@ -31,7 +31,7 @@ Page({
     var replyid = item.id;
     if (item.authorInfo.openid == app.globalData.userInfo.openid) {
       replyprefix = '';
-      replyid = '';
+      replyid = 0;
     }
     that.setData({
       replyid: replyid,
@@ -62,7 +62,7 @@ Page({
     var replyprefix = that.data.replyprefix;
     var commentstr = e.detail.value;
     if (e.detail.value.indexOf(replyprefix) < 0) {
-      replyid = '';
+      replyid = 0;
       replyprefix = '';
       commentstr = '';
     }
@@ -158,7 +158,7 @@ Page({
           that.setData({
             commentstr: "",
             replyprefix: '',
-            replyid: '',
+            replyid: 0,
             result: that.data.result
           });
         }
@@ -452,7 +452,7 @@ Page({
   onShareAppMessage: function () {
     var that=this;
     return {
-      title: that.data.result.title +"——"+app.getAppName()+"友邻市集",
+      title: that.data.result.title + "——" + app.getAppName() +"闲鱼市集",
       path: '/pages/talent/goodsdetail?goodsid=' + that.data.goodsid,
       success: function (res) {
         // 转发成功

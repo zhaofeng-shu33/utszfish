@@ -38,13 +38,13 @@ if($uid!=""){
 }else if($isbn!=""){
 	$sql = "select `ownerid`,`telephone`,`status` from ".getTablePrefix()."_books where isbn='$isbn' order by createdate desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $list = array();
 
 
 if($isbn!=""){
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 
 		$item=getUserSimpleInfo($row['ownerid']);
 		$item['telephone']=$row['telephone'];
@@ -53,7 +53,7 @@ if($isbn!=""){
 	}
 	exitJson(0,"",array("detail"=>getBookDetail($isbn),"list"=>$list));
 }else{
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 
 		$list[]=$row;
 	}

@@ -23,8 +23,8 @@ if($_SESSION['token']!=$token){
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_services where `id`='$serviceid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 if($row['ownerid']!="")$row["ownerInfo"]=getUserSimpleInfo($row['ownerid']);
 

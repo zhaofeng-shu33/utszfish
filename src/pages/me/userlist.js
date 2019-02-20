@@ -95,7 +95,7 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: that.data.totalcount+"位邻居都在用——"+app.getAppName(),
+      title: that.data.totalcount+"位学生都在用——"+app.getAppName(),
       path: '/pages/billboard/index',
       success: function (res) {
         // 转发成功

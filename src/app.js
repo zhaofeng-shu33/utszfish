@@ -7,13 +7,13 @@ App({
     return 1008;
   },
   getAppName:function(){
-    return "小程序名称";
+    return "UTSZFISH";
   },
   CDNUrl:function(){
-    return "静态文件的CDN地址";
+    return "https://www.leidenschaft.cn";
   },
   ServerUrl:function(){
-    return "API服务器的地址";
+    return "https://www.leidenschaft.cn";
   },
   postFormId: function (formid) {
     var that = this;

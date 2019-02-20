@@ -37,10 +37,10 @@ if($jsondata->uid!=""){
 }else if($type==""){
 	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and `type` !=8 and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 
 	$item=parseArticleSimpleItem($row);
 

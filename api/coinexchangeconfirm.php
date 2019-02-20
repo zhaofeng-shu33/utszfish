@@ -25,14 +25,14 @@ if($exchangeid!="" && $goodsid!=''){
 	$db = getDb();
 
 	$sql = "select * from `".getTablePrefix()."_articles` where id='$goodsid' LIMIT 1";
-	$res=mysql_query($sql, $db) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row = mysqli_fetch_assoc($res);
 	$marketItem=parseMarketItem($row);
 	if($marketItem['authorid']==$uid){
 
 		$now=time();
 		$sql = "update `".getTablePrefix()."_exchangehistory` set exchangetime='$now' where id='$exchangeid' ";
-		$res=mysql_query($sql, $db) or die(mysql_error());
+		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 		exitJson(0,'兑换已完成');
 	}else{

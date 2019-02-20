@@ -11,7 +11,7 @@ include_once 'sqlutils.php';
 
 $db = getDb();
 $sql="select ownerid,formid from ".getTablePrefix()."_formids where id in (select min(id) from ".getTablePrefix()."_formids group by ownerid)";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $data=array(
         'keyword1'=>array('value'=>"[失物招领]图片中蓝色衣服的邻居，您的苹果手机落在了天天超市。如果您是失主或您认识图中的失主请及时留言回复。",'color'=>'#ff0000'),
@@ -20,7 +20,7 @@ $data=array(
     );
 
 $sended=0;
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 	//if($row['ownerid']=="oHSAe0YeRMlEfQl53aFQ3AsU-85M"){
 		sendNotice($row['ownerid'],"FSh7ONdmR2FbefvtVC0eSJ5O1iF6MVT38xDNe_SSS_w",$data,'pages/billboard/index?topicid=1289');
 		$sended+=1;

@@ -19,12 +19,12 @@ session_start();
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `id`='$articleid' and deleted=0 order by createdate desc LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 if($row['id']){
 	$sql2="update `".getTablePrefix()."_articles` set viewcount=viewcount+1 where `id`='$articleid' LIMIT 1";
-	mysql_query($sql2,$db) or die(mysql_error());
+	mysqli_query($db, $sql2) or die(mysqli_error($db)());
 }else{
 	exitJson(1,"话题不存在");
 }

@@ -26,8 +26,8 @@ $uid=$_SESSION['openid'];
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `type` = '$type' and `id`='$goodsid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 $item=parseMarketItem($row);
 $item['authorInfo']=getUserSimpleInfo($row['authorid']);
@@ -44,9 +44,9 @@ if($uid==$row['authorid']){
 }else{
 	$sql = "select * from ".getTablePrefix()."_exchangehistory where `goodsid` = '$goodsid' and `ownerid`='$uid' order by exchangetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 $list = array();
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 
 	$row['createdate']=date('Y-m-d H:i:s', $row['createdate']);
 	if($row['exchangetime']>0)$row['exchangetime']=date('Y-m-d H:i:s', $row['exchangetime']);

@@ -42,10 +42,10 @@ if($text!='' && $uid!=''){
 			if(!addCoinHistory(11,-100,"发布店长通知：".$marketitem['title']))exitJson(0,"积分不足");
 
 			$sql="select uid from ".getTablePrefix()."_like where articleid='$goodsid'";
-			$res=mysql_query($sql,$db) or die(mysql_error());
+			$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 			$sended=0;
-			while ($row = mysql_fetch_assoc($res)) {
+			while ($row = mysqli_fetch_assoc($res)) {
 				sendNotice($row['uid'],"FSh7ONdmR2FbefvtVC0eSJ5O1iF6MVT38xDNe_SSS_w",$data,'pages/billboard/index?goodsid='.$goodsid);
 				$sended+=1;
 			}

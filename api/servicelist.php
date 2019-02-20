@@ -31,10 +31,10 @@ if($type!=""){
 }else{
 	$sql = "select `id`,title,telephone,`type`,ownerid from ".getTablePrefix()."_services";
 }
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $list = array();
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 
 	$item=$row;
 

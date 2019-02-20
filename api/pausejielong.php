@@ -32,11 +32,11 @@ if($userInfo['type']==1){
 	$sql = "UPDATE ".getTablePrefix()."_articles set disablecomment=$pause where `id` = '$articleid' LIMIT 1";
 }
 
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $sql="select `authorid`,`disablecomment` from ".getTablePrefix()."_articles where `id`='$articleid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$row = mysqli_fetch_assoc($res);
 
 if($row['authorid']==$uid || $userInfo['type']==1){
 	if($row['disablecomment'])exitJson(0,'接龙已停止');
