@@ -1,67 +1,58 @@
-UTSZFISH小程序
+# UTSZFISH miniprogram
 =============
-##### 一套模块化设计的基于邻里间互动关系开发的微信小程序社区系统(包含全部前后端源码)
-##### 开发者：[大帅(ezshine)](https://www.zhihu.com/people/ezshine) 
-
-参考 [](https://zhuanlan.zhihu.com/p/28932121)
-
-![封面图](https://github.com/ezshine/community-mini-program/blob/master/thumb.jpg)
-
-### 说明
-##### 因为参与到业委会的组织和建立，于2017年6月份左右策划，本人独立设计并开发完成上线第一版社区，后边陆陆续续有新增，修改，完善。得到了本小区业主们和广大网友的好评和支持。		
-
-![缩略图](https://github.com/ezshine/community-mini-program/blob/master/thumbs.jpg)
-### 功能介绍
-
-#### --> 公告
-##### 除了小程序内的提示外，可通过小程序模板消息向全体用户发送通知。
-
-#### --> 天气
-##### 获取某个地区5日内的天气预报，空气情况等，由于作者生活在北京，所以加入了北京地区的限号情况。
-
-#### --> 电话黄页
-##### 物业、维修、外卖、等各类服务电话一键拨打
-
-#### --> 积分中心
-##### 签到、回帖、发帖后可获得积分，在市集中可以使用积分获得商品购买的优惠（优惠由商家发布商品时设置）。
-
-#### --> 车位路况
-##### 获得好评最多的一个版块，通过部署在业主家室外的监控探头实时查看本小区的地面停车位和周边道路交通状况。
-
-#### --> 微信步数排行
-##### 邻居间的微信运动打榜
-
-#### --> 论坛模块
-##### 所有论坛板块都做了基本的敏感词过滤，并具备点赞，评论，回复。帖子有新的回复或点赞时有微信模板消息通知。
-
-#### --> 友邻市集
-##### 【论坛模块中的特殊板块】所有业主都可以在这个版块内发布带价格的商品或者服务，但这里并没有完成支付，需要面对面交易。
-
-#### --> 民意投票
-##### 【论坛模块中的特殊板块】业主们可以发布支持或不支持的二选一投票
-
-#### --> 匿名板块
-##### 【论坛模块中的特殊板块】业主们可以在这里匿名发布内容，非常火爆的一个【负能量板块】，所有论坛板块都做了基本的敏感词过滤。
+大学城闲置物品交换平台 
 
 
-	微信小程序的审核非常严格，如果没有互联网增值业务许可证，你是无法上架一个社区小程序的。
-	作者本人也没有这个证，但在源码中贴心的设计了绕过审核的开关，但依旧不保证能过审
-	如果你在审核中遇到了一些问题，也可以咨询我。		
+## Background
+北京大学深圳研究生院绿色+协会于2018年春季学期创办了深圳大学城闲鱼市场，最初以微信群的形式运营，在1群满500人后，逐渐扩展到2群、3群，现3个微信群达到1500人的规模，
+2019年秋季学期，TPH-LINK协会成立，希望整合深圳大学城三校的社团资源，其下的技术交流组开展了一系列互联网IT领域的活动，TPH-LINK与绿色+酝酿了深圳大学城闲鱼市场微信小程序的项目，
+希望能够整合3个群的信息，更好地满足广大同学的交易需求。
 
-如果你觉得这份源码对您有些帮助，可以通过以下方式请作者吃顿饭，抽包烟，喝杯咖啡等。
-![捐助](https://github.com/ezshine/community-mini-program/blob/master/donate.jpg)
+## How to deploy on your server
+The code of this repository is started from [community-mini-program](https://github.com/ezshine/community-mini-program) but differs from the starting point gradually.
 
+For the *UTSZFISH* project. We have used the LAMP backend pipe. The version of my deployment on [](https://www.leidenschaft.cn/api) uses:
+* Ubuntu 18.04 LTS
+* Apache2.4
+* php7.2
+* mysql5.7
 
-### 部署说明
-	对懂技术的朋友而言，看了部署说明肯定可以正常跑起来，我也会在微信中提供免费的咨询和指导。
-	但如果你真的一点技术都不懂，免费咨询和指导你也听不懂看不明白，
-	那么可以支付一些报酬，我将为你提供一条龙的部署服务或更个性化的修改。
+I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration(You need a cloud server with public ip address, domain name and ssl certificate).
 
-* src/app.js中更改相关的URL路径
-* src为全部前端源码，api为全部后端php源码
+I recommand to configure the backend first, because you can test it immediately. 
+### Backend
+The backend uses third-party api, which is listed as follows:
+* **douban**: GET https://api.douban.com/v2/book/isbn/[isbn]
+* **wechat**
 
-* 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
-* 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等
+* create a database by mysql client, then choose a database prefix for your project, the default is
+*utsz*, you can change it by *Replace All* through a text editor or by command line:
+```shell
+perl -p -e "s/utsz/custom_name/g" -i db.sql
+```
+* In directory `api`, copy `mysql-sample.php` to `mysql.php` and make the following entries complete:
+
+* 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
 * 将“数据库表.sql”导入到自己的数据库中
+* 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
+* src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
+to be written...
+
+## Screenshot
+to be written...
+
+## Current Functionality
+
+### 闲鱼市集
+所有同学都可以在这个版块内发布带价格的商品或者服务，但这里并没有完成支付，需要面对面交易。
 
 
+## About censorship
+微信小程序的审核非常严格，如果没有互联网增值业务许可证，你是无法上架一个社区小程序的。
+
+
+
+## Reference
+ * [【倒计时3天】大学城闲鱼来啦！](https://mp.weixin.qq.com/s/sAu_-YEWPV5FMth1k4tw_Q)
+ * [TPH-Link是什么](https://mp.weixin.qq.com/s/aSn0YEtefARfdX9SXbhwwg)
+ * [免费的微信小程序社区系统](https://zhuanlan.zhihu.com/p/28932121)

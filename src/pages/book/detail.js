@@ -38,7 +38,7 @@ Page({
           }
 
           that.setData({
-            result: res.data.result
+            result: res.data.result[0]
           });
         }
       }
