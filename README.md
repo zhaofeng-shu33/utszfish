@@ -17,13 +17,20 @@ For the *UTSZFISH* project. We have used the LAMP backend pipe. The version of m
 * php7.2
 * mysql5.7
 
-I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration(You need a cloud server with public ip address).
+I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration(You need a cloud server with public ip address, domain name and ssl certificate).
 
 I recommand to configure the backend first, because you can test it immediately. 
 ### Backend
 The backend uses third-party api, which is listed as follows:
 * **douban**: GET https://api.douban.com/v2/book/isbn/[isbn]
 * **wechat**
+
+* create a database by mysql client, then choose a database prefix for your project, the default is
+*utsz*, you can change it by *Replace All* through a text editor or by command line:
+```shell
+perl -p -e "s/utsz/custom_name/g" -i db.sql
+```
+* In directory `api`, copy `mysql-sample.php` to `mysql.php` and make the following entries complete:
 
 * 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
 * 将“数据库表.sql”导入到自己的数据库中
