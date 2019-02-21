@@ -3,8 +3,6 @@
 大学城闲置物品交换平台 
 
 
-![封面图](https://github.com/ezshine/community-mini-program/blob/master/thumb.jpg)
-
 ## Background
 北京大学深圳研究生院绿色+协会于2018年春季学期创办了深圳大学城闲鱼市场，最初以微信群的形式运营，在1群满500人后，逐渐扩展到2群、3群，现3个微信群达到1500人的规模，
 2019年秋季学期，TPH-LINK协会成立，希望整合深圳大学城三校的社团资源，其下的技术交流组开展了一系列互联网IT领域的活动，TPH-LINK与绿色+酝酿了深圳大学城闲鱼市场微信小程序的项目，
@@ -19,13 +17,13 @@ For the *UTSZFISH* project. We have used the LAMP backend pipe. The version of m
 * php7.2
 * mysql5.7
 
-I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration.
+I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration(You need a cloud server with public ip address).
 
-* src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
-* 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
+I recommand to configure the backend first, because you can test it immediately. 
 * 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
 * 将“数据库表.sql”导入到自己的数据库中
-
+* 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
+* src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
 to be written...
 
 ## Screenshot
