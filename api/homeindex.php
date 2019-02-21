@@ -14,20 +14,12 @@ $jsondata=json_decode($postdata);
 function getNewWeather(){
 	
 	$dataRes = gzdecode(file_get_contents("http://wthrcdn.etouch.cn/weather_mini?citykey=101280601"));
-	// $xml_array=simplexml_load_string($dataRes);
 	$json = json_decode($dataRes,true);
 
-	// print_r($json);
-
-	// $weather=$json['forecast'];
-	// echo $json['forecast'];
-
-	// file_put_contents('../weathercached/weather.json', json_encode($weather,JSON_UNESCAPED_UNICODE));
 	return  $json;
 }
 
 function getXHNumber($tDate,$sDate) {
-	// return $tDate .'-'. $sDate;
     $nDayNum = date('w', $tDate) == 0 ? 7 : date('w', $tDate);
     if ($nDayNum > 5) return $nDayNum;
     $nDiff = ($tDate - $sDate)  / 3600 / 24 / 7 / 13;
@@ -37,55 +29,14 @@ function getXHNumber($tDate,$sDate) {
     return $nDayNum;
 }
 
-function getXianhaoArray($tDate){
-	$xianhao=array();
-	$xianhao[]='5,0限行';
-    $xianhao[]= '1,6限行';
-    $xianhao[]= '2,7限行';
-    $xianhao[]= '3,8限行';
-    $xianhao[]= '4,9限行';
-    $xianhao[]= '不限行';
-    $xianhao[]= '不限行';
 
-    // $tNum=getXHNumber($tDate);
 
-    $newarr=array();
-    for ($i=0; $i <5; $i++) { 
-    	# code...
-    	// $nNum=getXHNumber();
-    	// $newarr[]=getXHNumber(strtotime(date('Y-m-d')),strtotime('2014-04-14'));
-    	$newarr[]=$xianhao[getXHNumber(strtotime('+'.$i.' day'),strtotime('2014-04-14'))-1];
-    }
-
-    // $subset = array_slice($xianhao, $tNum+1);  
-
-    // $newarr=array_merge($subset,$xianhao);
-
-    return $newarr;
-}
-
-// $weather_json=file_get_contents('../weathercached/weather.json');
-// if($weather_json){
-// 	$weather=json_decode($weather_json,true);
-
-// 	// echo $weather['realtime']['date']."<br/>";
-// 	// echo date("Y-m-d")."<br/>";
-// 	if($weather['realtime']['date']==strtotime(date("Y-m-d"))){
-// 	 	// echo "不更新";
-// 	}else{
-// 		// echo "要更新";
-// 		$weather=getNewWeather();
-// 	}
-// }else{
-// 	$weather=getNewWeather();
-// }
-// exit();
 $weather=getNewWeather();
 $now=date('Y-m-d');
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_members order by lastlogin desc LIMIT 7";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 
 $loginlist = array();
@@ -95,7 +46,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 }
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` = 99 order by createdate desc LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $billboardlist = array();
 while ($row = mysqli_fetch_assoc($res)) {
@@ -111,7 +62,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 $newtopics=array();
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` <99 and deleted=0 order by updatetime desc,createdate desc LIMIT 9";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 while ($row = mysqli_fetch_assoc($res)) {
 
@@ -129,7 +80,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 $newgoods=array();
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` =101 and deleted=0 order by updatetime desc,createdate desc LIMIT 3";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 while ($row = mysqli_fetch_assoc($res)) {
 
@@ -138,21 +89,10 @@ while ($row = mysqli_fetch_assoc($res)) {
     $newgoods[]=$item;
 }
 
-// $newcomments=array();
-
-// $sql = "select * from ".getTablePrefix()."_comment where deleted=0 order by createdate desc LIMIT 5";
-// $res=mysqli_query($db, $sql) or die(mysqli_error($db)());
-
-// while ($row = mysqli_fetch_assoc($res)) {
-
-//     $item=getCommentById($row['id']);
-
-//     $newcomments[]=$item;
-// }
 
 $newvotes=array();
 $sql = "select * from ".getTablePrefix()."_articles where `type`=102 and deleted=0 and TO_DAYS(NOW()) - TO_DAYS(createdate)<=30 order by createdate desc LIMIT 3";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 while ($row = mysqli_fetch_assoc($res)) {
 
@@ -169,14 +109,13 @@ $topbanner=array(
 $fastnav=array(
    // array("title"=>"一键呼叫","page"=>"/pages/fuwu/index","icon"=>"icon-remind_fill"),
     array("title"=>"积分中心","page"=>"/pages/coincenter/index","icon"=>"icon-transaction_fill"),
-    array("title"=>"接龙拼团","page"=>"/pages/tuan/index","icon"=>"icon-share_fill","badge"=>""),
-    array("title"=>"餐饮外卖","page"=>"/pages/fuwu/index?type=2","icon"=>"icon-meishi"),
+  //  array("title"=>"接龙拼团","page"=>"/pages/tuan/index","icon"=>"icon-share_fill","badge"=>""),
    // array("title"=>"快递服务","page"=>"https://jnsii.com/jybhy/app/express/","type"=>"url","icon"=>"icon-mail_fill","badge"=>"专享"),
     array("title"=>"民意投票","page"=>"/pages/pk/index","icon"=>"icon-pk"),
-    array("title"=>"微信步数","page"=>"/pages/pk/werun","icon"=>"icon-bushu"),
+  //  array("title"=>"微信步数","page"=>"/pages/pk/werun","icon"=>"icon-bushu"),
   //  array("title"=>"手机电视","page"=>"https://jnsii.com/jybhy/app/livetv/","type"=>"url","icon"=>"icon-live"),
     array("title"=>"闲鱼市集","page"=>"/pages/talent/list","icon"=>"icon-shop_fill"),
-    array("title"=>"宿舍租赁","page"=>"/pages/forum/topiclist?type=3&title=宿舍租赁","icon"=>"icon-homepage_fill"),
+  //  array("title"=>"宿舍租赁","page"=>"/pages/forum/topiclist?type=3&title=宿舍租赁","icon"=>"icon-homepage_fill"),
     array("title"=>"美食烹饪","page"=>"/pages/forum/topiclist?type=6&title=美食烹饪","icon"=>"icon-meishi2"),
     array("title"=>"运动健康","page"=>"/pages/forum/topiclist?type=5&title=运动健康","icon"=>"icon-jiankang"),
     array("title"=>"匿名曝光","page"=>"/pages/forum/topiclist?type=8&title=匿名曝光","icon"=>"icon-mianju"),
@@ -216,7 +155,7 @@ if(!isDitributionMode($jsondata->bv)){
     );
 }
 
-exitJson(0,"",array("fastnavpagecount"=>8,"now"=>$now,"topbanner"=>$topbanner,"fastnav"=>$fastnav,"newgoods"=>$newgoods,"newvotes"=>$newvotes,"xianhao"=>getXianhaoArray(strtotime($now)),"totalmembers"=>getTotalMemberCount(),"weather"=>$weather,"loginlist"=>$loginlist,"billboardlist"=>$billboardlist,"newtopics"=>$newtopics));
+exitJson(0,"",array("fastnavpagecount"=>8,"now"=>$now,"topbanner"=>$topbanner,"fastnav"=>$fastnav,"newgoods"=>$newgoods,"newvotes"=>$newvotes,"totalmembers"=>getTotalMemberCount(),"weather"=>$weather,"loginlist"=>$loginlist,"billboardlist"=>$billboardlist,"newtopics"=>$newtopics));
 
 
 ?>

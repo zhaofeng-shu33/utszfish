@@ -22,7 +22,7 @@ if($_SESSION['token']!=$token){
 
 $db = getDb();
 $sql="SELECT * from ISBN where isbn='$isbn' LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db));
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db));
 
 if(mysqli_num_rows($res)<=0){
 	$opt=array('http'=>array('header'=>"Referer: https://api.douban.com"));   
@@ -53,7 +53,7 @@ if(mysqli_num_rows($res)<=0){
 		file_put_contents("/var/www/html/upload/ISBN/".$coverLocalUrl, file_get_contents($coverurl));
 
 		$sql="INSERT into ISBN (isbn,coverurl,title,subtitle,author,publisher,pubdate,pages,price,bookdesc,authordesc,tags) values('$isbn','$coverLocalUrl','$title','$subtitle','$author','$publisher','$pubdate','$pages','$price','$bookdesc','$authordesc','$tagsStr')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error($db));
+		$res=mysqli_query($db, $sql) or die(mysqli_error()($db));
 
 		exitJson(0,"",array('isbn'=>$isbn,'title'=>$title,'coverurl'=>"https://www.leidenschaft.cn/upload/ISBN/".$coverLocalUrl,'subtitle'=>$subtitle,'author'=>$author,'publisher'=>$publisher,'bookdesc'=>$bookdesc));
 	}else{

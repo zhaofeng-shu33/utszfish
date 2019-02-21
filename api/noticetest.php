@@ -11,7 +11,7 @@ include_once 'sqlutils.php';
 
 $db = getDb();
 $sql="select ownerid,formid from ".getTablePrefix()."_formids where id in (select min(id) from ".getTablePrefix()."_formids group by ownerid)";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $data=array(
         'keyword1'=>array('value'=>"[失物招领]图片中蓝色衣服的邻居，您的苹果手机落在了天天超市。如果您是失主或您认识图中的失主请及时留言回复。",'color'=>'#ff0000'),

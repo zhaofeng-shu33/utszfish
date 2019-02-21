@@ -10,7 +10,7 @@ include_once 'sqlutils.php';
 
 $db = getDb();
 $sql="select ownerid,formid from ".getTablePrefix()."_formids where id in (select min(id) from ".getTablePrefix()."_formids group by ownerid)";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $data=array(
         'keyword1'=>array('value'=>"您好，您可以领取11月微信运动排行奖金，请添加大帅为好友！",'color'=>'#ff0000'),

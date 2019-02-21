@@ -45,7 +45,7 @@ if($articleid!="" && $curindex!="" && $totalcount!=""){
 
 		$db = getDb();
 		$sql = "update `".getTablePrefix()."_articles` set pics='$arr_str' where authorid='$uid' and id='$articleid' ";
-		mysqli_query($db, $sql) or die(mysqli_error($db)());
+		mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		exitJson(0,'上传成功',$arr_str);
 	}else{

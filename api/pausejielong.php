@@ -32,10 +32,10 @@ if($userInfo['type']==1){
 	$sql = "UPDATE ".getTablePrefix()."_articles set disablecomment=$pause where `id` = '$articleid' LIMIT 1";
 }
 
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $sql="select `authorid`,`disablecomment` from ".getTablePrefix()."_articles where `id`='$articleid' LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 $row = mysqli_fetch_assoc($res);
 
 if($row['authorid']==$uid || $userInfo['type']==1){

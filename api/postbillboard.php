@@ -30,7 +30,7 @@ if($text!='' && $title!='' && $uid!=''){
 	$userInfo=getUserSimpleInfo($uid);
 	if($userInfo['type']==1){
 		$sql = "insert into `".getTablePrefix()."_articles` (authorid, createdate,title, text,`type`) values('$uid', '$now','$title','$text' ,'99')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		if($noticeall==true){
 			$noticecount=sendUnreadNoticeToAll($text);

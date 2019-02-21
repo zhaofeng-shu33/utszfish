@@ -16,7 +16,7 @@ $limit=10;
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `type` = 99 order by createdate desc LIMIT ".$limit*$page.",$limit";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {

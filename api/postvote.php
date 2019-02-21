@@ -28,12 +28,12 @@ if($articleid!="" && $votevalue!="" && $uid!=""){
 	$now=time();
 
 	$sql="select id from ".getTablePrefix()."_vote where articleid='$articleid' and uid='$uid' LIMIT 1";
-	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 	if(mysqli_num_rows($res)<=0){
 
 		$sql="insert into ".getTablePrefix()."_vote (uid,articleid,createdate,votevalue,comment) values('$uid','$articleid','$now','$votevalue','$comment')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		exitJson(0,'投票成功',array('voteid'=>$voteid));
 	}else{

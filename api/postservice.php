@@ -32,7 +32,7 @@ if($title!='' && $telephone!='' && $uid!=''){
 	$userInfo=getUserSimpleInfo($uid);
 	if($userInfo['type']==1){
 		$sql = "insert into `".getTablePrefix()."_services` (title, text,telephone,`type`) values('$title','$text','$telephone' ,'$type')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 		
 		exitJson(0,'发布成功');
 	}else{
