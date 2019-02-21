@@ -20,6 +20,11 @@ For the *UTSZFISH* project. We have used the LAMP backend pipe. The version of m
 I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration(You need a cloud server with public ip address).
 
 I recommand to configure the backend first, because you can test it immediately. 
+### Backend
+The backend uses third-party api, which is listed as follows:
+* **douban**: GET https://api.douban.com/v2/book/isbn/[isbn]
+* **wechat**
+
 * 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
 * 将“数据库表.sql”导入到自己的数据库中
 * 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
