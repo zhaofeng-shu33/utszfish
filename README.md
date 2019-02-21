@@ -38,7 +38,8 @@ After that, you can execute `source db.sql` in mysql client.
 Since the `api` directory contains all the backend code, after the above deployment, you can test your configuration by `curl [https root]/api/login.php`. If the return code is 200, it is ok; otherwise, check your php log error.
 
 * 在微信小程序管理后台配置域名
-* src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
+* src/app.js中更改相关的URL路径, including `getAppName`, `CDNUrl` and `ServerUrl`.
+* In `src/project.config.json`, use your custom projectname and `appid`
 to be written...
 
 ## Screenshot
