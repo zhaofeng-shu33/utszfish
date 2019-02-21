@@ -16,10 +16,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_articles`
+-- 表的结构 `utsz_articles`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_articles` (
+CREATE TABLE `utsz_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `authorid` varchar(32),
   `createdate` int(10) unsigned,
@@ -57,10 +57,10 @@ CREATE TABLE `bj_sjs_jybhy_articles` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_books`
+-- 表的结构 `utsz_books`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_books` (
+CREATE TABLE `utsz_books` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `isbn` varchar(20),
   `ownerid` varchar(32),
@@ -76,10 +76,10 @@ CREATE TABLE `bj_sjs_jybhy_books` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_coinhistory`
+-- 表的结构 `utsz_coinhistory`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_coinhistory` (
+CREATE TABLE `utsz_coinhistory` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ownerid` varchar(32) CHARACTER SET utf8,
   `value` int(10),
@@ -93,10 +93,10 @@ CREATE TABLE `bj_sjs_jybhy_coinhistory` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_comment`
+-- 表的结构 `utsz_comment`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_comment` (
+CREATE TABLE `utsz_comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `authorid` varchar(32),
   `articleid` int(10) unsigned,
@@ -112,10 +112,10 @@ CREATE TABLE `bj_sjs_jybhy_comment` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_exchangehistory`
+-- 表的结构 `utsz_exchangehistory`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_exchangehistory` (
+CREATE TABLE `utsz_exchangehistory` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ownerid` varchar(32) CHARACTER SET utf8,
   `goodsid` int(10) unsigned,
@@ -130,10 +130,10 @@ CREATE TABLE `bj_sjs_jybhy_exchangehistory` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_formids`
+-- 表的结构 `utsz_formids`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_formids` (
+CREATE TABLE `utsz_formids` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ownerid` varchar(32) CHARACTER SET utf8,
   `formid` varchar(32) CHARACTER SET utf8,
@@ -147,10 +147,10 @@ CREATE TABLE `bj_sjs_jybhy_formids` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_like`
+-- 表的结构 `utsz_like`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_like` (
+CREATE TABLE `utsz_like` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` varchar(32),
   `articleid` int(10) unsigned,
@@ -162,10 +162,10 @@ CREATE TABLE `bj_sjs_jybhy_like` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_livecams`
+-- 表的结构 `utsz_livecams`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_livecams` (
+CREATE TABLE `utsz_livecams` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ownerid` varchar(32) CHARACTER SET utf8,
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
@@ -179,10 +179,10 @@ CREATE TABLE `bj_sjs_jybhy_livecams` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_members`
+-- 表的结构 `utsz_members`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_members` (
+CREATE TABLE `utsz_members` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `openid` varchar(32),
   `nickname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
@@ -215,10 +215,10 @@ CREATE TABLE `bj_sjs_jybhy_members` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_services`
+-- 表的结构 `utsz_services`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_services` (
+CREATE TABLE `utsz_services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50),
   `telephone` varchar(50),
@@ -233,10 +233,10 @@ CREATE TABLE `bj_sjs_jybhy_services` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_vote`
+-- 表的结构 `utsz_vote`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_vote` (
+CREATE TABLE `utsz_vote` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` varchar(32) CHARACTER SET utf8,
   `createdate` int(10) unsigned,
@@ -250,10 +250,10 @@ CREATE TABLE `bj_sjs_jybhy_vote` (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 `bj_sjs_jybhy_werun`
+-- 表的结构 `utsz_werun`
 -- 
 
-CREATE TABLE `bj_sjs_jybhy_werun` (
+CREATE TABLE `utsz_werun` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ownerid` varchar(32) CHARACTER SET utf8,
   `stepcount` int(6) unsigned NOT NULL DEFAULT '0',

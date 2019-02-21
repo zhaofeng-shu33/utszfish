@@ -13,7 +13,7 @@ $jsondata=json_decode($postdata);
 
 function getNewWeather(){
 	
-	$dataRes = gzdecode(file_get_contents("http://wthrcdn.etouch.cn/weather_mini?citykey=101010100"));
+	$dataRes = gzdecode(file_get_contents("http://wthrcdn.etouch.cn/weather_mini?citykey=101280601"));
 	// $xml_array=simplexml_load_string($dataRes);
 	$json = json_decode($dataRes,true);
 
@@ -162,7 +162,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 }
 
 $topbanner=array(
-	array('picurl' => 'http://jnsii.com/jybhy/images/banner_yoga.gif','navigateto'=>'/pages/talent/goodsdetail?goodsid=1194')
+	array('picurl' => 'https://www.leidenschaft.cn/upload/two_years_old.jpg','navigateto'=>'/pages/talent/goodsdetail?goodsid=1194')
     );
 
 
@@ -188,7 +188,7 @@ if(!isDitributionMode($jsondata->bv)){
     $topbanner=array(
     // array('picurl' => 'http://jnsii.com/jybhy/images/bbs_banner.jpg','navigateto'=>'/pages/forum/detail?topicid=291'),
     // array('picurl' => 'http://jnsii.com/jybhy/images/qun_banner.jpg','navigateto'=>'/pages/forum/detail?topicid=369'),
-    array('picurl' => 'http://jnsii.com/jybhy/images/bushu_banner.jpg','navigateto'=>'/pages/pk/werun'),
+    array('picurl' => 'https://www.leidenschaft.cn/upload/two_years_old.jpg','navigateto'=>'/pages/billborad/index'),
     // array('picurl' => 'http://jnsii.com/jybhy/images/niming_banner.jpg','navigateto'=>'/pages/forum/topiclist?type=8&title=匿名曝光台'),
     // array('picurl' => 'http://jnsii.com/jybhy/images/jifen_banner.jpg','navigateto'=>'/pages/forum/detail?topicid=166')
     );
