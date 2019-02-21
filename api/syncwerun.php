@@ -30,7 +30,7 @@ function todayIsInserted($targettime){
 	$uid=$_SESSION['openid'];
 	$sql = "select id from ".getTablePrefix()."_werun where `ownerid`='$uid' and updatetime>$targettime LIMIT 1";
 	// echo $sql;
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	if(mysqli_num_rows($res)<=0){
 		return false;
 	}else{
@@ -68,7 +68,7 @@ if($uid!="" && $session_key!="" && $iv!="" && $encrypteddata!=""){
 	    	addCoinHistory(10,5,"提交微信运动步数");
 	    	$sql="insert into ".getTablePrefix()."_werun (ownerid,stepcount,timestamp,updatetime) values('$uid','$stepcount','$timestamp','$now')";
 	    }
-	    mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	    mysqli_query($db, $sql) or die(mysqli_error($db));
 
 	    exitJson(0,"步数已更新",array('stepcount' => $stepcount, 'timestamp'=>date("Y-m-d H:i:s",$timestamp),'updatetime'=>date("Y-m-d H:i:s",$now)));
 	} else {

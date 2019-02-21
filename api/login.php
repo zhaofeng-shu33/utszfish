@@ -27,19 +27,19 @@ $db = getDb();
 if($headimg!="" && $openid!="" && $nickname!=""){
 	
 	$sql = "select * from ".getTablePrefix()."_members where openid = '$openid' LIMIT 1";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 	$now = time();
 	if(mysqli_num_rows($res)<=0){
 		$sql = "insert into `".getTablePrefix()."_members` (openid, nickname, headimg, gender, city,province,country,joindate,lastlogin) values('$openid', '$nickname', '$headimg' ,'$gender' ,'$city' ,'$province', '$country','$now','$now')";
-		mysqli_query($db, $sql) or die(mysqli_error()($db)());
+		mysqli_query($db, $sql) or die(mysqli_error($db));
 	}else{
 		$row = mysqli_fetch_assoc($res);
 		if($row['baned']){
 			exitJson(1, '您已被关小黑屋');
 		}
 		$sql = "update `".getTablePrefix()."_members` set nickname='$nickname', headimg='$headimg',lastlogin='$now' where openid='$openid' ";
-		mysqli_query($db, $sql) or die(mysqli_error()($db)());
+		mysqli_query($db, $sql) or die(mysqli_error($db));
 	}
 
 	$token = getToken();

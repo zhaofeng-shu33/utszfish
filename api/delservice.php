@@ -25,7 +25,7 @@ if($serviceid!=''){
 	$userInfo=getUserSimpleInfo($uid);
 	if($userInfo['type']==1){
 		$sql = "delete from `".getTablePrefix()."_services` where id='$serviceid' LIMIT 1";
-		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 		
 		exitJson(0,'删除成功');
 	}else{

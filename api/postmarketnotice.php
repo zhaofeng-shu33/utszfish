@@ -42,7 +42,7 @@ if($text!='' && $uid!=''){
 			if(!addCoinHistory(11,-100,"发布店长通知：".$marketitem['title']))exitJson(0,"积分不足");
 
 			$sql="select uid from ".getTablePrefix()."_like where articleid='$goodsid'";
-			$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+			$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 			$sended=0;
 			while ($row = mysqli_fetch_assoc($res)) {

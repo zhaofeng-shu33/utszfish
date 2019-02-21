@@ -26,7 +26,7 @@ $uid=$_SESSION['openid'];
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `type` = '$type' and `id`='$goodsid' LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 $row = mysqli_fetch_assoc($res);
 
 $item=parseMarketItem($row);
@@ -44,7 +44,7 @@ if($uid==$row['authorid']){
 }else{
 	$sql = "select * from ".getTablePrefix()."_exchangehistory where `goodsid` = '$goodsid' and `ownerid`='$uid' order by exchangetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {
 

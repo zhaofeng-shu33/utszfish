@@ -17,7 +17,7 @@ function countTodayTopics($type){
 
 	$db = getDb();
 	$sql = "select count(id) from ".getTablePrefix()."_articles where `type`=$type and createdate>=$start and createdate<=$end and deleted=0";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
@@ -25,7 +25,7 @@ function countTodayTopics($type){
 function countAllTopics($type){
 	$db = getDb();
 	$sql = "select count(id) from ".getTablePrefix()."_articles where `type`=$type  and deleted=0";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$row=mysqli_fetch_row($res);
 	return $row[0];
 }

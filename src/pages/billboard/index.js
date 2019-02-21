@@ -73,47 +73,6 @@ Page({
       url: '/pages/me/userlist',
     })
   },
-  btnOpenSubmit: function (e) {
-
-    var that = this;
-    console.log('form发生了submit事件，携带数据为：', e.detail);
-    app.postFormId(e.detail.formId);
-    that.setData({
-      isopened: true
-    });
-
-    wx.getWeRunData({
-      fail: function (res) {
-        console.log("没有允许读取微信步数");
-        // app.authorizeCheck("scope.werun");
-      },
-      success: function (res) {
-
-        var werunobj = res;
-        wx.request({
-          url: app.ServerUrl() + '/api/syncwerun.php',
-          method: 'POST',
-          header: {
-            'Cookie': 'PHPSESSID=' + app.globalData.sessionid
-          },
-          data: {
-            iv: werunobj.iv,
-            encrypteddata: werunobj.encryptedData,
-            session_key: app.globalData.session_key,
-            token: app.globalData.token
-          },
-          complete: function () {
-            // wx.hideLoading();
-          },
-          success: function (res) {
-            if (parseInt(res.data.err) == 0) {
-
-            }
-          }
-        });
-      }
-    });
-  },
   btnCoinCenterSubmit: function (e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
@@ -352,7 +311,6 @@ Page({
             //newcomments: newcomments,
             topbanner: res.data.result.topbanner,
             totalmembers: res.data.result.totalmembers,
-            xianhao: res.data.result.xianhao,
             billboardlist: billboardlist,
             nowweather: nowweather,
             weather: weather,
@@ -364,27 +322,7 @@ Page({
       }
     });
   },
-  btnWelcomeCopy: function (e) {
-    var that = this;
 
-    var now = new Date();
-    var welcome = "";
-    var weather = that.data.result.weather;
-    console.log(weather);
-    if (now.getHours() < 12) {
-      welcome = "各位邻居早上好，今天是" + weather.data.forecast[0].date + "，尾号" + that.data.xianhao[0] + "。天气" + weather.data.forecast[0].type + "，最高" + weather.data.forecast[0].high + "，最低" + weather.data.forecast[0].low + "，" + weather.data.forecast[0].fengxiang + weather.data.forecast[0].fengli.replace("<![CDATA[", "").replace("]]>", "") + "。" + weather.data.ganmao;
-    } else {
-      welcome = "各位邻居晚上好，明天是" + weather.data.forecast[1].date + "，尾号" + that.data.xianhao[1] + "。天气" + weather.data.forecast[1].type + "，最高" + weather.data.forecast[1].high + "，最低" + weather.data.forecast[1].low + "，" + weather.data.forecast[1].fengxiang + weather.data.forecast[1].fengli.replace("<![CDATA[", "").replace("]]>", "") + "。" + weather.data.ganmao;
-    }
-    wx.setClipboardData({
-      data: welcome,
-    })
-    wx.showModal({
-      title: '',
-      showCancel: false,
-      content: '请安语已成功复制，可前往邻居群粘贴'
-    })
-  },
   btnHistory: function (e) {
     wx.setStorage({
       key: 'noticereaded',

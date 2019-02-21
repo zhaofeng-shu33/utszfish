@@ -38,7 +38,7 @@ if($uid!=""){
 }else if($isbn!=""){
 	$sql = "select `ownerid`,`telephone`,`status` from ".getTablePrefix()."_books where isbn='$isbn' order by createdate desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 $list = array();
 

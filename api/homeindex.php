@@ -36,7 +36,7 @@ $now=date('Y-m-d');
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_members order by lastlogin desc LIMIT 7";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 
 $loginlist = array();
@@ -46,7 +46,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 }
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` = 99 order by createdate desc LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 $billboardlist = array();
 while ($row = mysqli_fetch_assoc($res)) {
@@ -62,7 +62,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 $newtopics=array();
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` <99 and deleted=0 order by updatetime desc,createdate desc LIMIT 9";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 while ($row = mysqli_fetch_assoc($res)) {
 
@@ -80,7 +80,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 $newgoods=array();
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` =101 and deleted=0 order by updatetime desc,createdate desc LIMIT 3";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 while ($row = mysqli_fetch_assoc($res)) {
 
@@ -92,7 +92,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 
 $newvotes=array();
 $sql = "select * from ".getTablePrefix()."_articles where `type`=102 and deleted=0 and TO_DAYS(NOW()) - TO_DAYS(createdate)<=30 order by createdate desc LIMIT 3";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 while ($row = mysqli_fetch_assoc($res)) {
 

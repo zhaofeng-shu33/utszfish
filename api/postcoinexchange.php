@@ -24,7 +24,7 @@ if($goodsid!=""){
 	$db = getDb();
 
 	$sql = "select * from `".getTablePrefix()."_articles` where id='$goodsid' LIMIT 1";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$row = mysqli_fetch_assoc($res);
 	$marketItem=parseMarketItem($row);
 
@@ -38,7 +38,7 @@ if($goodsid!=""){
 
 		$now=time();
 		$sql = "insert into `".getTablePrefix()."_exchangehistory` (goodsid,ownerid, createdate,exchangecoin,exchangeprice) values('$goodsid', '$uid', '$now','$exchangecoin','$exchangeprice')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 		exitJson(0,'兑换成功');
 	}else{

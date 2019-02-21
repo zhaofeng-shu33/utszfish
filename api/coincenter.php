@@ -24,7 +24,7 @@ $db = getDb();
 $todaystart=strtotime(date("Y-m-d 00:00:00"));
 
 $sql = "select SUM(value) from ".getTablePrefix()."_coinhistory where `createdate`>$todaystart and ownerid='$uid'";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 $row = mysqli_fetch_row($res);
 $todayraise=0;
 if($row[0]){
@@ -33,7 +33,7 @@ if($row[0]){
 
 
 $sql="SELECT openid, coin, (SELECT count(*)+1 FROM `".getTablePrefix()."_members` WHERE (coin > ( SELECT coin FROM `".getTablePrefix()."_members` WHERE openid = '$uid') )) AS mc FROM ".getTablePrefix()."_members WHERE openid = '$uid' ";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 $row = mysqli_fetch_row($res);
 $rank=210;
 if($row[2]){
@@ -42,7 +42,7 @@ if($row[2]){
 
 $checkined=false;
 $sql = "select id from ".getTablePrefix()."_coinhistory where `ownerid`='$uid' and `type`=0 and createdate>$todaystart LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 if(mysqli_num_rows($res)>0){
 	$checkined=true;

@@ -60,3 +60,7 @@ to be written...
  * [【倒计时3天】大学城闲鱼来啦！](https://mp.weixin.qq.com/s/sAu_-YEWPV5FMth1k4tw_Q)
  * [TPH-Link是什么](https://mp.weixin.qq.com/s/aSn0YEtefARfdX9SXbhwwg)
  * [免费的微信小程序社区系统](https://zhuanlan.zhihu.com/p/28932121)
+
+### ChangeLog
+ * v0.4 
+ ** use green plus logo

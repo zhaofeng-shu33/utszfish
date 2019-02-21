@@ -38,7 +38,7 @@ function makeStrMasked($str){
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_articles where `id`='$articleid' and deleted=0 order by createdate desc LIMIT 1";
-$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 $row = mysqli_fetch_assoc($res);
 
 $list = getCommentList($articleid,$page,$limit,"desc");

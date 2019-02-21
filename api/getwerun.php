@@ -24,7 +24,7 @@ if($uid!=""){
 	$todaystart=strtotime(date("Y-m-d 00:00:00"));
 	$db = getDb();
 	$sql="select * from ".getTablePrefix()."_werun where ownerid='$uid' and updatetime>$todaystart LIMIT 1";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$todaystep = mysqli_fetch_assoc($res);
 
 	$todaystep['stepcount']=$todaystep['stepcount'];
@@ -33,7 +33,7 @@ if($uid!=""){
 
 
 	$sql="select * from ".getTablePrefix()."_werun where updatetime>$todaystart order by stepcount desc LIMIT 10";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$todaypersonal = array();
 	while ($row = mysqli_fetch_assoc($res)) {
 		
@@ -47,7 +47,7 @@ if($uid!=""){
 
 	$yesterdaystart=strtotime("yesterday");
 	$sql="select * from ".getTablePrefix()."_werun where updatetime>$yesterdaystart and updatetime<$todaystart order by stepcount desc LIMIT 10";
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$yesterdaypersonal = array();
 	while ($row = mysqli_fetch_assoc($res)) {
 		
@@ -62,7 +62,7 @@ if($uid!=""){
 	$monthstart=strtotime(date("Y-m-01 00:00:00"));
 	$sql = "select ownerid,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$monthstart group by ownerid, updatetime, timestamp order by stepcount desc LIMIT 10";
 	// echo $sql;
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$monthpersonal = array();
 	while ($row = mysqli_fetch_assoc($res)) {
 		
@@ -78,7 +78,7 @@ if($uid!=""){
 	$lastmonthstart=strtotime("$lastmonthEnd -1 month");
 	$sql = "select ownerid,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$lastmonthstart and updatetime<$monthstart group by ownerid, updatetime, timestamp order by stepcount desc LIMIT 10";
 	// echo $sql;
-	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 	$lastmonthpersonal = array();
 	while ($row = mysqli_fetch_assoc($res)) {
 		
