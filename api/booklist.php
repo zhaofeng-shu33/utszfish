@@ -30,7 +30,7 @@ if($jsondata->page!=""){
 $limit=9;
 
 $db = getDb();
-$sql = "select *, count(distinct isbn) from ".getTablePrefix()."_books group by isbn order by createdate desc LIMIT ".$limit*$page.",$limit";
+$sql = "select createdate, title, coverurl, count(distinct isbn) from ".getTablePrefix()."_books group by createdate, isbn, title, coverurl order by createdate desc LIMIT ".$limit*$page.",$limit";
 if($uid!=""){
 	$sql = "select * from ".getTablePrefix()."_books where ownerid='$uid' order by createdate desc LIMIT ".$limit*$page.",$limit";
 }else if($keyword!=""){
