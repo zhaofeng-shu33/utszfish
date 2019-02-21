@@ -77,23 +77,6 @@ App({
 					wx.navigateTo({
 						url: '/pages/me/login',
 					})
-          // wx.showModal({
-          //   title: '',
-          //   content: '请打开必须的授权设置',
-          //   showCancel:false,
-          //   success:function(res){
-          //     if(res.confirm){
-          //       wx.openSetting({
-          //         success: function (res) {
-          //           console.log(res);
-          //           if (res.authSetting[scope] == true) {
-          //             that.login();
-          //           }
-          //         }
-          //       });
-          //     }
-          //   }
-          // })
         }
       }
     })

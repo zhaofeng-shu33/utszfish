@@ -30,11 +30,14 @@ The backend uses third-party api, which is listed as follows:
 ```shell
 perl -p -e "s/utsz/custom_name/g" -i db.sql
 ```
+After that, you can execute `source db.sql` in mysql client.
 * In directory `api`, copy `mysql-sample.php` to `mysql.php` and make the following entries complete:
+    * database host, name, user and password
+    * table prefix, use `custom_name` for example
+    * your miniprogram appid and secret
+Since the `api` directory contains all the backend code, after the above deployment, you can test your configuration by `curl [https root]/api/login.php`. If the return code is 200, it is ok; otherwise, check your php log error.
 
-* 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
-* 将“数据库表.sql”导入到自己的数据库中
-* 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
+* 在微信小程序管理后台配置域名
 * src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
 to be written...
 
