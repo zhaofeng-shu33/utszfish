@@ -9,7 +9,7 @@ function getPost($var,$default='')
 	return isset($_POST[$var]) ? $_POST[$var] : $default;
 }
 
-function exitJson($err, $msg , $result)
+function exitJson($err, $msg , $result='')
 {
 	echo json_encode(array('err'=>$err, 'msg'=>$msg , 'result'=>$result));
 	exit();

@@ -28,7 +28,7 @@ $userInfo=getUserSimpleInfo($uid);
 $db = getDb();
 if($userInfo['type']==1){
 	$sql = "DELETE from ".getTablePrefix()."_articles where `id` = '$articleid' and `type`=99 and authorid='$uid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	exitJson(0,'删除成功');
 }else{

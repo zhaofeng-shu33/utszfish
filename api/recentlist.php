@@ -13,10 +13,10 @@ $jsondata=json_decode($postdata);
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_members order by lastlogin desc LIMIT 10";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 $list = array();
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 	
 	$list[] = getUserSimpleInfo($row['openid']);
 }

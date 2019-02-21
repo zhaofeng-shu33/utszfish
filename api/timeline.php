@@ -21,10 +21,10 @@ if($uid!=''){
 	$userInfo = getUserInfo($uid);
 
 	// $sql = "select * from ".getTablePrefix()."_articles where authorid = '$uid' and `type`=0 order by createdate desc LIMIT ".$limit*$page.",$limit";
-	// $res=mysql_query($sql,$db) or die(mysql_error());
+	// $res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	// $list = array();
-	// while ($row = mysql_fetch_assoc($res)) {
+	// while ($row = mysqli_fetch_assoc($res)) {
 
 	// 	$list[]=parseArticleItem($row);
 	// }

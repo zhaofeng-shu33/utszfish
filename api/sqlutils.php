@@ -20,17 +20,17 @@ function textFilter($text){
 function getFeedCount($openid){
 	$db = getDb();
 	$sql = "select count(*) from ".getTablePrefix()."_articles where authorid = '$openid'";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row=mysql_fetch_row($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
 
 function getBookDetail($isbn){
 	$db = getDb();
 	$sql = "select * from ISBN where isbn = '$isbn' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	$row = mysql_fetch_assoc($res);
+	$row = mysqli_fetch_assoc($res);
 	$row['coverurl']='https://jnsii.com/ISBN/'.$row['coverurl'];
 
 	return $row;
@@ -48,10 +48,10 @@ function addCoinHistory($type,$value,$msg,$touid=''){
 	$db = getDb();
 	$now=time();
 	$sql = "insert into ".getTablePrefix()."_coinhistory (`type`,`value`,`msg`,createdate,ownerid) values('$type','$value','$msg','$now','$uid')";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	$sql = "update ".getTablePrefix()."_members set coin=coin+$value where `openid`='$uid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	return true;
 }
@@ -59,9 +59,9 @@ function addCoinHistory($type,$value,$msg,$touid=''){
 function getUserSimpleInfo($openid){
 	$db = getDb();
 	$sql = "select `nickname`,`headimg`,`slogan`,`type`,`openid`,`joindate`,`lastlogin`,`wechatid`,`mobile`,`qq`,`coin` from ".getTablePrefix()."_members where openid = '$openid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	$row = mysql_fetch_assoc($res);
+	$row = mysqli_fetch_assoc($res);
 
 	$row['lastlogin']= date('Y-m-d H:i:s', $row['lastlogin']);
 	$row['joindate']= date('Y-m-d H:i:s', $row['joindate']);
@@ -72,9 +72,9 @@ function getUserSimpleInfo($openid){
 function getUserInfo($openid){
 	$db = getDb();
 	$sql = "select * from ".getTablePrefix()."_members where openid = '$openid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	$row = mysql_fetch_assoc($res);
+	$row = mysqli_fetch_assoc($res);
 
 	$tags_arr=$row['tags']==""?array():explode(",", $row['tags']);
 
@@ -92,9 +92,9 @@ function getUserInfo($openid){
 function getCommentById($commentid){
 	$db = getDb();
 	$sql = "select * from ".getTablePrefix()."_comment where id = '$commentid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	$row = mysql_fetch_assoc($res);
+	$row = mysqli_fetch_assoc($res);
 
 	$row['authorInfo']=getUserSimpleInfo($row['authorid']);
 
@@ -104,10 +104,10 @@ function getCommentById($commentid){
 function getCommentList($articleid,$page=0,$limit=10,$sortby='asc'){
 	$db = getDb();
 	$sql = "select * from ".getTablePrefix()."_comment where articleid = '$articleid' and deleted=0 order by createdate $sortby LIMIT ".$page*$limit.",$limit";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	$list=[];
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		$item = array(
 			'createdate'=> date('Y-m-d H:i:s', $row['createdate']),
 			'id'=>$row['id'],
@@ -127,10 +127,10 @@ function getCommentList($articleid,$page=0,$limit=10,$sortby='asc'){
 function getLikeList($articleid,$page=0,$limit=10,$sortby='asc'){
 	$db = getDb();
 	$sql = "select * from ".getTablePrefix()."_like where articleid = '$articleid' order by createdate $sortby LIMIT ".$page*$limit.",$limit";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	$list=[];
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		$item = array(
 			'createdate'=> date('Y-m-d H:i:s', $row['createdate']),
 			'id'=>$row['id'],
@@ -146,8 +146,8 @@ function getLikeList($articleid,$page=0,$limit=10,$sortby='asc'){
 function getArticleById($articleid){
 	$db = getDb();
 	$sql = "select * from ".getTablePrefix()."_articles where id = '$articleid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row = mysqli_fetch_assoc($res);
 
 	return $row;
 }
@@ -275,8 +275,8 @@ function parseMarketItem($row){
 function getVoteCount($articleid,$votevalue){
 	$db = getDb();
 	$sql = "select count(*) from ".getTablePrefix()."_vote where articleid = '$articleid' and votevalue=$votevalue";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row=mysql_fetch_row($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
 
@@ -298,33 +298,33 @@ function parsePKItem($row){
 function getTotalMemberCount(){
 	$db = getDb();
 	$sql = "select count(*) from ".getTablePrefix()."_members";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row=mysql_fetch_row($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
 
 function getCommentCount($articleid){
 	$db = getDb();
 	$sql = "select count(*) from ".getTablePrefix()."_comment where articleid = '$articleid' and deleted=0";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row=mysql_fetch_row($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
 
 function getLikeCount($articleid){
 	$db = getDb();
 	$sql = "select count(*) from ".getTablePrefix()."_like where articleid = '$articleid'";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$row=mysql_fetch_row($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$row=mysqli_fetch_row($res);
 	return $row[0];
 }
 
 function isLiked($uid,$articleid){
 	$db = getDb();
 	$sql = "select `id` from ".getTablePrefix()."_like where uid = '$uid' and articleid='$articleid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	if(mysql_num_rows($res)<=0){
+	if(mysqli_num_rows($res)<=0){
 		return false;
 	}else{
 		return true;
@@ -335,18 +335,18 @@ function getFormId($uid){
 	$db = getDb();
 	$time=strtotime('-7 day');
 	$sql = "select * from ".getTablePrefix()."_formids where ownerid = '$uid' and used=0 and createdate>$time order by createdate asc LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	if(mysql_num_rows($res)<=0){
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	if(mysqli_num_rows($res)<=0){
 		return false;
 	}
-	$row = mysql_fetch_assoc($res);
+	$row = mysqli_fetch_assoc($res);
 	return $row['formid'];
 }
 
 function deleteFormId($formid){
 	$db = getDb();
 	$sql="delete from ".getTablePrefix()."_formids where formid='$formid'";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 }
 
 function httpGet($url) {
@@ -412,7 +412,7 @@ function sendNotice($uid,$templateid,$data,$turl,$color=''){
 function sendUnreadNoticeToAll($text,$color='#ff0000',$page='pages/billboard/index'){
 	$db = getDb();
 	$sql="select ownerid,formid from ".getTablePrefix()."_formids where id in (select min(id) from ".getTablePrefix()."_formids group by ownerid)";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	$data=array(
 	        'keyword1'=>array('value'=>$text,'color'=>$color),
@@ -421,7 +421,7 @@ function sendUnreadNoticeToAll($text,$color='#ff0000',$page='pages/billboard/ind
 	    );
 
 	$sended=0;
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		//if($row['ownerid']=="oHSAe0fdixzRZUPBFCSwCPjos2R8"){
 			sendNotice($row['ownerid'],"FSh7ONdmR2FbefvtVC0eSJ5O1iF6MVT38xDNe_SSS_w",$data,$page);
 			$sended+=1;

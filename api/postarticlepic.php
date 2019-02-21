@@ -23,7 +23,7 @@ $lastsession=$_SESSION['uploadstr'];
 unset($_SESSION['uploadstr']);
 if($articleid!="" && $curindex!="" && $totalcount!=""){
 	$now=time();
-	$dirPath="../upload/".date('Y', $now)."/".date('m-d', $now);
+	$dirPath="/var/www/html/upload/".date('Y', $now)."/".date('m-d', $now);
 
 	$fileName=getMillisecond();
 	$filePath=$dirPath."/".$fileName.".jpg";
@@ -45,7 +45,7 @@ if($articleid!="" && $curindex!="" && $totalcount!=""){
 
 		$db = getDb();
 		$sql = "update `".getTablePrefix()."_articles` set pics='$arr_str' where authorid='$uid' and id='$articleid' ";
-		mysql_query($sql, $db) or die(mysql_error());
+		mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 		exitJson(0,'上传成功',$arr_str);
 	}else{

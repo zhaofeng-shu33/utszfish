@@ -45,7 +45,7 @@ if(count($tags)>0){
 $sqlp_str=join(",",$sqlParams);
 
 $sql="UPDATE `".getTablePrefix()."_members` set $sqlp_str where openid='$uid' ";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 exitJson(0,"资料已更新");
 

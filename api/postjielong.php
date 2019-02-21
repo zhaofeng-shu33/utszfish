@@ -27,20 +27,20 @@ if($articleid!="" && $uid!=""){
 	$now=time();
 
 	$sql="select id from ".getTablePrefix()."_comment where articleid='$articleid' and authorid='$uid' LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-	if(mysql_num_rows($res)<=0){
+	if(mysqli_num_rows($res)<=0){
 
 		$sql="insert into ".getTablePrefix()."_comment (authorid,articleid,createdate,text) values('$uid','$articleid','$now','$comment')";
-		$res=mysql_query($sql,$db) or die(mysql_error());
+		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 		exitJson(0,'接龙成功');
 	}else{
-		$row = mysql_fetch_assoc($res);
+		$row = mysqli_fetch_assoc($res);
 		$id=$row['id'];
 
 		$sql="update ".getTablePrefix()."_comment set createdate='$now',text='$comment' where authorid='$uid' and articleid='$articleid' and `id`='$id' LIMIT 1";
-		$res=mysql_query($sql,$db) or die(mysql_error());
+		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 		exitJson(1,'接龙已更新');
 	}

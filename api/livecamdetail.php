@@ -24,9 +24,9 @@ if($_SESSION['token']!=$token){
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_livecams where id='$camid' LIMIT 1";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-$row = mysql_fetch_assoc($res);
+$row = mysqli_fetch_assoc($res);
 
 $row["userInfo"]=getUserSimpleInfo($row['ownerid']);
 

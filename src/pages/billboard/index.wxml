@@ -85,7 +85,7 @@
 
   <form bindsubmit='btnTalentSubmit' report-submit>
     <button wx:if='{{newgoods}}' form-type='submit' plain='true' style="border:0;width:100%;line-height:inherit;background:#fff;margin:0;margin-bottom:10px;padding:0;text-align:left;border-radius:0;">
-      <view style="font-size:14px;font-weight:bold;padding:0px 10px;display:none;">友邻市集
+      <view style="font-size:14px;font-weight:bold;padding:0px 10px;display:none;">闲鱼市集
       </view>
       <view class="weui-flex" style="overflow:hidden;">
         <block wx:for="{{newgoods}}">

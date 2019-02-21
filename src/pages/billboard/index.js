@@ -249,7 +249,7 @@ Page({
           wx.getStorage({
             key: 'noticereaded',
             success: function (res) {
-              if (res.data != billboardlist[0].id) {
+              if (billboardlist.length >0 && res.data != billboardlist[0].id) {
                 that.setData({
                   noticereaded: false
                 });

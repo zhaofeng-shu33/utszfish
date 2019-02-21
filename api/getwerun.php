@@ -24,8 +24,8 @@ if($uid!=""){
 	$todaystart=strtotime(date("Y-m-d 00:00:00"));
 	$db = getDb();
 	$sql="select * from ".getTablePrefix()."_werun where ownerid='$uid' and updatetime>$todaystart LIMIT 1";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	$todaystep = mysql_fetch_assoc($res);
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$todaystep = mysqli_fetch_assoc($res);
 
 	$todaystep['stepcount']=$todaystep['stepcount'];
 	$todaystep['timestamp']=date("Y-m-d H:i:s",$todaystep['timestamp']);
@@ -33,9 +33,9 @@ if($uid!=""){
 
 
 	$sql="select * from ".getTablePrefix()."_werun where updatetime>$todaystart order by stepcount desc LIMIT 10";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 	$todaypersonal = array();
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		
 		$item = $row;
 		$item['userInfo']=getUserSimpleInfo($row['ownerid']);
@@ -47,9 +47,9 @@ if($uid!=""){
 
 	$yesterdaystart=strtotime("yesterday");
 	$sql="select * from ".getTablePrefix()."_werun where updatetime>$yesterdaystart and updatetime<$todaystart order by stepcount desc LIMIT 10";
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 	$yesterdaypersonal = array();
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		
 		$item = $row;
 		$item['userInfo']=getUserSimpleInfo($row['ownerid']);
@@ -60,11 +60,11 @@ if($uid!=""){
 	}
 
 	$monthstart=strtotime(date("Y-m-01 00:00:00"));
-	$sql = "select ownerid,id,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$monthstart group by ownerid order by stepcount desc LIMIT 10";
+	$sql = "select ownerid,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$monthstart group by ownerid, updatetime, timestamp order by stepcount desc LIMIT 10";
 	// echo $sql;
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 	$monthpersonal = array();
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		
 		$item = $row;
 		$item['userInfo']=getUserSimpleInfo($row['ownerid']);
@@ -76,11 +76,11 @@ if($uid!=""){
 
 	$lastmonthEnd=date("Y-m-01 00:00:00");
 	$lastmonthstart=strtotime("$lastmonthEnd -1 month");
-	$sql = "select ownerid,id,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$lastmonthstart and updatetime<$monthstart group by ownerid order by stepcount desc LIMIT 10";
+	$sql = "select ownerid,updatetime,timestamp,sum(stepcount) as stepcount from ".getTablePrefix()."_werun where updatetime>$lastmonthstart and updatetime<$monthstart group by ownerid, updatetime, timestamp order by stepcount desc LIMIT 10";
 	// echo $sql;
-	$res=mysql_query($sql,$db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 	$lastmonthpersonal = array();
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		
 		$item = $row;
 		$item['userInfo']=getUserSimpleInfo($row['ownerid']);

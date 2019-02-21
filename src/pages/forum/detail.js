@@ -10,7 +10,7 @@ Page({
     result: [],
     commentstr: '',
     commentplaceholder:'评论此话题',
-    replyid:'',
+    replyid:0,
     replyprefix:'',
     canloadmore: false,
     page: 0,
@@ -53,7 +53,7 @@ Page({
     var replyprefix = that.data.replyprefix;
     var commentstr = e.detail.value;
     if (e.detail.value.indexOf(replyprefix)<0){
-      replyid='';
+      replyid=0;
       replyprefix='';
       commentstr='';
     }
@@ -106,7 +106,7 @@ Page({
     var replyid = item.id;
     if (item.authorInfo.openid == app.globalData.userInfo.openid){
       replyprefix='';
-      replyid='';
+      replyid=0;
     }
     that.setData({
       replyid: replyid,
@@ -164,7 +164,7 @@ Page({
           that.setData({
             commentstr: "",
             replyprefix:'',
-            replyid:'',
+            replyid:0,
             // commentlist: that.data.commentlist
           });
         }

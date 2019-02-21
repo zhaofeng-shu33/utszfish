@@ -56,9 +56,9 @@ $db = getDb();
 $newtopics="";
 
 $sql = "select * from ".getTablePrefix()."_articles where `type` <99 and deleted=0 order by createdate desc LIMIT 3";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 
     $item=parseArticleSimpleItem($row);
 
@@ -92,11 +92,11 @@ $data=array(
 
 
 $sql="select ownerid,formid from ".getTablePrefix()."_formids where id in (select min(id) from ".getTablePrefix()."_formids group by ownerid)";
-$res=mysql_query($sql,$db) or die(mysql_error());
+$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 //sendNotice("oHSAe0fdixzRZUPBFCSwCPjos2R8","FSh7ONdmR2FbefvtVC0eSJ5O1iF6MVT38xDNe_SSS_w",$data,'pages/billboard/index');
 
-while ($row = mysql_fetch_assoc($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 	// print_r($row['ownerid']);
 	sendNotice($row['ownerid'],"FSh7ONdmR2FbefvtVC0eSJ5O1iF6MVT38xDNe_SSS_w",$data,'pages/billboard/index');
 }

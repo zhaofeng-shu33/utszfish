@@ -22,15 +22,15 @@ $uid=$_SESSION['openid'];
 
 
 // $sql = "select * from ".getTablePrefix()."_articles where `id`='$articleid' and deleted=0 order by createdate desc LIMIT 1";
-// $res=mysql_query($sql,$db) or die(mysql_error());
-// $row = mysql_fetch_assoc($res);
+// $res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+// $row = mysqli_fetch_assoc($res);
 
 function checkShareToday($targettime){
 	$db = getDb();
 	$uid=$_SESSION['openid'];
 	$sql = "select id from ".getTablePrefix()."_coinhistory where `ownerid`='$uid' and `type`=9 and createdate>$targettime order by id asc LIMIT 10";
-	$res=mysql_query($sql,$db) or die(mysql_error());
-	if(mysql_num_rows($res)<10){
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	if(mysqli_num_rows($res)<10){
 		return false;
 	}else{
 		return true;

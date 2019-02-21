@@ -30,7 +30,7 @@ if($formid!="" && $uid!=""){
 	$db = getDb();
 	$now=time();
 	$sql="insert into ".getTablePrefix()."_formids (ownerid,formid,createdate) values('$uid','$formid','$now')";
-	mysql_query($sql, $db) or die(mysql_error());
+	mysqli_query($db, $sql) or die(mysqli_error($db)());
 
 	exitJson(0,'提交成功');
 }else{

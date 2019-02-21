@@ -89,11 +89,11 @@ if($authorid!='' && !$isEmpty){
 		if(intval($type)==8)$masked=1;
 		$sql = "insert into `".getTablePrefix()."_articles` (authorid, createdate,updatetime, text, gps,gpsaddr,gpscity,`type`,masked) values('$authorid', '$now','$now','$text' ,'$gps' ,'$gpsaddr', '$gpscity','$type','$masked')";
 	}
-	$res=mysql_query($sql, $db) or die(mysql_error());
+	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
 	
 	
-	if(mysql_insert_id($db)>0){
-		$articleid = mysql_insert_id($db);
+	if(mysqli_insert_id($db)>0){
+		$articleid = mysqli_insert_id($db);
 		if(intval($type)==101);
 		else if(intval($type)==102);
 		else if(intval($type)==103);

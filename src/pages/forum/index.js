@@ -89,7 +89,7 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: "社区生活——"+app.getAppName(),
+      title: "学城生活——"+app.getAppName(),
       path: '/pages/forum/index',
       success: function (res) {
         // 转发成功
