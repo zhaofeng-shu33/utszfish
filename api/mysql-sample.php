@@ -3,10 +3,10 @@ date_default_timezone_set('Asia/Shanghai');
 
 function connDB($dbConf)
 {
-	$conn = mysql_connect($dbConf['host'], $dbConf['user'], $dbConf['pass'], true);
+	$conn = mysqli_connect($dbConf['host'], $dbConf['user'], $dbConf['pass');
 
 	if ($conn) {
-		mysql_query('set names \'utf8\';', $conn);
+		mysql_query($conn, 'set names utf8;');
 		return $conn;
 	}
 	return false;
@@ -23,9 +23,9 @@ function getDb()
 	
 	$db = connDB($db1);
 	
-	mysql_select_db('数据库名称', $db);
+	mysqli_select_db($db, '数据库名称');
 
-	mysql_query('set names \'utf8mb4\'', $db);
+	mysqli_query($db, 'set names utf8mb4');
 	
 	return $db;
 }
