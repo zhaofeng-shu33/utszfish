@@ -26,7 +26,12 @@
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
           <view style="width:100%;background:#fff;padding:0px 20px;margin-bottom:10px;">
-            <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;">
+             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
+              真实姓名
+              <view style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.realname}}</view>
+            </view>
+
+            <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
               性别
               <view wx:if="{{userInfo.gender==1}}" style="float:right;">男</view>
               <view wx:elif="{{userInfo.gender==2}}" style="float:right;">女</view>
@@ -38,15 +43,14 @@
               <view bindtap='btnCoin' style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.coin}}
               </view>
             </view>
-            <!-- <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
-              院区
-              
-              <view style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">
-              <picker disabled='{{!isowner}}' bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
-              </picker></view>
-            </view> -->
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
-              职业
+              学校
+              
+              <view style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.college}}
+             </view>
+            </view> 
+            <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
+              专业
               <view bindtap="btnChangeCareer" style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.career}}</view>
             </view>
           </view>

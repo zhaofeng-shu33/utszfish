@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    area: ["　　", "燕堤西街7号院", "燕堤西街6号院", "燕堤南路1号院", "燕堤南路2号院","燕堤中街6号院"],
+    area: ["未选择", "清华大学深圳研究生院", "北京大学深圳研究生院", "哈尔滨工业大学深圳", "其他"],
     areaIndex:0,
     editIsShow:false,
     isowner:false,
@@ -24,8 +24,11 @@ Page({
     this.setData({
       areaIndex: e.detail.value
     })
-    app.globalData.userInfo.area=e.detail.value;
-    this.updateUserInfo();
+    if(e.detail.value != "0"){
+      app.globalData.userInfo.college = this.data.area[parseInt(e.detail.value)]
+      app.globalData.userInfo.area=e.detail.value;
+      this.updateUserInfo();
+    }
   },
   editInputTyping:function(e){
     this.setData({
@@ -35,6 +38,9 @@ Page({
   editDone:function(e){
     if(e.currentTarget.id=="slogan"){
       app.globalData.userInfo.slogan = this.data.editVal;
+      this.updateUserInfo();
+    } else if (e.currentTarget.id == "name") {
+      app.globalData.userInfo.realname = this.data.editVal;
       this.updateUserInfo();
     } else if (e.currentTarget.id == "career") {
       app.globalData.userInfo.career = this.data.editVal;
@@ -305,9 +311,15 @@ Page({
   },
   btnChangeCareer:function () {
     if (this.data.isowner) {
-      this.editShow('career', this.data.userInfo.career, '职业', 10);
+      this.editShow('career', this.data.userInfo.career, '专业', 10);
     }
   },
+  btnChangeRealName:function () {
+    if (this.data.isowner) {
+      this.editShow('name', this.data.userInfo.realname, '真实姓名', 10);
+    }
+  },
+
   btnChangeSlogan:function(){
     if (this.data.isowner){
       this.editShow('slogan',this.data.userInfo.slogan,'写一条酷酷的签名吧',50);

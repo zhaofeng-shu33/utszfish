@@ -304,7 +304,7 @@ Page({
 	},
 	btnChangeCareer: function () {
 		if (this.data.isowner) {
-			this.editShow('career', this.data.userInfo.career, '职业', 10);
+			this.editShow('career', this.data.userInfo.career, '专业', 10);
 		}
 	},
 	btnChangeSlogan: function () {
