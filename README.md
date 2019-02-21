@@ -11,11 +11,19 @@
 希望能够整合3个群的信息，更好地满足广大同学的交易需求。
 
 ## How to deploy on your server
-* src/app.js中更改相关的URL路径
-* src为全部前端源码，api为全部后端php源码
+The code of this repository is started from [community-mini-program](https://github.com/ezshine/community-mini-program) but differs from the starting point gradually.
 
+For the *UTSZFISH* project. We have used the LAMP backend pipe. The version of my deployment on [](https://www.leidenschaft.cn/api) uses:
+* Ubuntu 18.04 LTS
+* Apache2.4
+* php7.2
+* mysql5.7
+
+I believe the deployment can be done for LNMP. Below is the steps for configuration for LAMP configuration.
+
+* src/app.js中更改相关的URL路径 (the `src` directory contains all the frontend code)
 * 在微信小程序管理后台配置域名，并将api目录上传至指定域名内
-* 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等
+* 在API文件夹中的mysql.php中配置自己的数据库地址，用户名，微信小程序appid，secret等 ( the `api` directory contains all the backend code)
 * 将“数据库表.sql”导入到自己的数据库中
 
 to be written...
@@ -35,6 +43,6 @@ to be written...
 
 
 ## Reference
- [【倒计时3天】大学城闲鱼来啦！](https://mp.weixin.qq.com/s/sAu_-YEWPV5FMth1k4tw_Q)
- [TPH-Link是什么](https://mp.weixin.qq.com/s/aSn0YEtefARfdX9SXbhwwg)
- [免费的微信小程序社区系统](https://zhuanlan.zhihu.com/p/28932121)
+ * [【倒计时3天】大学城闲鱼来啦！](https://mp.weixin.qq.com/s/sAu_-YEWPV5FMth1k4tw_Q)
+ * [TPH-Link是什么](https://mp.weixin.qq.com/s/aSn0YEtefARfdX9SXbhwwg)
+ * [免费的微信小程序社区系统](https://zhuanlan.zhihu.com/p/28932121)
