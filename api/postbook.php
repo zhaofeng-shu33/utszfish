@@ -27,12 +27,12 @@ if($isbn!="" && $title!="" && $coverurl!=""){
 	$db = getDb();
 
 	$sql = "select * from `".getTablePrefix()."_books` where isbn='$isbn' and ownerid='$uid' LIMIT 1";
-	$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+	$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 	if(mysqli_num_rows($res)<=0){
 		$now=time();
 		$sql = "insert into `".getTablePrefix()."_books` (isbn,ownerid,createdate, title,coverurl) values('$isbn', '$uid', '$now','$title','$coverurl')";
-		$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+		$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		addCoinHistory(3,5,"发布图书");
 

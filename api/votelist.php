@@ -28,7 +28,7 @@ if($uid!=""){
 }else if($keyword!=""){
 	$sql = "select * from ".getTablePrefix()."_articles where `type` = 102 and deleted=0 and `title` like '%$keyword%' order by updatetime desc LIMIT ".$limit*$page.",$limit";
 }
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {

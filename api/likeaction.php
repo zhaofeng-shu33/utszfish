@@ -26,14 +26,14 @@ if($articleid!="" && $uid!=""){
 	$db = getDb();
 	if(isLiked($uid,$articleid)){
 		$sql = "DELETE FROM `".getTablePrefix()."_like` WHERE uid='$uid' AND articleid='$articleid' LIMIT 1";
-		mysqli_query($db, $sql) or die(mysqli_error($db)());
+		mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		exitJson(0,'已取消Like',array('action'=>0));
 	}else{
 		
 		$now=time();
 		$sql = "insert into `".getTablePrefix()."_like` (uid, articleid, createdate) values('$uid', '$articleid', '$now')";
-		mysqli_query($db, $sql) or die(mysqli_error($db)());
+		mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 		$articledata=getArticleById($articleid);
 		$data=array(

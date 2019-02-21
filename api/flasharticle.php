@@ -30,7 +30,7 @@ $now=time();
 if(!addCoinHistory(5,-50,"置顶帖子"))exitJson(1,'积分不足');
 $sql = "UPDATE ".getTablePrefix()."_articles set updatetime='$now' where `id` = '$articleid' LIMIT 1";
 
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 exitJson(0,'置顶成功');
 

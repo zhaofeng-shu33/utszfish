@@ -13,7 +13,7 @@ $jsondata=json_decode($postdata);
 
 $db = getDb();
 $sql = "select * from ".getTablePrefix()."_members order by lastlogin desc LIMIT 10";
-$res=mysqli_query($db, $sql) or die(mysqli_error($db)());
+$res=mysqli_query($db, $sql) or die(mysqli_error()($db)());
 
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {
