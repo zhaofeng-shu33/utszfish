@@ -3,10 +3,10 @@ date_default_timezone_set('Asia/Shanghai');
 
 function connDB($dbConf)
 {
-	$conn = mysqli_connect($dbConf['host'], $dbConf['user'], $dbConf['pass');
+	$conn = mysqli_connect($dbConf['host'], $dbConf['user'], $dbConf['pass']);
 
 	if ($conn) {
-		mysql_query($conn, 'set names utf8;');
+		mysqli_query($conn, 'set names utf8;');
 		return $conn;
 	}
 	return false;
