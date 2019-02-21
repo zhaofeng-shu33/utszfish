@@ -16,8 +16,7 @@
         <view class="weui-flex__item" style="font-size:12px;text-align:center;background:#fff;border-right:#f2f2f2 1px solid;padding-bottom:8px;">
           <view style="font-size:10px;overflow:hidden;">
             <text style='margin-right:5px;'>{{item.week}}</text>
-            <text style=''>{{xianhao[index]}}</text>
-          </view>
+            </view>
           <view style="font-size:14px;padding:2px;">
             {{item.type}}
           </view>
