@@ -55,7 +55,7 @@ if(mysqli_num_rows($res)<=0){
 		$sql="INSERT into ISBN (isbn,coverurl,title,subtitle,author,publisher,pubdate,pages,price,bookdesc,authordesc,tags) values('$isbn','$coverLocalUrl','$title','$subtitle','$author','$publisher','$pubdate','$pages','$price','$bookdesc','$authordesc','$tagsStr')";
 		$res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
-		exitJson(0,"",array('isbn'=>$isbn,'title'=>$title,'coverurl'=>"https://jnsii.com/ISBN/".$coverLocalUrl,'subtitle'=>$subtitle,'author'=>$author,'publisher'=>$publisher,'bookdesc'=>$bookdesc));
+		exitJson(0,"",array('isbn'=>$isbn,'title'=>$title,'coverurl'=>"https://www.leidenschaft.cn/upload/ISBN/".$coverLocalUrl,'subtitle'=>$subtitle,'author'=>$author,'publisher'=>$publisher,'bookdesc'=>$bookdesc));
 	}else{
 		exitJson(1,"没有找到相应的书籍");
 	}
