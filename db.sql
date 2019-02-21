@@ -1,23 +1,25 @@
--- phpMyAdmin SQL Dump
--- version 2.10.2
--- http://www.phpmyadmin.net
--- 
--- 主机: 10.165.35.203:3306
--- 生成日期: 2018 年 11 月 07 日 12:20
--- 服务器版本: 1.0.12
--- PHP 版本: 5.5.14
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
--- 
--- 数据库: ``
--- 
 
--- --------------------------------------------------------
 
 -- 
 -- 表的结构 `utsz_articles`
 -- 
+create table ISBN(
+    id int primary key auto_increment,
+    isbn varchar(15),
+    author varchar(20),
+    coverurl varchar(200),
+    title varchar(50),
+    subtitle varchar(80),
+    publisher varchar(50),
+    pubdate varchar(20),
+    pages varchar(10),
+    price varchar(20),
+    bookdesc text,
+    authordesc text,
+    tags varchar(200)
+) default charset=utf8mb4;
 
 CREATE TABLE `utsz_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -159,22 +161,8 @@ CREATE TABLE `utsz_like` (
   KEY `uid` (`uid`,`articleid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
--- 
--- 表的结构 `utsz_livecams`
--- 
 
-CREATE TABLE `utsz_livecams` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ownerid` varchar(32) CHARACTER SET utf8,
-  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `desc` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `url` varchar(500) CHARACTER SET utf8,
-  `thumb` varchar(100) CHARACTER SET utf8,
-  PRIMARY KEY (`id`),
-  KEY `ownerid` (`ownerid`,`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
