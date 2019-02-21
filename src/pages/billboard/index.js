@@ -322,7 +322,15 @@ Page({
       }
     });
   },
+  btnOpenSubmit: function (e) {
 
+    var that = this;
+    console.log('form发生了submit事件，携带数据为：', e.detail);
+    app.postFormId(e.detail.formId);
+    that.setData({
+      isopened: true
+    });
+  },  
   btnHistory: function (e) {
     wx.setStorage({
       key: 'noticereaded',
