@@ -16,7 +16,7 @@ Page({
   },
   btnTalent:function(){
     wx.navigateTo({
-      url: '/pages/talent/list?keyword=积分',
+      url: '/pages/talent/list',
     })
   },
   btnBook: function () {
