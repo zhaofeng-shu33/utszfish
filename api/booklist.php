@@ -34,7 +34,7 @@ $sql = "select createdate, title, coverurl, count(distinct isbn) from ".getTable
 if($uid!=""){
 	$sql = "select * from ".getTablePrefix()."_books where ownerid='$uid' order by createdate desc LIMIT ".$limit*$page.",$limit";
 }else if($keyword!=""){
-	$sql = "select *, count(distinct isbn) from ".getTablePrefix()."_books where title like '%$keyword%' group by isbn order by createdate desc LIMIT ".$limit*$page.",$limit";
+	$sql = "select createdate, title, coverurl, count(distinct isbn) from ".getTablePrefix()."_books where title like '%$keyword%' group by isbn, title, coverurl, createdate order by createdate desc LIMIT ".$limit*$page.",$limit";
 }else if($isbn!=""){
 	$sql = "select `ownerid`,`telephone`,`status` from ".getTablePrefix()."_books where isbn='$isbn' order by createdate desc LIMIT ".$limit*$page.",$limit";
 }
