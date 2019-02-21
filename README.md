@@ -3,6 +3,8 @@ UTSZFISH小程序
 ##### 一套模块化设计的基于邻里间互动关系开发的微信小程序社区系统(包含全部前后端源码)
 ##### 开发者：[大帅(ezshine)](https://www.zhihu.com/people/ezshine) 
 
+参考 [](https://zhuanlan.zhihu.com/p/28932121)
+
 ![封面图](https://github.com/ezshine/community-mini-program/blob/master/thumb.jpg)
 
 ### 说明
