@@ -62,5 +62,10 @@ to be written...
  * [免费的微信小程序社区系统](https://zhuanlan.zhihu.com/p/28932121)
 
 ### ChangeLog
+ * v0.5
+ ** add college, realname
  * v0.4 
  ** use green plus logo
+
+### License
+Apache License V2.0
