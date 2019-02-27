@@ -3,6 +3,7 @@
 // ini_set('display_startup_errors',1); //php启动错误信息 
 // error_reporting(-1); 
 header("Content-type:text/html;charset=utf-8");
+header("Access-Control-Allow-Origin: *");
 include_once 'mysql.php';
 include_once 'functions.php';
 include_once 'sqlutils.php';
