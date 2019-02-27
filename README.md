@@ -1,7 +1,7 @@
 # UTSZFISH miniprogram
 =============
 大学城闲置物品交换平台 
-网页版见[](https://gitee.com/freewind201301/utsz-fish-web)，还在开发中，后续会迁到 GitHub 上。
+[网页版](https://gitee.com/freewind201301/utsz-fish-web)，还在开发中，后续会迁到 GitHub 上。
 
 ## Background
 北京大学深圳研究生院绿色+协会于2018年春季学期创办了深圳大学城闲鱼市场，最初以微信群的形式运营，在1群满500人后，逐渐扩展到2群、3群，现3个微信群达到1500人的规模，
