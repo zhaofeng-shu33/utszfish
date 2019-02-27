@@ -11,11 +11,13 @@ $area=$jsondata->area;
 $slogan=$jsondata->slogan;
 $career=$jsondata->career;
 $mobile=$jsondata->mobile;
+$college = $jsondata->college;
 $qq=$jsondata->qq;
 $wechatid=$jsondata->wechatid;
 $tags=$jsondata->tags;
 $token=$jsondata->token;
-
+$realname=$jsondata->realname;
+$studentid=$jsondata->studentid;
 session_start();
 
 if($_SESSION['token']!=$token){
@@ -28,7 +30,11 @@ $db = getDb();
 
 
 $sqlParams=array();
-
+if($college){
+    array_push($sqlParams, "college='$college'");
+}
+array_push($sqlParams,"realname='$realname'");
+array_push($sqlParams,"studentid='$studentid'");
 array_push($sqlParams,"wechatid='$wechatid'");
 array_push($sqlParams,"qq='$qq'");
 array_push($sqlParams,"mobile='$mobile'");
