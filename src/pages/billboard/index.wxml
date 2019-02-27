@@ -24,7 +24,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <swiper style='margin-bottom:10px;background:#fff;height:{{fastNavCount/4*70}}px;' indicator-dots='{{fastnav.length/fastNavCount>1}}'>
+  <swiper style='margin-bottom:10px;background:#fff;height:{{fastNavCount/8*70}}px;' indicator-dots='{{fastnav.length/fastNavCount>1}}'>
     <block wx:for="{{fastnav.length/fastNavCount}}" wx:for-index="i">
     <swiper-item>
   <view style="display:flex;flex-wrap:wrap;">
@@ -42,24 +42,7 @@
   </block>
 </swiper>
 
-  <form wx:if="{{fastnav.length>=8}}" bindsubmit='btnLoginListSubmit' report-submit>
-    <button form-type='submit' plain='true' style='padding:0;border:0;margin:0;text-align:left;border-radius:0px;'>
-      <view style="width:100%;background:#fff;padding:0px 10px;margin-bottom:10px;">
-        <view style="font-size:14px;font-weight:bold;">学生
-          <view style="font-size:12px;color:#999;float:right;">总计：{{totalmembers}}</view>
-        </view>
-
-        <view class="weui-flex" style="overflow:scroll;">
-          <block wx:for="{{loginlist}}">
-            <view style="margin-right:10px;">
-              <image mode="aspectFill" src="{{item.headimg}}" style="width:50px;height:50px;border-radius:25px;"></image>
-              <view style="font-size:12px;color:#666;width:50px;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:-20px;">{{item.nickname}}</view>
-            </view>
-          </block>
-        </view>
-      </view>
-    </button>
-  </form>
+ 
   <view><view class='iconfont icon-volume'></view></view>
 
   <form bindsubmit='btnTalentSubmit' report-submit>
