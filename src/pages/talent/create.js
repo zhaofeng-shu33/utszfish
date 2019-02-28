@@ -16,8 +16,6 @@ Page({
     textValue:'',
     title:'',
     titleValue:'',
-    telephone:'',
-    telephoneValue:'',
     unitArr: ["起","时","日", "周", "月", "个"],
     unit:"起",
     price:0,
@@ -57,11 +55,6 @@ Page({
   titleInput:function(e){
     this.setData({
       title: e.detail.value
-    });
-  },
-  telephoneInput:function(e){
-    this.setData({
-      telephone: e.detail.value
     });
   },
   btnUnit:function(){
@@ -141,13 +134,7 @@ Page({
         content: '请至少上传一张照片',
       });
       return;
-    }else if (util.trimStr(that.data.telephone)=='') {
-      wx.showModal({
-        title: '',
-        content: '请提供一个联系电话',
-      });
-      return;
-    } else if (that.data.exchangecoin > 0 || that.data.exchangeprice>0) {
+    }else if (that.data.exchangecoin > 0 || that.data.exchangeprice>0) {
       if (that.data.exchangecoin <= 0 || that.data.exchangeprice<=0){
         wx.showModal({
           title: '',
@@ -184,7 +171,6 @@ Page({
               price:that.data.price,
               title:that.data.title,
               unit:that.data.unit,
-              telephone: that.data.telephone,
               exchangecoin: that.data.exchangecoin,
               exchangeprice: that.data.exchangeprice,
               exchangedesc: that.data.exchangedesc,
@@ -333,8 +319,6 @@ Page({
         textValue: tempGoodsInfo.text,
         price: tempGoodsInfo.price,
         priceValue: tempGoodsInfo.price,
-        telephone: tempGoodsInfo.telephone,
-        telephoneValue: tempGoodsInfo.telephone,
         unit: tempGoodsInfo.unit,
         gps: tempGoodsInfo.gps,
         gpscity: tempGoodsInfo.gpscity,
