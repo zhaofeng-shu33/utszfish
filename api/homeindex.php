@@ -3,6 +3,7 @@
 // ini_set('display_startup_errors',1); //php启动错误信息 
 // error_reporting(-1); 
 header("Content-type:text/html;charset=utf-8");
+header("Access-Control-Allow-Origin: *");
 include_once 'mysql.php';
 include_once 'functions.php';
 include_once 'sqlutils.php';
@@ -111,14 +112,14 @@ $fastnav=array(
     array("title"=>"积分中心","page"=>"/pages/coincenter/index","icon"=>"icon-transaction_fill"),
   //  array("title"=>"接龙拼团","page"=>"/pages/tuan/index","icon"=>"icon-share_fill","badge"=>""),
    // array("title"=>"快递服务","page"=>"https://jnsii.com/jybhy/app/express/","type"=>"url","icon"=>"icon-mail_fill","badge"=>"专享"),
-    array("title"=>"民意投票","page"=>"/pages/pk/index","icon"=>"icon-pk"),
+   // array("title"=>"民意投票","page"=>"/pages/pk/index","icon"=>"icon-pk"),
   //  array("title"=>"微信步数","page"=>"/pages/pk/werun","icon"=>"icon-bushu"),
   //  array("title"=>"手机电视","page"=>"https://jnsii.com/jybhy/app/livetv/","type"=>"url","icon"=>"icon-live"),
     array("title"=>"闲鱼市集","page"=>"/pages/talent/list","icon"=>"icon-shop_fill"),
   //  array("title"=>"宿舍租赁","page"=>"/pages/forum/topiclist?type=3&title=宿舍租赁","icon"=>"icon-homepage_fill"),
-    array("title"=>"美食烹饪","page"=>"/pages/forum/topiclist?type=6&title=美食烹饪","icon"=>"icon-meishi2"),
-    array("title"=>"运动健康","page"=>"/pages/forum/topiclist?type=5&title=运动健康","icon"=>"icon-jiankang"),
-    array("title"=>"匿名曝光","page"=>"/pages/forum/topiclist?type=8&title=匿名曝光","icon"=>"icon-mianju"),
+  //  array("title"=>"美食烹饪","page"=>"/pages/forum/topiclist?type=6&title=美食烹饪","icon"=>"icon-meishi2"),
+  //  array("title"=>"运动健康","page"=>"/pages/forum/topiclist?type=5&title=运动健康","icon"=>"icon-jiankang"),
+  //  array("title"=>"匿名曝光","page"=>"/pages/forum/topiclist?type=8&title=匿名曝光","icon"=>"icon-mianju"),
     array("title"=>"社区书屋","page"=>"/pages/book/index","icon"=>"icon-shu"),
     array("title"=>"版务区","page"=>"/pages/forum/topiclist?type=9&title=建议投诉","icon"=>"icon-warning_fill"),
     );
