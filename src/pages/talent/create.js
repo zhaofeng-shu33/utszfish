@@ -321,6 +321,7 @@ Page({
       console.log(tempGoodsInfo);
       this.setData({
         goodsid: tempGoodsInfo.id,
+        areaIndex: tempGoodsInfo.talent_type,
         title: tempGoodsInfo.title,
         titleValue: tempGoodsInfo.title,
         text: tempGoodsInfo.text,
