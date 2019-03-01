@@ -9,6 +9,8 @@ Page({
   data: {
     maxfile: 9,
     files: [],
+    area: ["未分类", "数码", "化妆品", "其他"],
+    areaIndex: 0,
     gpsaddr: "所在位置",
     gps: '',
     gpscity: '',
@@ -46,6 +48,11 @@ Page({
     this.setData({
       exchangedesc: util.trimStr(e.detail.value)
     });
+  },
+  bindPickerChange: function (e) {
+    this.setData({
+      areaIndex: e.detail.value
+    })
   },
   textAreaInput: function (e) {
     this.setData({
@@ -174,7 +181,8 @@ Page({
               exchangecoin: that.data.exchangecoin,
               exchangeprice: that.data.exchangeprice,
               exchangedesc: that.data.exchangedesc,
-              token: app.globalData.token
+              token: app.globalData.token,
+              talent_type: that.data.areaIndex
             },
             success: function (res) {
               if (parseInt(res.data.err) == 0) {

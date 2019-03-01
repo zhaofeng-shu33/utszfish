@@ -5,8 +5,12 @@
 <view style='width:100%;background: #fff;padding:0px 20px;'>
   <view style="width:100%;height:10px;background:#fff;"></view>
   <input bindinput="titleInput" style="width:100%;background: #fff;font-size:14px;height:40px;line-height:40px;" placeholder="物品名称" value='{{titleValue}}'/>
+
 	<view style="width:100%;height:1px;background:#ccc;"></view>
+
   <textarea maxlength="10000" bindinput='textAreaInput' placeholder="描述一下您所提供的物品" name="textarea" auto-height='true' style="width:100%;background: #fff;font-size:14px;padding-top:10px;" value='{{textValue}}'/>
+
+
 	<view style="width:100%;margin-top:50px;background:#fff;">
     <view class="weui-uploader">
         <view class="weui-uploader__bd">
@@ -23,6 +27,13 @@
         </view>
     </view>
   </view>
+
+       <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
+              物品类别
+              <view style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">
+              <picker bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
+              </picker></view>
+            </view> 
   <view style="height:20px;"></view>
 </view>
 
