@@ -34,6 +34,7 @@ function countAllTopics($type){
 
 $category=array();
 $imagePrefix = "";
+$category[]=array("title"=>"物品需求", "type"=>10, "subtitle"=>"发布你需求的物品", "icon"=>"");
 $category[]=array("title"=>"生活杂谈","type"=>0,"subtitle"=>"分享你所关心的大事小情","icon"=> $imagePrefix . "banner0.jpg");
 $category[]=array("title"=>"匿名曝光台","type"=>8,"subtitle"=>"随手拍匿名曝光学城不文明现象","icon"=> $imagePrefix . "banner8.jpg");
 $category[]=array("title"=>"摄影分享","type"=>1,"subtitle"=>"用镜头探索光影变幻大学家园","icon"=> $imagePrefix . "banner1.jpg");

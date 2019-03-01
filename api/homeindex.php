@@ -115,13 +115,13 @@ $fastnav=array(
    // array("title"=>"民意投票","page"=>"/pages/pk/index","icon"=>"icon-pk"),
   //  array("title"=>"微信步数","page"=>"/pages/pk/werun","icon"=>"icon-bushu"),
   //  array("title"=>"手机电视","page"=>"https://jnsii.com/jybhy/app/livetv/","type"=>"url","icon"=>"icon-live"),
-    array("title"=>"闲鱼市集","page"=>"/pages/talent/list","icon"=>"icon-shop_fill"),
+    array("title"=>"需求中心","page"=>"/pages/forum/topiclist?type=10&title=需求中心","icon"=>"icon-shop_fill"),
   //  array("title"=>"宿舍租赁","page"=>"/pages/forum/topiclist?type=3&title=宿舍租赁","icon"=>"icon-homepage_fill"),
   //  array("title"=>"美食烹饪","page"=>"/pages/forum/topiclist?type=6&title=美食烹饪","icon"=>"icon-meishi2"),
   //  array("title"=>"运动健康","page"=>"/pages/forum/topiclist?type=5&title=运动健康","icon"=>"icon-jiankang"),
   //  array("title"=>"匿名曝光","page"=>"/pages/forum/topiclist?type=8&title=匿名曝光","icon"=>"icon-mianju"),
-    array("title"=>"社区书屋","page"=>"/pages/book/index","icon"=>"icon-shu"),
-    array("title"=>"版务区","page"=>"/pages/forum/topiclist?type=9&title=建议投诉","icon"=>"icon-warning_fill"),
+    array("title"=>"学城书屋","page"=>"/pages/book/index","icon"=>"icon-shu"),
+    array("title"=>"版务区", "page"=>"/pages/forum/topiclist?type=9&title=建议投诉","icon"=>"icon-warning_fill"),
     );
 
 if(!isDitributionMode($jsondata->bv)){
@@ -151,7 +151,7 @@ if(!isDitributionMode($jsondata->bv)){
     // array("title"=>"美食烹饪","page"=>"/pages/forum/topiclist?type=6&title=美食烹饪","icon"=>"icon-meishi2"),
     // array("title"=>"健康养生","page"=>"/pages/forum/topiclist?type=5&title=健康养生","icon"=>"icon-jiankang"),
     // array("title"=>"匿名曝光","page"=>"/pages/forum/topiclist?type=8&title=匿名曝光","icon"=>"icon-mianju"),
-    array("title"=>"社区书屋","page"=>"/pages/book/index","icon"=>"icon-shu"),
+    array("title"=>"学城书屋","page"=>"/pages/book/index","icon"=>"icon-shu"),
     // array("title"=>"版务区","page"=>"/pages/forum/topiclist?type=9&title=建议投诉","icon"=>"icon-warning_fill"),
     );
 }
