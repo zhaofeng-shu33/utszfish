@@ -1,5 +1,6 @@
 # UTSZFISH miniprogram
 =============
+
 大学城闲置物品交换平台 
 [网页版](https://gitee.com/freewind201301/utsz-fish-web)，还在开发中，后续会迁到 GitHub 上。
 
@@ -38,6 +39,9 @@ After that, you can execute `source db.sql` in mysql client.
 Since the `api` directory contains all the backend code, after the above deployment, you can test your configuration by `curl [https root]/api/login.php`. If the return code is 200, it is ok; otherwise, check your php log error.
 
 * 在微信小程序管理后台配置域名
+
+### Frontend
+
 * src/app.js中更改相关的URL路径, including `getAppName`, `CDNUrl` and `ServerUrl`.
 * In `src/project.config.json`, use your custom projectname and `appid`
 to be written...
