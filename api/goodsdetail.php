@@ -27,6 +27,10 @@ $row = mysqli_fetch_assoc($res);
 if($row['id']){
 	$sql2="update `".getTablePrefix()."_articles` set viewcount=viewcount+1 where `id`='$goodsid' LIMIT 1";
 	mysqli_query($db, $sql2) or die(mysqli_error($db));
+    $sql3 = "select talent_type from `".getTablePrefix()."_talent_id_type` where talent_id = '$goodsid'";
+    $res = mysqli_query($db, $sql3) or die(mysqli_error($db));
+    $row2 = mysqli_fetch_assoc($res);
+    $talent_type = $row2['talent_type'];
 }
 
 $uid=$_SESSION['openid'];
@@ -41,6 +45,8 @@ $item['commentcount']=getCommentCount($row['id']);
 $item['isliked']=isLiked($uid,$row['id']);
 $item['likelist']=getLikeList($row['id'],0,50,'desc');
 $item['disablecomment']=intval($row['disablecomment']);
+
+$item['talent_type'] = intval($talent_type);
 
 if(!isDitributionMode($jsondata->bv)){
 	$item['disablecomment']=1;

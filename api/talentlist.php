@@ -40,17 +40,26 @@ if($uid!=""){
 }
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
+$filterType = $jsondata->search_type;
+$shouldFilter = ($filterType != '0');
+if($shouldFilter){
+   $talent_type = intval($filterType) - 1;
+}
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {
-
+      if($shouldFilter){
+         $talent_id = $row['id'];
+         $sql2 = "select talent_id from ".getTablePrefix()."_talent_id_type where talent_id = $talent_id and talent_type = $talent_type";
+         $res2 = mysqli_query($db, $sql2) or die(mysqli_error($db));
+         if($res2->num_rows == 0){
+           continue;
+         } 
+      }
 	$list[]=parseMarketItem($row);
 }
-
 if(!isDitributionMode($jsondata->bv)){
 	$list = array();
 }
 
 exitJson(0,"",$list);
 
-
-?>

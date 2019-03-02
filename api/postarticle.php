@@ -52,15 +52,14 @@ if($authorid!='' && !$isEmpty){
 		$title = textFilter($title);
 		$price=($jsondata->price)*100;
 		$unit=$jsondata->unit;
-		$telephone=$jsondata->telephone;
 		$exchangecoin=$jsondata->exchangecoin;
 		$exchangeprice=$jsondata->exchangeprice;
 		$exchangedesc=$jsondata->exchangedesc;
 		$articleid=$jsondata->goodsid;
 		if($articleid!=""){
-			$sql = "update `".getTablePrefix()."_articles` set text='$text',createdate='$now', gps='$gps',gpsaddr='$gpsaddr',gpscity='$gpscity',`title`='$title',`price`='$price',telephone='$telephone',`unit`='$unit',exchangecoin='$exchangecoin',exchangeprice='$exchangeprice',exchangedesc='$exchangedesc' where `id`='$articleid' ";
+			$sql = "update `".getTablePrefix()."_articles` set text='$text',createdate='$now', gps='$gps',gpsaddr='$gpsaddr',gpscity='$gpscity',`title`='$title',`price`='$price',`unit`='$unit',exchangecoin='$exchangecoin',exchangeprice='$exchangeprice',exchangedesc='$exchangedesc' where `id`='$articleid' ";
 		}else{
-			$sql = "insert into `".getTablePrefix()."_articles` (authorid, createdate,updatetime, text, gps,gpsaddr,gpscity,`type`,`title`,`price`,`telephone`,`unit`,exchangecoin,exchangeprice,exchangedesc) values('$authorid', '$now','$now','$text' ,'$gps' ,'$gpsaddr', '$gpscity','$type','$title','$price','$telephone','$unit','$exchangecoin','$exchangeprice','$exchangedesc')";
+			$sql = "insert into `".getTablePrefix()."_articles` (authorid, createdate,updatetime, text, gps,gpsaddr,gpscity,`type`,`title`,`price`,`unit`,exchangecoin,exchangeprice,exchangedesc) values('$authorid', '$now','$now','$text' ,'$gps' ,'$gpsaddr', '$gpscity','$type','$title','$price','$unit','$exchangecoin','$exchangeprice','$exchangedesc')";
 		}
 		
 	}else if(intval($type)==102){
@@ -90,8 +89,14 @@ if($authorid!='' && !$isEmpty){
 		$sql = "insert into `".getTablePrefix()."_articles` (authorid, createdate,updatetime, text, gps,gpsaddr,gpscity,`type`,masked) values('$authorid', '$now','$now','$text' ,'$gps' ,'$gpsaddr', '$gpscity','$type','$masked')";
 	}
 	$res=mysqli_query($db, $sql) or die(mysqli_error($db));
-	
-	
+
+// handle talent types
+if($articleid!=''){
+   $shouldUpdate = True;
+}
+else{
+   $shouldUpdate = False;
+}
 	if(mysqli_insert_id($db)>0){
 		$articleid = mysqli_insert_id($db);
 		if(intval($type)==101);
@@ -99,6 +104,20 @@ if($authorid!='' && !$isEmpty){
 		else if(intval($type)==103);
 		else addCoinHistory(1,1,"社区生活发帖");
 	}
+
+if(intval($type)==101){
+  $talent_type = $jsondata->talent_type;
+  if($shouldUpdate != ''){
+    $sql2 = "update `".getTablePrefix()."_talent_id_type` set talent_type = '$talent_type' where `talent_id`='$articleid'";
+  }
+  else
+  {  
+    $sql2 = "insert into `".getTablePrefix()."_talent_id_type` (talent_id, talent_type) values('$articleid','$talent_type')";
+  }
+  $res=mysqli_query($db, $sql2) or die(mysqli_error($db));
+}	
+
+	
 
 	exitJson(0,'发布成功',array('articleid'=>$articleid));
 }else{

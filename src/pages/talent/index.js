@@ -11,7 +11,15 @@ Page({
     inputVal: "",
     searchResult: [],
     page:0,
-    canloadmore: false
+    canloadmore: false,
+    area: ["全部", "未分类", "数码", "化妆品", "其他"],
+    areaIndex: 0
+  },
+  bindPickerChange: function (e) {
+    this.setData({
+      areaIndex: e.detail.value
+    })
+    this.updateMarketList(0, '', e.detail.value);
   },
   showInput: function () {
     this.setData({
@@ -23,13 +31,13 @@ Page({
       inputVal: "",
       inputShowed: false
     });
-    this.updateMarketList();
+    this.updateMarketList(0, '', this.data.areaIndex);
   },
   clearInput: function () {
     this.setData({
       inputVal: ""
     });
-    this.updateMarketList();
+    this.updateMarketList(0, '', this.data.areaIndex);
   },
   inputTyping: function (e) {
     if (util.trimStr(e.detail.value) != "") {
@@ -42,7 +50,7 @@ Page({
     }
   },
   searchBy:function(keyword){
-    this.updateMarketList(0,keyword);
+    this.updateMarketList(0, keyword, this.data.areaIndex);
   },
 
   btnCreateSubmit: function (e) {
@@ -63,10 +71,11 @@ Page({
   btnLoadMore: function () {
     if (this.data.canloadmore) {
       this.data.page += 1;
-      this.updateMarketList(this.data.page);
+      this.updateMarketList(this.data.page, '', this.data.areaIndex);
     }
   },
-  updateMarketList: function (page = 0, kw = ''){
+  // type = 0, ALL; type > 0, talent_id = type - 1
+  updateMarketList: function (page = 0, kw = '', type = 0){
     var that=this;
     wx.request({
       url: app.ServerUrl() +'/api/talentlist.php',
@@ -78,7 +87,8 @@ Page({
         token: app.globalData.token,
         page: page,
         bv: app.getBuildVersion(),
-        keyword:kw
+        keyword:kw,
+        search_type: type
       },
       complete:function(){
         wx.stopPullDownRefresh();
@@ -120,7 +130,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   refresh:function(){
-    this.updateMarketList();
+    this.updateMarketList(0, '', this.data.areaIndex);
   },
   onLoad: function (options) {
     if(options.keyword){
