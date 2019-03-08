@@ -62,7 +62,7 @@
         "text": "交易"
       },
       {
-        "pagePath": "pages/forum/index",
+        "pagePath": "pages/requirement/index",
         "iconPath": "images/manage.png",
         "selectedIconPath": "images/manage_1.png",
         "text": "需求"
