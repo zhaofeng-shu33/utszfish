@@ -7,7 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    categorys:[]
+    categorys:[],
+    inputShowed: false,
+    inputVal: "",
+    searchResult: [],
+    page: 0,
+    canloadmore: false,
+    area: ["全部", "未分类", "数码", "化妆品", "其他"],
+    areaIndex: 0
   },
   updateCategorys: function () {
     var that = this;

@@ -1,4 +1,5 @@
 <!--pages/forum/index.wxml-->
+<!--
 <view style='padding:10px;background:#f2f2f2;box-sizing:border-box;'>
   <block wx:for="{{categorys}}">
     <navigator url='/pages/forum/topiclist?type={{item.type}}&title={{item.title}}' style='width:100%;border-radius:10px;height:80px;background:#fff;font-size:18px;text-align:left;margin-bottom:10px;box-sizing:border-box;position:relative;overflow:hidden;'>
@@ -10,3 +11,44 @@
     </navigator>
   </block>
 </view>
+-->
+<import src="../../utils/template.wxml" />
+<view class="weui-search-bar" style="background:#fdda42;;border:none;position:fixed;z-index:9;width:100%;">
+  <view style="font-size:14px;color:#666; background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
+    <picker bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
+    </picker>
+  </view>
+
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="weui-search-bar__text">搜索</view>
+    </label>
+  </view>
+  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+</view>
+
+<view bindscrolltolower="btnLoadMore" scroll-y='true' style='width:100%;height:100%;'>
+  <view style="padding:130rpx 0 0 0;">
+    <block wx:for="{{list}}" wx:key="{{}}">
+      <template is="talentitem" data="{{...item}}"></template>
+    </block>
+    <view bindtap="btnLoadMore" wx:if="{{canloadmore}}" style="width:100%;font-size:16px;color:#999;text-align:center;padding:10px;">
+      点击加载更多
+    </view>
+  </view>
+</view>
+
+<view style="width:100%;position:fixed;bottom:0px;padding:10px 20px;">
+  <form bindsubmit="btnCreateSubmit" report-submit>
+    <button form-type="submit" style="width:100%;height:44px;border-radius:22px;line-height:44px;background:#fdda42;color:#000;text-align:center;font-size:14px;">发布需求</button>
+  </form>
+</view>
+

@@ -1,7 +1,7 @@
 <!--pages/me/timeline.wxml-->
 <import src="../../utils/template.wxml" />
 <view wx:if="{{!uid}}" style='position:fixed;width:100%;height:100%;background:#f2f2f2;z-index:99999;'>
-	<button class='blockbutton yellow' bindgetuserinfo='btnGetUserInfo' open-type='getUserInfo' style='border:none;line-height:150px;width:150px;height:150px;border-radius:75px;margin-top:100px;'>登录</button>
+  <button class='blockbutton yellow' bindgetuserinfo='btnGetUserInfo' open-type='getUserInfo' style='border:none;line-height:150px;width:150px;height:150px;border-radius:75px;margin-top:100px;'>登录</button>
 </view>
 <view style="width:100%;height:100%;background:#f2f2f2;display:{{editIsShow?'block':'none'}}">
   <view style="width:100%;padding:20px;background:#fff;">
@@ -14,6 +14,7 @@
 <view style="display:{{editIsShow?'none':'block'}}">
   <template is="usercard" data="{{...userInfo}}"></template>
   <view class="page__bd">
+  
     <view class="weui-tab">
       <view wx:if='{{mode}}' class="weui-navbar" style='background:#fff;'>
         <block wx:for="{{tabs}}" wx:key="*this">
@@ -23,11 +24,12 @@
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
       </view>
+
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
           <view style="width:100%;background:#fff;padding:0px 20px;margin-bottom:10px;">
 
-             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
+            <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
               真实姓名
               <view bindtap="btnChangeRealName" style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.realname}}</view>
             </view>
@@ -39,16 +41,17 @@
               <view wx:elif="{{userInfo.gender==0}}" style="float:right;">未知</view>
             </view>
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
-              积分              
+              积分
               <view bindtap='btnCoin' style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.coin}}
               </view>
             </view>
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
               学校
               <view style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">
-              <picker disabled='{{!isowner}}' bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
-              </picker></view>
-            </view> 
+                <picker disabled='{{!isowner}}' bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
+                </picker>
+              </view>
+            </view>
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;border-top:#eee 1px solid;">
               专业
               <view bindtap="btnChangeCareer" style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.career}}</view>
@@ -57,7 +60,9 @@
           <view style="width:100%;background:#fff;padding:0px 20px;margin-bottom:10px;">
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;">
               兴趣标签
-              <view bindtap="btnAddTag" wx:if="{{isowner}}" style="float:right;"><text class="iconfont icon-add"></text></view>
+              <view bindtap="btnAddTag" wx:if="{{isowner}}" style="float:right;">
+                <text class="iconfont icon-add"></text>
+              </view>
             </view>
             <view style="width:100%;display:flex;flex-wrap:wrap;">
               <block wx:for="{{userInfo.tags}}">
@@ -65,10 +70,10 @@
               </block>
             </view>
           </view>
-          <view wx:if='{{mode}}'  style='width:100%;padding:5px 20px;font-size:12px;color:#999;'>
+          <view wx:if='{{mode}}' style='width:100%;padding:5px 20px;font-size:12px;color:#999;'>
             联系方式
           </view>
-          <view wx:if='{{mode}}'  style="width:100%;background:#fff;padding:0px 20px;margin-bottom:10px;">
+          <view wx:if='{{mode}}' style="width:100%;background:#fff;padding:0px 20px;margin-bottom:10px;">
             <view style="width:100%;height:40px;line-height:40px;font-size:14px;color:#666;">
               QQ
               <view bindtap="btnChangeQQ" style="float:right;width:200px;text-align:right;height:40px;line-height:40px;">{{userInfo.qq}}</view>
@@ -83,24 +88,24 @@
             </view>
           </view>
 
-    <view style="font-size:12px;color:#999;padding:4px 6px;text-align:center;">
-      <view>{{userInfo.lastlogindistance}}登录过</view>
-    </view>
+          <view style="font-size:12px;color:#999;padding:4px 6px;text-align:center;">
+            <view>{{userInfo.lastlogindistance}}登录过</view>
+          </view>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
           <block wx:for="{{topiclist}}">
-                    <template is="articleitem-navitem" data="{{...item}}"></template> 
-                  </block>
+            <template is="articleitem-navitem" data="{{...item}}"></template>
+          </block>
         </view>
         <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 2}}" style="flex-wrap:wrap;">
           <block wx:for="{{booklist}}">
-                    <template is="bookitem" data="{{...item}}"></template> 
-                  </block>
+            <template is="bookitem" data="{{...item}}"></template>
+          </block>
         </view>
         <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 3}}" style="flex-wrap:wrap;">
-          <block wx:for="{{marketlist}}">
-                    <template is="talentitem" data="{{...item}}"></template> 
-                  </block>
+          <block wx:for="{{marketlist}}" wx:key="{{}}">
+            <template is="talentitem" data="{{...item}}"></template>
+          </block>
         </view>
       </view>
     </view>
