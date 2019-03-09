@@ -73,7 +73,7 @@ right:
 }
 
 .item-head image {
-	width: 60rpx;
+	width: 50rpx;
   height:60rpx;
   margin:10rpx 90rpx 0 90rpx;
 }
