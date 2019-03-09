@@ -1,4 +1,4 @@
-<!--pages/forum/create.wxml-->
+<!--pages/requirement/create.wxml-->
 <view style='width:100%;background: #fff;padding:0px 20px'>
 	<textarea bindinput='textAreaInput' maxlength="10000" placeholder="添加接龙说明" name="textarea" auto-height='true' style="width:100%;background: #fff;font-size:14px;padding-top:20px;" />
 	<view style="width:100%;margin-top:20px;background:#fff;">

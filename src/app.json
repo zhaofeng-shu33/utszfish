@@ -3,15 +3,13 @@
     "pages/billboard/index",
     "pages/billboard/history",
     "pages/billboard/create",
-    "pages/requirement/index",
-    "pages/requirement/list",
-    "pages/requirement/goodsdetail",
-    "pages/requirement/create",
-    "pages/requirement/ownernotice",
-    "pages/requirement/coinexchange",
     "pages/book/index",
     "pages/book/create",
     "pages/book/detail",
+    "pages/requirement/create",
+    "pages/requirement/detail",
+    "pages/requirement/index",
+    "pages/requirement/topiclist",
     "pages/talent/index",
     "pages/talent/list",
     "pages/talent/goodsdetail",
@@ -47,8 +45,8 @@
     "list": [
       {
         "pagePath": "pages/billboard/index",
-        "iconPath": "images/forum.png",
-        "selectedIconPath": "images/forum_1.png",
+        "iconPath": "images/billboard.png",
+        "selectedIconPath": "images/billboard_1.png",
         "text": "首页"
       },
       {

@@ -1,0 +1,5 @@
+/* pages/requirement/topiclist.wxss */
+page
+{
+  background: #f2f2f2;
+}

@@ -1,4 +1,4 @@
-// pages/forum/create.js
+// pages/requirement/create.js
 var app=getApp();
 var util = require('../../utils/util.js');
 Page({
