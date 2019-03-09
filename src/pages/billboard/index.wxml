@@ -1,96 +1,92 @@
 <!--pages/billboard/index.wxml-->
 <import src="../../utils/template.wxml" />
 
-<scroll-view bindscrolltolower="btnLoadMore" scroll-y='true' style='width:100%;height:100%;'>
-<view style="padding:0px;">
-  <view style='margin-bottom:10px;'>
 
 
-    <view id='{{billboardlist[0].id}}' bindtap="btnHistory" style="width:100%;padding:0px 10px;border-top:#f2f2f2 1px solid;background:#fff;">
-      <view style="font-size:12px;font-weight:bold;text-align:center;">
-        <text wx:if="{{!noticereaded}}" style="color:#ff0000">[公告]{{billboardlist[0].title}}</text>
-        <text wx:else style="color:#999;font-size:12px;">查看往期公告</text>
+<!--搜索跳转-->
+<navigator url="../search/search">
+  <view hidden='{{scroll}}' class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
+    <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
+      <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
       </view>
     </view>
+
+    <view class="search-bar__form">
+
+      <view class="search-bar__box">
+        <icon class="icon-search_in-box" type="search" size="14"></icon>
+        <view type="text" class="search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+        <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+      <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="search-bar__text">搜索</view>
+      </label>
+    </view>
   </view>
-  <swiper wx:if="{{topbanner}}" autoplay='true' circular='true' indicator-dots='{{topbanner.length>1}}' style='width:100%;height:100px;margin-bottom:0px;background:#fff;margin-top:-10px;'>
-    <block wx:for="{{topbanner}}">
+</navigator>
+
+
+<view style="padding:20rpx;" id="id" bindtap="handletap" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
+
+  <!--广告栏-->
+  <swiper wx:if="{{topbanner}}" autoplay='true' circular='true' indicator-dots='{{topbanner.length>1}}' style='width:100%;height:300rpx;margin-bottom:0px;background:#fdda42;margin-top:100rpx;'>
+    <block wx:for="{{topbanner}}" wx:key="{{}}">
       <swiper-item style='width:100%;'>
-        <form bindsubmit='btnTopBannerSubmit' report-submit='true' id='{{index}}' style='width:100%;height:100px'>
-          <button form-type='submit' plain='true' style='width:100%;height:100px;border:none;padding:0;border-radius:0;'>
-          <image mode='aspectFill' src='{{item.picurl}}' style='width:100%;height:100px;'></image>
+        <form bindsubmit='btnTopBannerSubmit' report-submit='true' id='{{index}}' style='width:100%;height:300rpx'>
+          <button form-type='submit' plain='true' style='width:100%;height:300rpx;border:none;padding:0;border-radius:0;'>
+            <image mode='aspectFill' src='{{item.picurl}}' style='width:100%;height:300rpx;'></image>
           </button>
         </form>
       </swiper-item>
     </block>
   </swiper>
-  <swiper style='margin-bottom:10px;background:#fff;height:{{fastNavCount/8*70}}px;' indicator-dots='{{fastnav.length/fastNavCount>1}}'>
-    <block wx:for="{{fastnav.length/fastNavCount}}" wx:for-index="i">
-    <swiper-item>
-  <view style="display:flex;flex-wrap:wrap;">
-    <block wx:for="{{fastNavCount}}" wx:for-index="j">
-      <form wx:if="{{fastnav[i*fastNavCount+j]}}" id='{{i*fastNavCount+j}}' bindsubmit='btnFastNavSubmit' report-submit='true' style='width:25%;position:relative;'>
-      <button form-type='submit' plain='true' class='fastNavItem' hover-class='fastNavItem-hover'>
-        <view wx:if="{{fastnav[i*fastNavCount+j].badge}}" style='padding:2px;color:#fff;font-size:9px;background:#ff0000;position:absolute;z-index:2;right:0px;top:0px;'>{{fastnav[i*fastNavCount+j].badge}}</view>
-        <view class='iconfont {{fastnav[i*fastNavCount+j].icon}}'></view>
-        <view>{{fastnav[i*fastNavCount+j].title}}</view>
-      </button>
-      </form>
-    </block>
-  </view>
-  </swiper-item>
-  </block>
-</swiper>
 
- 
-  <view><view class='iconfont icon-volume'></view></view>
-
-  <form bindsubmit='btnTalentSubmit' report-submit>
-    <button wx:if='{{newgoods}}' form-type='submit' plain='true' style="border:0;width:100%;line-height:inherit;background:#fff;margin:0;margin-bottom:10px;padding:0;text-align:left;border-radius:0;">
-      <view style="font-size:14px;font-weight:bold;padding:0px 10px;display:none;">闲鱼市集
-      </view>
-      <view class="weui-flex" style="overflow:hidden;">
-        <block wx:for="{{newgoods}}">
-          <view style='width:33.3%;'>
-            <template is="newgoodsitem" data="{{...item}}"></template>
-          </view>
-        </block>
-      </view>
-    </button>
-  </form>
-
-  <!-- <view style='width:100%;margin-bottom:10px;background:#fff;padding:0px 10px;'>
-    <swiper style='width:100%;height:24px;' autoplay='true' circular='true'>
-    <block wx:for="{{newcomments}}">
-      <swiper-item>
-        <view class='weui-flex'>
-          <view style='margin-right:4px;'><image mode='aspectFill' style='width:24px;height:24px;border-radius:12px;' src='{{item.authorInfo.headimg}}'></image></view>
-          <view class='weui-flex__item' style='font-size:12px;line-height:24px;'>
-            {{item.text}}
-          </view>
+  <!--6个快速索引-->
+  <view class='list_class' id='types' style='background:#ffffff;margin:20rpx 0 0 0;'>
+    <view wx:for="{{typelist}}" wx:key="id">
+      <view class='list-item' bindtap="navigateToShop" data-id="{{item.id}}">
+        <view class='item-head'>
+          <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
         </view>
-      </swiper-item>
-    </block>
-    </swiper>
-  </view> -->
-  <view wx:if='{{newvotes.length>0}}' style='width:100%;background:#fff;margin-bottom:10px;'>
-    <swiper style='width:100%;height:100px;' autoplay='true' circular='true'>
-    <block wx:for='{{newvotes}}'>
-      <swiper-item>
-        <template is='voteitem-navitem' data="{{...item}}"></template>
-      </swiper-item>
-    </block>
-    </swiper>
+        <view class='item-foot'>
+          {{item.name}}
+        </view>
+      </view>
+    </view>
   </view>
 
-  <view style="width:100%;">
-    <block wx:for="{{list}}">
+
+
+  <view style='width:100%;margin-top:20rpx'>
+    <block wx:for="{{list}}" wx:key="{{}}">
       <template is="articleitem-navitem" data="{{...item}}"></template>
     </block>
     <view wx:if="{{list.length>0}}" bindtap="btnForum" style="width:100%;font-size:16px;color:#999;text-align:center;padding:10px;">
       更多社区话题
     </view>
   </view>
-  <view></view>
+
+  <view bindtap='adddetial_add'>
+    <image class="add_icon_add" src="../../images/add.png" hidden='{{!maskflag}}'></image>
+    <image class="add_icon_add" src="../../images/subtract.png" hidden='{{maskflag}}'></image>
+  </view>
+
+  <view hidden='{{maskflag}}'>
+    <view bindtap='adddetial1'>
+      <image class="add_icon1" src="../../images/xuqiufabu.png"></image>
+    </view>
+
+    <view bindtap='adddetial2'>
+      <image class="add_icon2" src="../../images/ershoufabu.png"></image>
+    </view>
+
+    <view bindtap='adddetial3'>
+      <image class="add_icon3" src="../../images/tiezifabu.png"></image>
+    </view>
+  </view>
+
+
 </view>
-</scroll-view>

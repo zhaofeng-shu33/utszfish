@@ -7,23 +7,144 @@ Page({
    * 页面的初始数据
    */
   data: {
+    maskflag: true,
+    inputShowed: false,
+    inputVal: "",
+    searchResult: [],
+    page: 0,
+    canloadmore: false,
+    area: ["全部", "未分类", "数码", "化妆品", "其他"],
+    areaIndex: 0,
+    typelist: [{
+        pic: "daigou",
+        id: 1,
+        name: "代购"
+      },
+      {
+        pic: "pindan",
+        id: 2,
+        name: "拼单"
+      },
+      {
+        pic: "jiaoyou",
+        id: 3,
+        name: "交友"
+      },
+      {
+        pic: "meizhuangershou",
+        id: 4,
+        name: "美妆二手"
+      },
+      {
+        pic: "yaoqinghaoyou",
+        id: 5,
+        name: "邀请好友"
+      },
+      {
+        pic: "yijianfankui",
+        id: 6,
+        name: "意见反馈"
+      }
+    ],
     list: [],
     fastNavCount: 0,
     isopened: false,
     noticereaded: true,
-    page: 0,
-    canloadmore: false
+    canloadmore: false,
+
+    scroll: false,
+
+    lastX: 0, //滑动开始x轴位置
+    lastY: 0, //滑动开始y轴位置
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  btnLoadMore: function () {
+  //买卖发跳转
+  adddetial_add: function () {
+    this.setData({
+      maskflag: !this.data.maskflag
+    })
+  },
+  adddetial1: function() {
+
+    wx.navigateTo({
+      url: '../requirement/create',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  adddetial2: function() {
+
+    wx.navigateTo({
+      url: '../talent/create',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  adddetial3: function() {
+
+    wx.navigateTo({
+      url: 'create',
+      success: function(res) {},
+      fail: function(rses) {},
+      complete: function(res) {},
+    })
+  },
+  //滑动判定函数
+  handletouchmove: function(event) {
+    var currentX = event.touches[0].pageX
+    var currentY = event.touches[0].pageY
+    var tx = currentX - this.data.lastX
+    var ty = currentY - this.data.lastY
+    var text = ""
+    var scroll = true
+    //左右方向滑动
+
+    //上下方向滑动
+    if (ty < 0) {
+      scroll = true
+      //text = "向上滑动"
+    } else if (ty > 0) {
+      scroll = false
+      //text = "向下滑动"
+    }
+
+    //将当前坐标进行保存以进行下一次计算
+    this.data.lastX = currentX
+    this.data.lastY = currentY
+    this.setData({
+      //text: text,
+      scroll: scroll,
+    });
+  },
+
+  //滑动开始事件
+  handletouchtart: function(event) {
+    this.data.lastX = event.touches[0].pageX
+    this.data.lastY = event.touches[0].pageY
+
+  },
+  //滑动结束事件
+  handletouchend: function(event) {
+    this.data.currentGesture = 0;
+    this.setData({
+      //text: "没有滑动",
+    })
+  },
+
+  btnLoadMore: function() {
     if (this.data.canloadmore) {
       this.data.page += 1;
       this.updateTopics(this.data.page);
     }
   },
-  btnTopBannerSubmit: function (e) {
+  bindPickerChange: function(e) {
+    this.setData({
+      areaIndex: e.detail.value
+    })
+    this.updateMarketList(0, '', e.detail.value);
+  },
+  btnTopBannerSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
 
@@ -41,7 +162,7 @@ Page({
       })
     }
   },
-  btnFastNavSubmit: function (e) {
+  btnFastNavSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
 
@@ -62,42 +183,42 @@ Page({
       })
     }
   },
-  btnLoginListSubmit: function (e) {
+  btnLoginListSubmit: function(e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
     that.btnUserList();
   },
-  btnUserList: function () {
+  btnUserList: function() {
     wx.navigateTo({
       url: '/pages/me/userlist',
     })
   },
-  btnCoinCenterSubmit: function (e) {
+  btnCoinCenterSubmit: function(e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
     that.btnCoinCenter();
   },
-  btnServiceSubmit: function (e) {
+  btnServiceSubmit: function(e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
     that.btnService();
   },
-  btnBookSubmit: function (e) {
+  btnBookSubmit: function(e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
     that.btnBook();
   },
-  btnTalentSubmit: function (e) {
+  btnTalentSubmit: function(e) {
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
     that.btnTalent();
   },
-  btnLikeAction: function (e) {
+  btnLikeAction: function(e) {
     var that = this;
     var index = e.currentTarget.id.substr(3, e.currentTarget.id.length);
     var item = that.data.list[index];
@@ -112,7 +233,7 @@ Page({
         articleid: item.id,
         token: app.globalData.token
       },
-      success: function (res) {
+      success: function(res) {
         if (parseInt(res.data.err) == 0) {
           if (parseInt(res.data.result.action) == 0) {
             item.likecount = parseInt(item.likecount) - 1;
@@ -128,7 +249,7 @@ Page({
       }
     });
   },
-  updateTopics: function (page = 0) {
+  updateTopics: function(page = 0) {
     var that = this;
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
@@ -141,10 +262,10 @@ Page({
         bv: app.getBuildVersion(),
         token: app.globalData.token
       },
-      complete: function () {
+      complete: function() {
         wx.stopPullDownRefresh();
       },
-      success: function (res) {
+      success: function(res) {
         if (parseInt(res.data.err) == 0) {
           var newlist = res.data.result;
 
@@ -177,7 +298,7 @@ Page({
       }
     })
   },
-  updateBillBoard: function () {
+  updateBillBoard: function() {
     var that = this;
     wx.showLoading({
       title: '请求中',
@@ -193,11 +314,11 @@ Page({
         token: app.globalData.token,
         bv: app.getBuildVersion()
       },
-      complete: function (res) {
+      complete: function(res) {
         wx.hideLoading();
         wx.stopPullDownRefresh();
       },
-      success: function (res) {
+      success: function(res) {
         if (parseInt(res.data.err) == 0) {
           var billboardlist = res.data.result.billboardlist;
 
@@ -207,8 +328,8 @@ Page({
 
           wx.getStorage({
             key: 'noticereaded',
-            success: function (res) {
-              if (billboardlist.length >0 && res.data != billboardlist[0].id) {
+            success: function(res) {
+              if (billboardlist.length > 0 && res.data != billboardlist[0].id) {
                 that.setData({
                   noticereaded: false
                 });
@@ -217,35 +338,30 @@ Page({
           })
 
           var nowweather = res.data.result.weather.data;
-          nowweather.date = new Date().getFullYear() + "." + (new Date().getMonth()+1)+"."+new Date().getDate();
+          nowweather.date = new Date().getFullYear() + "." + (new Date().getMonth() + 1) + "." + new Date().getDate();
           nowweather.aqibgcolor = "#fff";
           nowweather.aqitextcolor = "#000";
           if (nowweather.aqi > 0 && nowweather.aqi <= 50) {
             nowweather.aqistr = "良好，适宜开窗换气";
             nowweather.aqibgcolor = "#fff";
             nowweather.aqitextcolor = "#000";
-          }
-          else if (nowweather.aqi > 50 && nowweather.aqi <= 100) {          
-            nowweather.aqistr = "中等，可以开窗换气"; 
+          } else if (nowweather.aqi > 50 && nowweather.aqi <= 100) {
+            nowweather.aqistr = "中等，可以开窗换气";
             nowweather.aqibgcolor = "#fffd38";
             nowweather.aqitextcolor = "#000";
-          }
-          else if (nowweather.aqi > 100 && nowweather.aqi <= 150) { 
-            nowweather.aqistr = "对敏感人群不健康"; 
+          } else if (nowweather.aqi > 100 && nowweather.aqi <= 150) {
+            nowweather.aqistr = "对敏感人群不健康";
             nowweather.aqibgcolor = "#fd7e23";
             nowweather.aqitextcolor = "#000";
-            }
-          else if (nowweather.aqi > 150 && nowweather.aqi <= 200) {
+          } else if (nowweather.aqi > 150 && nowweather.aqi <= 200) {
             nowweather.aqistr = "轻度污染，减少户外活动";
             nowweather.aqibgcolor = "#fb0d1b";
             nowweather.aqitextcolor = "#fff";
-          }
-          else if (nowweather.aqi > 200 && nowweather.aqi <= 300) {
-             nowweather.aqistr = "有毒害，请做好防护"; 
-             nowweather.aqibgcolor = "#666";
-             nowweather.aqitextcolor = "#fff";
-             }
-          else if (nowweather.aqi > 300) {
+          } else if (nowweather.aqi > 200 && nowweather.aqi <= 300) {
+            nowweather.aqistr = "有毒害，请做好防护";
+            nowweather.aqibgcolor = "#666";
+            nowweather.aqitextcolor = "#fff";
+          } else if (nowweather.aqi > 300) {
             nowweather.aqistr = "严重污染，不建议出门";
             nowweather.aqibgcolor = "#000";
             nowweather.aqitextcolor = "#fff";
@@ -322,7 +438,7 @@ Page({
       }
     });
   },
-  btnOpenSubmit: function (e) {
+  btnOpenSubmit: function(e) {
 
     var that = this;
     console.log('form发生了submit事件，携带数据为：', e.detail);
@@ -330,8 +446,8 @@ Page({
     that.setData({
       isopened: true
     });
-  },  
-  btnHistory: function (e) {
+  },
+  btnHistory: function(e) {
     wx.setStorage({
       key: 'noticereaded',
       data: e.currentTarget.id,
@@ -343,36 +459,38 @@ Page({
       url: '/pages/billboard/history',
     })
   },
-  btnCoinCenter: function () {
+  btnCoinCenter: function() {
     wx.navigateTo({
       url: '/pages/coincenter/index',
     })
   },
-  btnTalent: function () {
+  btnTalent: function() {
     wx.navigateTo({
       url: '/pages/talent/list',
     })
   },
-  btnBook: function () {
+  btnBook: function() {
     wx.navigateTo({
       url: '/pages/book/index',
     })
   },
-  btnService: function () {
+  btnService: function() {
     wx.navigateTo({
       url: '/pages/fuwu/index',
     })
   },
-  btnForum: function () {
+  btnForum: function() {
     wx.switchTab({
       url: '/pages/forum/index',
     })
   },
-  refresh: function () {
+  refresh: function() {
     this.updateBillBoard();
   },
-
-  onLoad: function (options) {
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: app.getAppName(),
     })
@@ -403,14 +521,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     wx.setNavigationBarTitle({
       title: app.getAppName(),
     })
@@ -419,21 +537,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     console.log("触发下来");
     this.updateBillBoard();
   },
@@ -441,22 +559,22 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var that = this;
     return {
       title: app.getAppName() + "公告板，社区资讯及时掌握",
       path: '/pages/billboard/index',
-      success: function (res) {
+      success: function(res) {
         // 转发成功
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }

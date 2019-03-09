@@ -264,24 +264,32 @@
 </template>
 
 <template name="talentitem">
-  <navigator url="/pages/talent/goodsdetail?goodsid={{id}}" style="width:49.5%;background:#fff;margin-bottom:6px;position:relative;box-shadow:0px 1px 2px #ccc;overflow:hidden;">
+  <navigator url="/pages/talent/goodsdetail?goodsid={{id}}" style="margin:0 20rpx 30rpx 20rpx;position:relative;overflow:hidden;">
     <view wx:if="{{exchangecoin>0}}" style="padding:2px 10px 2px 6px;position:absolute;text-align:center;color:#fff;background:#ff0000;font-size:9px;border-radius:10px;border:#fff 1px solid;top:5px;right:-8px;">积分兑换</view>
-    <image lazy-load='true' mode="aspectFill" src="{{pics[0]}}" style="width:100%;height:170px;"></image>
-    <view style="width:100%;padding:0px 5px;margin-top:-5px;">
-    <view class='weui-flex' style="width:100%;">
-      <view style="font-size:14px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-grow:1;">{{title}}</view>
-      <view style="font-size:12px;color:#666;">{{timedistance}}</view>
+    <view class='content' style='background:#ffffff;'>
+      <view style='flex:1;'>
+        <image lazy-load='true' mode="aspectFill" src="{{pics[0]}}" style="width:240rpx;height:240rpx;"></image>
       </view>
-      <view class='weui-flex' style="width:100%;">
-        <view class="weui-flex__item" wx:if="{{price>0}}" style="margin-top:-5px;width:100%;font-size:18px;color:#ff0000;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
-          <text style="font-size:12px;">￥</text>{{price}}
-          <text style="font-size:12px;">/{{unit}}</text>
+      <view style="width:100%;padding:0px 10rpx;margin-top:-10rpx;">
+
+        <view style='flex:1;'>
+          <view class='weui-flex' style="width:100%;">
+            <view style="font-size:14px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-grow:1;">{{title}}</view>
+            <view style="font-size:12px;color:#666;">{{timedistance}}</view>
+          </view>
         </view>
-        <view class="weui-flex__item" wx:else style="font-size:14px;color:#ff0000;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:-1px;">价格待议</view>
-        <view style="font-size:12px;color:#999;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:iconfont;margin-top:2px;">
-          <text class='iconfont icon-browse' style="font-size:12px;"></text>{{viewcount}}</view>
+        <view class='weui-flex' style="width:100%;">
+          <view class="weui-flex__item" wx:if="{{price>0}}" style="margin-top:-5px;width:100%;font-size:18px;color:#ff4400;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+            <text style="font-size:12px;">￥</text>{{price}}
+            <text style="font-size:12px;">/{{unit}}</text>
+          </view>
+          <view class="weui-flex__item" wx:else style="font-size:14px;color:#ff0000;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:-1px;">价格待议</view>
+          <view style="font-size:12px;color:#999;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:iconfont;margin-top:2px;">
+            <text class='iconfont icon-browse' style="font-size:12px;"></text>{{viewcount}}</view>
+        </view>
       </view>
     </view>
+
   </navigator>
 </template>
 

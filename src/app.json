@@ -3,10 +3,12 @@
     "pages/billboard/index",
     "pages/billboard/history",
     "pages/billboard/create",
-    "pages/forum/index",
-    "pages/forum/topiclist",
-    "pages/forum/detail",
-    "pages/forum/create",
+    "pages/requirement/index",
+    "pages/requirement/list",
+    "pages/requirement/goodsdetail",
+    "pages/requirement/create",
+    "pages/requirement/ownernotice",
+    "pages/requirement/coinexchange",
     "pages/book/index",
     "pages/book/create",
     "pages/book/detail",
@@ -28,19 +30,20 @@
     "pages/tuan/index",
     "pages/tuan/detail",
     "pages/tuan/create",
-    "pages/me/login"
+    "pages/me/login",
+    "pages/search/search"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#fdda42",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "backgroundColor": "#fff",
+    "backgroundColor": "#ffffff",
     "color": "#000",
     "borderStyle": "black",
-    "selectedColor": "#55D98D",
+    "selectedColor": "#000000",
     "list": [
       {
         "pagePath": "pages/billboard/index",
@@ -52,19 +55,19 @@
         "pagePath": "pages/talent/index",
         "iconPath": "images/shop.png",
         "selectedIconPath": "images/shop_1.png",
-        "text": "市集"
+        "text": "交易"
       },
       {
-        "pagePath": "pages/forum/index",
+        "pagePath": "pages/requirement/index",
         "iconPath": "images/manage.png",
         "selectedIconPath": "images/manage_1.png",
-        "text": "生活"
+        "text": "需求"
       },
       {
         "pagePath": "pages/me/me",
         "iconPath": "images/me.png",
         "selectedIconPath": "images/me_1.png",
-        "text": "我"
+        "text": "我的"
       }
     ]
   }
