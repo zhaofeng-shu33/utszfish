@@ -53,8 +53,13 @@ while ($row = mysqli_fetch_assoc($res)) {
     $row2 = mysqli_fetch_assoc($res2);
     if( $shouldFilter && $row2['talent_type'] != $talent_type){
         continue;
-    } 
-    $list[]=parseMarketItem($row, $row2);
+    }
+    $openid = $row['authorid'];
+    $sql3 = "select college from ".getTablePrefix()."_members where openid = '$openid'";
+    $res3 = mysqli_query($db, $sql3) or die(mysqli_error($db));
+    $row3 = mysqli_fetch_assoc($res3);
+    $list[]=parseMarketItem($row, array('talent_type' => $row2['talent_type'], 
+	'author_college' => $row3['college']));
 }
 if(!isDitributionMode($jsondata->bv)){
 	$list = array();
