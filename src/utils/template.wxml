@@ -291,7 +291,7 @@
         <view style='flex:1;margin-top:5px;'>
           <view class='weui-flex' style="width:100%;">
             <view style="font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-grow:1;">{{talent_name}}</view>
-            <view style="font-size:12px;color:#666;"></view>
+            <view style="font-size:12px;color:#666;">{{author_college}}</view>
           </view>
         </view>        
       </view>
