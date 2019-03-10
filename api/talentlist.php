@@ -41,7 +41,7 @@ if($uid!=""){
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 $filterType = $jsondata->search_type;
-$shouldFilter = ($filterType != '0');
+$shouldFilter = ($filterType != null && $filterType != '0');
 if($shouldFilter){
    $talent_type = intval($filterType) - 1;
 }
