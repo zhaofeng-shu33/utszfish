@@ -479,9 +479,9 @@ Page({
       url: '/pages/fuwu/index',
     })
   },
-  btnForum: function() {
+  btnrequirement: function() {
     wx.switchTab({
-      url: '/pages/forum/index',
+      url: '/pages/requirement/index',
     })
   },
   refresh: function() {
@@ -500,7 +500,7 @@ Page({
       })
     } else if (options.topicid) {
       wx.navigateTo({
-        url: '/pages/forum/detail?topicid=' + options.topicid,
+        url: '/pages/requirement/detail?topicid=' + options.topicid,
       })
     } else if (options.tuanid) {
       wx.navigateTo({

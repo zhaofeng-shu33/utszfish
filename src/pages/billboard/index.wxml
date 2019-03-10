@@ -4,7 +4,7 @@
 
 
 <!--搜索跳转-->
-<navigator url="../search/search">
+<navigator url="search">
   <view hidden='{{scroll}}' class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
     <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
       <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}

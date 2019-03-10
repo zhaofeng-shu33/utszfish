@@ -34,8 +34,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "forum",
-					"pathName": "pages/forum/index",
+					"name": "requirement",
+					"pathName": "pages/requirement/index",
 					"query": ""
 				},
 				{
@@ -52,8 +52,8 @@
 				},
 				{
 					"id": -1,
-					"name": "forum_detail",
-					"pathName": "pages/forum/detail",
+					"name": "requirement_detail",
+					"pathName": "pages/requirement/detail",
 					"query": "topicid=18",
 					"scene": null
 				}
