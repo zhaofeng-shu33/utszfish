@@ -47,15 +47,14 @@ if($shouldFilter){
 }
 $list = array();
 while ($row = mysqli_fetch_assoc($res)) {
-      if($shouldFilter){
-         $talent_id = $row['id'];
-         $sql2 = "select talent_id from ".getTablePrefix()."_talent_id_type where talent_id = $talent_id and talent_type = $talent_type";
-         $res2 = mysqli_query($db, $sql2) or die(mysqli_error($db));
-         if($res2->num_rows == 0){
-           continue;
-         } 
-      }
-	$list[]=parseMarketItem($row);
+    $talent_id = $row['id'];
+    $sql2 = "select talent_type from ".getTablePrefix()."_talent_id_type where talent_id = $talent_id";
+    $res2 = mysqli_query($db, $sql2) or die(mysqli_error($db));
+    $row2 = mysqli_fetch_assoc($res2);
+    if( $shouldFilter && $row2['talent_type'] != $talent_type){
+        continue;
+    } 
+    $list[]=parseMarketItem($row, $row2);
 }
 if(!isDitributionMode($jsondata->bv)){
 	$list = array();

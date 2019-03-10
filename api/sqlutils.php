@@ -243,7 +243,7 @@ function parseArticleItem($row){
 	return $item;
 }
 
-function parseMarketItem($row){
+function parseMarketItem($row, $additional_attr = array()){
 	$uid=$_SESSION['openid'];
 	$pics=[];
 
@@ -269,7 +269,7 @@ function parseMarketItem($row){
 		'likecount'=>getLikeCount($row['id'])
 	);
 
-	return $item;
+	return array_merge($item, $additional_attr);
 }
 
 function getVoteCount($articleid,$votevalue){
