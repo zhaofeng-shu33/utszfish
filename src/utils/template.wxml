@@ -90,7 +90,7 @@
 </template>
 
 <template name='articleitem-navitem'>
-  <navigator url="/pages/forum/detail?topicid={{id}}">
+  <navigator url="/pages/requirement/detail?topicid={{id}}">
     <view style="background:#fff;padding:0px 10px;padding-top:10px;width:100%;">
       <view class="weui-flex" style="width:100%;">
         <view style="height:20px;">

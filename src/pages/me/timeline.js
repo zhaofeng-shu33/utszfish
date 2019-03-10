@@ -122,7 +122,7 @@ Page({
 	},
 	btnCreate: function () {
 		wx.navigateTo({
-			url: '/pages/forum/create?type=0',
+      url: '/pages/requirement/create?type=0',
 		});
 	},
 	requestAddFollow: function (cb) {

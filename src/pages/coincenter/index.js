@@ -24,9 +24,9 @@ Page({
       url: '/pages/book/index',
     })
   },
-  btnForum: function () {
+  btnrequirement: function () {
     wx.switchTab({
-      url: '/pages/forum/index',
+      url: '/pages/requirement/index',
     })
   },
   btnCheckinSubmit:function(e){
