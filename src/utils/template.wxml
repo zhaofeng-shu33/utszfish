@@ -287,6 +287,13 @@
           <view style="font-size:12px;color:#999;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:iconfont;margin-top:2px;">
             <text class='iconfont icon-browse' style="font-size:12px;"></text>{{viewcount}}</view>
         </view>
+
+        <view style='flex:1;margin-top:5px;'>
+          <view class='weui-flex' style="width:100%;">
+            <view style="font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-grow:1;">{{talent_name}}</view>
+            <view style="font-size:12px;color:#666;"></view>
+          </view>
+        </view>        
       </view>
     </view>
 

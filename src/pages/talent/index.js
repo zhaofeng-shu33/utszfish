@@ -115,6 +115,7 @@ Page({
             
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].index = i;
+            list[i].talent_name = that.data.area[parseInt(list[i].talent_type) + 1];
           }
 
           that.setData({
