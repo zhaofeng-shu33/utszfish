@@ -13,6 +13,7 @@
 </view>
 <view style="display:{{editIsShow?'none':'block'}}">
   <template is="usercard" data="{{...userInfo}}"></template>
+
   <view class="page__bd">
   
     <view class="weui-tab">
@@ -102,7 +103,7 @@
             <template is="bookitem" data="{{...item}}"></template>
           </block>
         </view>
-        <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 3}}" style="flex-wrap:wrap;">
+        <view  hidden="{{activeIndex != 3}}" style="flex-wrap:wrap;">
           <block wx:for="{{marketlist}}" wx:key="{{}}">
             <template is="talentitem" data="{{...item}}"></template>
           </block>

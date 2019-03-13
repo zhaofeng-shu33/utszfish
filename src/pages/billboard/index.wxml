@@ -3,9 +3,9 @@
 
 
 
-<!--搜索跳转-->
+<!--搜索跳转 hidden='{{scroll}}'-->
 <navigator url="search">
-  <view hidden='{{scroll}}' class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
+  <view class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
     <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
       <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
       </view>
@@ -29,7 +29,7 @@
 </navigator>
 
 
-<view style="padding:20rpx;" id="id" bindtap="handletap" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
+<view bindscrolltolower="btnLoadMore" scroll-y='true' style="padding:20rpx;" id="id" bindtap="handletap" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
 
   <!--广告栏-->
   <swiper wx:if="{{topbanner}}" autoplay='true' circular='true' indicator-dots='{{topbanner.length>1}}' style='width:100%;height:300rpx;margin-bottom:0px;background:#fdda42;margin-top:100rpx;'>
@@ -47,13 +47,15 @@
   <!--6个快速索引-->
   <view class='list_class' id='types' style='background:#ffffff;margin:20rpx 0 0 0;'>
     <view wx:for="{{typelist}}" wx:key="id">
-      <view class='list-item' bindtap="navigateToShop" data-id="{{item.id}}">
-        <view class='item-head'>
-          <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
-        </view>
-        <view class='item-foot'>
-          {{item.name}}
-        </view>
+      <view class='list-item' data-id="{{item.id}}">
+        <button bindtap="navigateToShop" open-type="share">
+          <view class='item-head'>
+            <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+          </view>
+          <view class='item-foot'>
+            {{item.name}}
+          </view>
+        </button>
       </view>
     </view>
   </view>

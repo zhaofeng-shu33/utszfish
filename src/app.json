@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/billboard/index",
     "pages/billboard/history",
     "pages/billboard/create",
