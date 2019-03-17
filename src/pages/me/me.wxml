@@ -13,16 +13,17 @@
 </view>
 <view style="display:{{editIsShow?'none':'block'}}">
   <template is="usercard" data="{{...userInfo}}"></template>
+
   <view class="page__bd">
-  
+
     <view class="weui-tab">
       <view wx:if='{{mode}}' class="weui-navbar" style='background:#fff;'>
         <block wx:for="{{tabs}}" wx:key="*this">
-          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view id="{{index}}" class="navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>
           </view>
         </block>
-        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
+        <view class="navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
       </view>
 
       <view class="weui-tab__panel">
@@ -97,16 +98,19 @@
             <template is="articleitem-navitem" data="{{...item}}"></template>
           </block>
         </view>
-        <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 2}}" style="flex-wrap:wrap;">
-          <block wx:for="{{booklist}}">
-            <template is="bookitem" data="{{...item}}"></template>
-          </block>
-        </view>
-        <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 3}}" style="flex-wrap:wrap;">
+
+        <view hidden="{{activeIndex != 2}}" style="flex-wrap:wrap;">
           <block wx:for="{{marketlist}}" wx:key="{{}}">
             <template is="talentitem" data="{{...item}}"></template>
           </block>
         </view>
+
+        <view class="weui-tab__content weui-flex" hidden="{{activeIndex != 3}}" style="flex-wrap:wrap;">
+          <block wx:for="{{booklist}}">
+            <template is="bookitem" data="{{...item}}"></template>
+          </block>
+        </view>
+
       </view>
     </view>
   </view>

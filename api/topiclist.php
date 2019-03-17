@@ -10,7 +10,7 @@ include_once 'sqlutils.php';
 $postdata=file_get_contents("php://input");
 
 $jsondata=json_decode($postdata);
-
+$disabled_type=$jsondata->disabled_type;
 $type=$jsondata->type;
 $token=$jsondata->token;
 
@@ -61,7 +61,7 @@ if($jsondata->uid!=""){
 	$uid=$jsondata->uid;
 	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and authorid='$uid' and deleted=0 and masked=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 }else if($type==""){
-	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and `type` !=8 and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and `type` !=10 and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 }
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
