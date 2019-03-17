@@ -33,10 +33,10 @@ opacity:0.5;
 .add_icon_add{
   position:
 fixed;
-  width:120rpx;
-  height:120rpx;
+  width:90rpx;
+  height:90rpx;
 bottom:
-60rpx;
+70rpx;
 right:
 40rpx;
 }

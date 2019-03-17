@@ -14,7 +14,7 @@ Page({
     relation:0,
     userInfo:{},
     list:[],
-    tabs: ["介绍", "话题", "书架","市集"],
+    tabs: ["介绍", "话题", "市集","需求"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
@@ -97,9 +97,9 @@ Page({
       this.updateTopicList();
     }
     else if (this.data.activeIndex == 2) {
-      this.updateBookList();
-    } else if (this.data.activeIndex == 3) {
       this.updateMarketList();
+    } else if (this.data.activeIndex == 3) {
+      this.updateBookList();
     }
   },
   tabClick: function (e) {

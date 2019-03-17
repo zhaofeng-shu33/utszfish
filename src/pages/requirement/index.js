@@ -14,7 +14,28 @@ Page({
     page: 0,
     canloadmore: false,
     area: ["全部", "未分类", "数码", "化妆品", "其他"],
-    areaIndex: 0
+    areaIndex: 0,
+    categorys_new:[
+      { 
+        type: 11,
+        title:"代购",
+        subtitle:"",
+        icon:"banner8.jpg"
+      },
+      {
+        type: 12,
+        title: "拼单",
+        subtitle: "",
+        icon: "banner8.jpg"
+      },
+      {
+        type: 13,
+        title: "交友",
+        subtitle: "",
+        icon: "banner8.jpg"
+      }
+  
+    ]
   },
   updateCategorys: function () {
     var that = this;

@@ -5,7 +5,7 @@
 
 <!--搜索跳转 hidden='{{scroll}}'-->
 <navigator url="search">
-  <view class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
+  <view  class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
     <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
       <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
       </view>
@@ -22,7 +22,7 @@
       </view>
       <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
         <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="search-bar__text">搜索</view>
+        <view class="search-bar__text">搜帖子</view>
       </label>
     </view>
   </view>

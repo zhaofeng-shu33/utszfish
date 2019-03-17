@@ -16,7 +16,7 @@
     </view>
     <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
       <icon class="weui-icon-search" type="search" size="14"></icon>
-      <view class="search-bar__text">搜索</view>
+      <view class="search-bar__text">搜物品</view>
     </label>
   </view>
 

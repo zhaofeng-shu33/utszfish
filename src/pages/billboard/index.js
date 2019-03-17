@@ -240,7 +240,8 @@ Page({
   },
   btnLikeAction: function(e) {
     var that = this;
-    var index = e.currentTarget.id.substr(3, e.currentTarget.id.length);
+    //var index = e.currentTarget.id.substr(3, e.currentTarget.id.length);
+    var index = 11;
     var item = that.data.list[index];
 
     wx.request({
@@ -278,6 +279,8 @@ Page({
         'Cookie': 'PHPSESSID=' + app.globalData.sessionid
       },
       data: {
+        //type: [],
+        //disabled_type: 10,
         page: page,
         bv: app.getBuildVersion(),
         token: app.globalData.token

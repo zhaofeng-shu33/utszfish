@@ -31,10 +31,10 @@
     <view style="margin-bottom:5px;">
       <text>{{result.text}}</text>
     </view>
-    <block wx:for='{{result.vids}}'>
+    <block wx:for='{{result.vids}}' wx:key="{{}}">
       <video src='{{item}}' style='width:100%;'></video>
     </block>
-    <block wx:for='{{result.pics}}'>
+    <block wx:for='{{result.pics}}' wx:key="{{}}">
       <image id='li_{{index}}' bindtap='btnPicPreview' mode="widthFix" src="{{item}}" style="width:100%;"></image>
     </block>
   </view>
@@ -58,7 +58,7 @@
   <view>
     <view wx:if="{{result.commentcount<=0}}" style='width:100%;height:100px;line-height:100px;text-align:center;font-size:12px;color:#999;'>你长得这么好看，抢个沙发可好</view>
     <view wx:else style="font-size:14px;">
-      <block wx:for="{{commentlist}}">
+      <block wx:for="{{commentlist}}" wx:key="{{}}">
         <template is="commentitem" data="{{...item}}"></template>
       </block>
       <view bindtap="btnLoadMore" wx:if="{{canloadmore}}" style="width:100%;font-size:16px;color:#999;text-align:center;padding:10px;">
