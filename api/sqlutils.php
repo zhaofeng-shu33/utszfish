@@ -177,6 +177,7 @@ function parseArticleSimpleItem($row){
 	
 	$item = array(
 		'id'=>$row['id'],
+		'type'=>$row['type'],
 		'createdate'=> date('Y-m-d H:i:s', $row['createdate']),
 		'text'=>$text,
 		'title'=>$row['title'],

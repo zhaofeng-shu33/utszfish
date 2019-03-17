@@ -30,7 +30,33 @@ if($jsondata->page!=""){
 $limit=9;
 
 $db = getDb();
+
+if(is_array($type)){
+// for array type, only type < 99 is supported, becuase their format is uniform
+    if(!is_array($page) || count($type) != count($page)){
+        exitJson(0, "", $list);
+    }
+    // use a forloop to query the database and extend $list
+    for($x = 0; $x < count($type); $x++){
+        $type_i = $type[$x];
+        $page_i = $page[$x];
+        $sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+
+        $res=mysqli_query($db, $sql) or die(mysqli_error($db));
+
+        while ($row = mysqli_fetch_assoc($res)) {
+
+	    $item=parseArticleSimpleItem($row);
+            $item['text']=mb_substr($item['text'], 0,60,"UTF-8");
+            if(mb_strlen($item['text'],"UTF-8")>=60)$item['text']=$item['text']."...";
+            $list[] = $item;
+           
+        }
+    }
+}
+else{
 $sql = "select * from ".getTablePrefix()."_articles where `type` = $type and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+
 if($jsondata->uid!=""){
 	$uid=$jsondata->uid;
 	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and authorid='$uid' and deleted=0 and masked=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
@@ -51,7 +77,7 @@ while ($row = mysqli_fetch_assoc($res)) {
 
     $list[]=$item;
 }
-
+}
 exitJson(0,"",$list);
 
 
