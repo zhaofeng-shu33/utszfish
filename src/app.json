@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/billboard/index",
     "pages/billboard/history",
     "pages/billboard/create",
@@ -54,10 +55,10 @@
         "pagePath": "pages/talent/index",
         "iconPath": "images/shop.png",
         "selectedIconPath": "images/shop_1.png",
-        "text": "交易"
+        "text": "市集"
       },
       {
-        "pagePath": "pages/requirement/index",
+        "pagePath": "pages/requirement/topiclist",
         "iconPath": "images/requirement.png",
         "selectedIconPath": "images/requirement_1.png",
         "text": "需求"

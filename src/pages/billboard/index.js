@@ -57,6 +57,26 @@ Page({
     lastX: 0, //滑动开始x轴位置
     lastY: 0, //滑动开始y轴位置
   },
+  //转发功能
+  onShareAppMessage: function (ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target)
+    }
+    return {
+      title: 'xx小程序',
+      path: 'pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+
+  },
   //买卖发跳转
   adddetial_add: function () {
     this.setData({
@@ -220,7 +240,8 @@ Page({
   },
   btnLikeAction: function(e) {
     var that = this;
-    var index = e.currentTarget.id.substr(3, e.currentTarget.id.length);
+    //var index = e.currentTarget.id.substr(3, e.currentTarget.id.length);
+    var index = 11;
     var item = that.data.list[index];
 
     wx.request({
@@ -258,6 +279,8 @@ Page({
         'Cookie': 'PHPSESSID=' + app.globalData.sessionid
       },
       data: {
+        //type: [],
+        //disabled_type: 10,
         page: page,
         bv: app.getBuildVersion(),
         token: app.globalData.token
