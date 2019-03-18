@@ -13,7 +13,7 @@ Page({
     page:0,
     canloadmore: false,
     area: ["全部", "未分类", "数码", "化妆品", "其他"],
-    areaIndex: 0
+    areaIndex: 0,
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -142,7 +142,7 @@ Page({
       this.updateMarketList(0, options.keyword);
     }else{
       this.updateMarketList();
-    }
+    };
     
   },
 
@@ -157,7 +157,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
+    var that=this
+    that.setData({
+      areaIndex: app.globalData.areaIndex,
+    });
+    this.updateMarketList(0, '', this.data.areaIndex);
+    app.globalData.areaIndex = 0
   },
 
   /**

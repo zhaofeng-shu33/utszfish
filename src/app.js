@@ -138,6 +138,7 @@ App({
   globalData:{
     userInfo:{
       islogin:false
-    }
+    },
+    areaIndex:0,
   }
 })

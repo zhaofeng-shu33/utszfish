@@ -57,6 +57,15 @@ Page({
     lastX: 0, //滑动开始x轴位置
     lastY: 0, //滑动开始y轴位置
   },
+//跳转到市集的化妆品界面
+  navigateToShop:function(e){
+    app.globalData.areaIndex=3;
+    wx.switchTab({
+      url: '../talent/index',
+
+    })
+
+  },
   //转发功能
   onShareAppMessage: function (ops) {
     if (ops.from === 'button') {
@@ -279,9 +288,9 @@ Page({
         'Cookie': 'PHPSESSID=' + app.globalData.sessionid
       },
       data: {
-        //type: [],
+        type: [ 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
         //disabled_type: 10,
-        page: page,
+        page: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//page,
         bv: app.getBuildVersion(),
         token: app.globalData.token
       },

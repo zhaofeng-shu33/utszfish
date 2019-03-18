@@ -94,16 +94,16 @@ Page({
       this.refreshTimeLine();
     }
     else if (this.data.activeIndex == 1) {
-      this.updateTopicList();
+      this.updateTopicList([0,1,2,3,4,5,6,7,8,9],[0,0,0,0,0,0,0,0,0,0]);
     }
     else if (this.data.activeIndex == 2) {
       this.updateMarketList();
     } else if (this.data.activeIndex == 3) {
-      this.updateBookList();
+      //this.updaterequirementList();
+      this.updateTopicList([10,11,12,13], [0,0,0,0]);
     }
   },
   tabClick: function (e) {
-    console.log(e.currentTarget.id);
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
@@ -466,7 +466,7 @@ Page({
       address:item.gpscity
     });
   },
-  updateTopicList: function () {
+  updateTopicList: function (tp,page=0) {
     var that = this;
     wx.request({
       url: app.ServerUrl()+'/api/topiclist.php',
@@ -475,6 +475,8 @@ Page({
         'Cookie': 'PHPSESSID=' + app.globalData.sessionid
       },
       data: {
+        type:tp,
+        page:page,
         token: app.globalData.token,
         uid: that.data.uid
       },

@@ -103,70 +103,47 @@ Page({
       success: function(res) {
         if (parseInt(res.data.err) == 0) {
           var newlist = res.data.result;
-
           for (var i = 0; i < newlist.length; i++) {
             for (var item in newlist[i].pics) {
               newlist[i].pics[item] = app.CDNUrl() + "/upload/" + newlist[i].pics[item] + ".jpg";
             }
           }
-
           var list = [];
           if (page <= 0) {
             list = newlist;
           } else {
             list = newlist;
           }
-
           for (var i = 0; i < list.length; i++) {
-
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].authorInfo.lastlogindistance = util.getTimeDistance(list[i].authorInfo.lastlogin);
             list[i].index = i;
           }
-
           that.setData({
             list: list,
             page: page,
             canloadmore: newlist.length >= 9
           });
-
-        }
-        //
-        
-      }
-      
+        }  
+      }  
     });
 
   },
 
 
   refresh: function() {
-    this.updateTopics([13, 12, 11, 10], [0, 0, 0, 0]);
+    this.updateTopics(this.data.type);
   },
   onLoad: function(options) {
     var that = this;
-    
-    /*var list1 = this.updateTopics(10);
-    var list2 = this.updateTopics(11);
-    var list3 = this.updateTopics(12);
-    var list4 = this.updateTopics(13);
-    //var list = this.data.list1.concat(list2);
-    var list =[];
-    console.log(list1)*/
-
     wx.setNavigationBarTitle({
-      title: "需求"//options.title
+      title:options.title
     });
     that.setData({
-      //title: options.title,
-      //title:"需求",
-      //type: options.type,
-      
-     
+      title: options.title,
+      type: options.type,
     });
-    this.updateTopics([13, 12, 11, 10], [0, 0, 0, 0])
-    //this.updateTopics(this.data.type);
-
+    this.updateTopics(this.data.type)
   },
 
   /**

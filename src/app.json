@@ -1,10 +1,10 @@
 {
   "pages": [
-    
     "pages/billboard/index",
     "pages/billboard/history",
     "pages/billboard/create",
     "pages/billboard/search",
+    "pages/billboard/requirementlist",
     "pages/book/index",
     "pages/book/create",
     "pages/book/detail",

@@ -5,7 +5,7 @@
 
 <!--搜索跳转 hidden='{{scroll}}'-->
 <navigator url="search">
-  <view  class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
+  <view class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
     <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
       <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
       </view>
@@ -48,14 +48,57 @@
   <view class='list_class' id='types' style='background:#ffffff;margin:20rpx 0 0 0;'>
     <view wx:for="{{typelist}}" wx:key="id">
       <view class='list-item' data-id="{{item.id}}">
-        <button bindtap="navigateToShop" open-type="share">
-          <view class='item-head'>
-            <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+        <view wx:if="{{item.id<=3}}">
+          <navigator url='requirementlist?type={{item.id+10}}&title={{item.name}}'>
+            <button>
+              <view class='item-head'>
+                <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+              </view>
+              <view class='item-foot'>
+                {{item.name}}
+              </view>
+            </button>
+          </navigator>
+        </view>
+
+        <view wx:elif="{{item.id==4}}">
+          <view bindtap='navigateToShop'>
+            <button>
+              <view class='item-head'>
+                <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+              </view>
+              <view class='item-foot'>
+                {{item.name}}
+              </view>
+            </button>
           </view>
-          <view class='item-foot'>
-            {{item.name}}
-          </view>
-        </button>
+        </view>
+
+        <view wx:elif="{{item.id==5}}">
+          <button open-type="share">
+            <view class='item-head'>
+              <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+            </view>
+            <view class='item-foot'>
+              {{item.name}}
+            </view>
+          </button>
+        </view>
+
+
+        <view wx:elif="{{item.id==6}}">
+          <navigator url='/pages/billboard/requirementlist?type={{item.id+10}}&title={{item.name}}'>
+            <button>
+              <view class='item-head'>
+                <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>
+              </view>
+              <view class='item-foot'>
+                {{item.name}}
+              </view>
+            </button>
+          </navigator>
+        </view>
+
       </view>
     </view>
   </view>
