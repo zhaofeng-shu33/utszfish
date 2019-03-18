@@ -36,12 +36,18 @@ if(is_array($type)){
     if(!is_array($page) || count($type) != count($page)){
         exitJson(0, "", $list);
     }
+	
     // use a forloop to query the database and extend $list
     for($x = 0; $x < count($type); $x++){
         $type_i = $type[$x];
         $page_i = $page[$x];
-        $sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
-
+		//判断是否输入参数uid
+		if($jsondata->uid!=""){
+			$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and authorid='$uid' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+		}
+		else{
+			$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+		}
         $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
         while ($row = mysqli_fetch_assoc($res)) {
@@ -52,6 +58,7 @@ if(is_array($type)){
             $list[] = $item;
            
         }
+	
     }
 }
 else{

@@ -480,6 +480,7 @@ Page({
         token: app.globalData.token,
         uid: that.data.uid
       },
+      
       success: function (res) {
         wx.hideToast();
 
@@ -500,6 +501,10 @@ Page({
           that.setData({
             topiclist: list
           });
+          /*console.log(tp)
+          console.log(page)
+          console.log(app.globalData.token)
+          console.log(that.data.uid)*/
         }
       }
     });
