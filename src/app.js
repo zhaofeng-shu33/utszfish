@@ -7,7 +7,7 @@ App({
     return 1008;
   },
   getAppName:function(){
-    return "UTSZFISH";
+    return "易森校集";
   },
   CDNUrl:function(){
     return "https://www.leidenschaft.cn";

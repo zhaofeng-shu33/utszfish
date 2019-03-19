@@ -113,7 +113,7 @@ Page({
   adddetial3: function() {
 
     wx.navigateTo({
-      url: 'create',
+      url: 'createtopics',
       success: function(res) {},
       fail: function(rses) {},
       complete: function(res) {},

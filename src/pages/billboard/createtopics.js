@@ -13,13 +13,13 @@ Page({
     gps: '',
     gpscity: '',
     text: '',
-    topic: ["物品需求","代购","拼单","交友"],
+    topic: ["生活杂谈","摄影分享","宿舍租赁","实习招聘","运动健康","美食烹饪","匿名曝光台","建议投诉"],
     topicIndex:0,
   },
   bindPickerChange: function (e) {
     this.setData({
       topicIndex: e.detail.value,
-      type: Number(e.detail.value) + Number(10)
+      type: Number(e.detail.value)
     })
   },
   textAreaInput: function (e) {
@@ -210,7 +210,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      type:10
+      type:0
     });
   },
 

@@ -5,6 +5,7 @@
     "pages/billboard/create",
     "pages/billboard/search",
     "pages/billboard/requirementlist",
+    "pages/billboard/createtopics",
     "pages/book/index",
     "pages/book/create",
     "pages/book/detail",
