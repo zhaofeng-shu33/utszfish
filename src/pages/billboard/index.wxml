@@ -4,29 +4,29 @@
 
 
 <!--搜索跳转 hidden='{{scroll}}'-->
-<navigator url="search">
-  <view class="search-bar" style="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
-    <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
-      <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
-      </view>
-    </view>
-
-    <view class="search-bar__form">
-
-      <view class="search-bar__box">
-        <icon class="icon-search_in-box" type="search" size="14"></icon>
-        <view type="text" class="search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-        <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
-      </view>
-      <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="search-bar__text">搜帖子</view>
-      </label>
-    </view>
+<view class="search-bar" style="background:#fdda42;;border:none;position:fixed;z-index:9;width:100%;">
+  <view style="font-size:14px;color:#666; background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
+    <picker bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
+    </picker>
   </view>
-</navigator>
+
+  <view class="search-bar__form">
+    <view class="search-bar__box">
+      <icon class="icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="search-bar__text">搜帖子</view>
+    </label>
+  </view>
+
+  <view class="search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+
+</view>
 
 
 <view bindscrolltolower="btnLoadMore" scroll-y='true' style="padding:20rpx;" id="id" bindtap="handletap" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
@@ -48,6 +48,7 @@
   <view class='list_class' id='types' style='background:#ffffff;margin:20rpx 0 0 0;'>
     <view wx:for="{{typelist}}" wx:key="id">
       <view class='list-item' data-id="{{item.id}}">
+
         <view wx:if="{{item.id<=3}}">
           <navigator url='requirementlist?type={{item.id+10}}&title={{item.name}}'>
             <button>
@@ -87,7 +88,7 @@
 
 
         <view wx:elif="{{item.id==6}}">
-          <navigator url='/pages/billboard/requirementlist?type={{item.id+10}}&title={{item.name}}'>
+          <navigator url='requirementlist?type=9&title={{item.name}}'>
             <button>
               <view class='item-head'>
                 <image src="../../images/{{item.pic}}.png" mode="aspectFit"></image>

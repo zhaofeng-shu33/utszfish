@@ -11,10 +11,11 @@ Page({
     inputShowed: false,
     inputVal: "",
     searchResult: [],
-    page: 0,
     canloadmore: false,
-    area: ["全部", "未分类", "数码", "化妆品", "其他"],
+    area: ["全部","生活杂谈","摄影分享","宿舍租赁","实习招聘","运动健康","美食烹饪","匿名曝光台","建议投诉"],
     areaIndex: 0,
+    type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+    page: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     typelist: [{
         pic: "daigou",
         id: 1,
@@ -85,6 +86,55 @@ Page({
       }
     }
 
+  },
+  //picker的函数
+  bindPickerChange: function (e) {
+    if (e.detail.value == 0) {
+      this.setData({
+        areaIndex: e.detail.value,
+        type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        page: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      })
+    } else {
+      this.setData({
+        areaIndex: e.detail.value,
+        type: Number(e.detail.value) - Number(1),
+        page: 0,
+      })
+    }
+    this.updateTopics(this.data.page, '', this.data.type);
+  },
+  //搜索功能函数
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+    this.updateTopics(this.data.page, '', this.data.type);
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+    this.updateTopics(this.data.page, '', this.data.type);
+  },
+  inputTyping: function (e) {
+    if (util.trimStr(e.detail.value) != "") {
+      this.setData({
+        inputVal: util.trimStr(e.detail.value)
+      });
+      this.searchBy(util.trimStr(e.detail.value));
+    } else {
+      this.clearInput();
+    }
+  },
+  searchBy: function (keyword) {
+    this.updateTopics(this.data.page, keyword, this.data.type);
   },
   //买卖发跳转
   adddetial_add: function () {
@@ -164,14 +214,8 @@ Page({
   btnLoadMore: function() {
     if (this.data.canloadmore) {
       this.data.page += 1;
-      this.updateTopics(this.data.page);
+      this.updateTopics(this.data.page,'',this.data.type);
     }
-  },
-  bindPickerChange: function(e) {
-    this.setData({
-      areaIndex: e.detail.value
-    })
-    this.updateMarketList(0, '', e.detail.value);
   },
   btnTopBannerSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail);
@@ -279,7 +323,7 @@ Page({
       }
     });
   },
-  updateTopics: function(page = 0) {
+  updateTopics: function (page = 0, kw = '', tp) {
     var that = this;
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
@@ -288,9 +332,9 @@ Page({
         'Cookie': 'PHPSESSID=' + app.globalData.sessionid
       },
       data: {
-        type: [ 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-        //disabled_type: 10,
-        page: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//page,
+        type:tp,
+        page:page,
+        keyword:kw,
         bv: app.getBuildVersion(),
         token: app.globalData.token
       },
@@ -465,7 +509,7 @@ Page({
             loginlist: res.data.result.loginlist
           });
 
-          that.updateTopics(0);
+          that.updateTopics(this.data.page,'',this.data.type);
         }
       }
     });

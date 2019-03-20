@@ -178,7 +178,6 @@ Page({
             page: page,
             canloadmore: newlist.length >= 9
           });
-
         }
         //
 
