@@ -14,14 +14,14 @@ Page({
     area: ["全部", "物品需求", "代购", "拼单", "交友"],
     areaIndex: 0,
     type: [10, 11, 12, 13],
-    page: [0, 0, 0, 0],
+    page: 0,
   },
   bindPickerChange: function(e) {
     if (e.detail.value == 0) {
       this.setData({
         areaIndex: e.detail.value,
         type: [10, 11, 12, 13],
-        page: [0, 0, 0, 0],
+        page: 0,
       })
     } else {
       this.setData({

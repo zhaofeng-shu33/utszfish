@@ -15,7 +15,7 @@ Page({
     area: ["全部","生活杂谈","摄影分享","宿舍租赁","实习招聘","运动健康","美食烹饪","匿名曝光台","建议投诉"],
     areaIndex: 0,
     type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-    page: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    page:0,
     typelist: [{
         pic: "daigou",
         id: 1,
@@ -93,7 +93,7 @@ Page({
       this.setData({
         areaIndex: e.detail.value,
         type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-        page: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        page:0,
       })
     } else {
       this.setData({
