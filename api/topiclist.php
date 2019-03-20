@@ -34,13 +34,13 @@ $db = getDb();
 //判断uid和keyword是否为空
 if($jsondata->uid!=""){
 	$uid=$jsondata->uid;
-	$uid_string=' and authorid='.$uid ;
+	$uid_string=" and authorid=$uid";
 	//$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and authorid='$uid' and `title` like '%$keyword%' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
 }else{
-	$uid_string='' ;
+	$uid_string='';
 }
 if($keyword!=""){
-$keyword_string=' and `title` like '.$keyword; 
+$keyword_string=" and `title` like '%$keyword%'"; 
 }else{
 $keyword_string='';
 }
@@ -79,7 +79,7 @@ if(is_array($type)){
 }
 else{
 if($type!=""){
-$type_string='`type` = $type';
+$type_string="`type` = $type";
 }else{
 $type_string='';
 }
