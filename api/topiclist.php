@@ -84,7 +84,7 @@ $type_string=" and `type` = $type";
 $type_string='';
 }
 
-$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and".$type_string.$uid_string.$keyword_string." deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+$sql = "select * from ".getTablePrefix()."_articles where `type` <99".$type_string.$uid_string.$keyword_string." and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 
 
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
