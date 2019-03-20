@@ -2,29 +2,29 @@
 
 
 <!--搜索跳转 hidden='{{scroll}}'-->
-<navigator url="search">
-  <view  class="search-bar" sztyle="background:#fdda42;border:none;position:fixed;z-index:9;width:100%;">
-    <view style="font-size:14px;color:#666;background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
-      <view bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
-      </view>
-    </view>
-
-    <view class="search-bar__form">
-
-      <view class="search-bar__box">
-        <icon class="icon-search_in-box" type="search" size="14"></icon>
-        <view type="text" class="search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-        <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
-      </view>
-      <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="search-bar__text">搜需求</view>
-      </label>
-    </view>
+<view class="search-bar" style="background:#fdda42;;border:none;position:fixed;z-index:9;width:100%;">
+  <view style="font-size:14px;color:#666; background:#ffffff;border:#eee 1px solid;padding:3px 5px 0px 5px;margin-right:5px">
+    <picker bindchange="bindPickerChange" value="{{areaIndex}}" range="{{area}}">{{area[areaIndex]}}
+    </picker>
   </view>
-</navigator>
+
+  <view class="search-bar__form">
+    <view class="search-bar__box">
+      <icon class="icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="search-bar__text">搜需求</view>
+    </label>
+  </view>
+
+  <view class="search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+
+</view>
 
 
 <view class='weui-flex' style="width:100%;position:fixed;z-index:9;bottom:0px;padding:10px 10px;">

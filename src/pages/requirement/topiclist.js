@@ -7,15 +7,47 @@ Page({
    * 页面的初始数据
    */
   data: {
+    inputShowed: false,
+    inputVal: "",
+    searchResult: [],
     canloadmore: false,
     page: 0,
-    list10_hidden:true,
-    list11_hidden:true,
-    list12_hidden:true,
-    list13_hidden:true,
     area: ["全部", "未分类", "数码", "化妆品", "其他"],
     areaIndex: 0,
   },
+
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+    this.updateTopics(0, '', this.data.areaIndex);
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+    this.updateTopics(0, '', this.data.areaIndex);
+  },
+  inputTyping: function (e) {
+    if (util.trimStr(e.detail.value) != "") {
+      this.setData({
+        inputVal: util.trimStr(e.detail.value)
+      });
+      this.searchBy(util.trimStr(e.detail.value));
+    } else {
+      this.clearInput();
+    }
+  },
+  searchBy: function (keyword) {
+    this.updateTopics(0, keyword, this.data.areaIndex);
+  },
+
   btnBackSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail);
     app.postFormId(e.detail.formId);
@@ -84,7 +116,7 @@ Page({
       this.updateTopics(this.data.type, this.data.page);
     }
   },
- updateTopics: function(tp, page = 0) {
+  updateTopics: function (tp, kw = '', page = 0) {
     var that = this;
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
@@ -95,6 +127,7 @@ Page({
       data: {
         type: tp,
         page: page,
+        keyword: kw,
         token: app.globalData.token
       },
       complete: function() {

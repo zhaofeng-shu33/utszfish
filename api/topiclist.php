@@ -13,6 +13,7 @@ $jsondata=json_decode($postdata);
 $disabled_type=$jsondata->disabled_type;
 $type=$jsondata->type;
 $token=$jsondata->token;
+$keyword=$jsondata->keyword;
 
 session_start();
 
@@ -30,6 +31,22 @@ if($jsondata->page!=""){
 $limit=9;
 
 $db = getDb();
+//判断uid和keyword是否为空
+if($jsondata->uid!=""){
+	$uid=$jsondata->uid;
+	$uid_string=' and authorid='$uid'' ;
+	//$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and authorid='$uid' and `title` like '%$keyword%' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+}
+else{
+	$uid_string='' ;
+}
+if($keyword!=""){
+	$keyword_string=' and `title` like '%$keyword%''; 
+}
+else{
+	$keyword_string='';
+}
+		
 
 if(is_array($type)){
 // for array type, only type < 99 is supported, becuase their format is uniform
@@ -41,13 +58,14 @@ if(is_array($type)){
     for($x = 0; $x < count($type); $x++){
         $type_i = $type[$x];
         $page_i = $page[$x];
-		//判断是否输入参数uid
-		if($jsondata->uid!=""){
-			$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and authorid='$uid' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+		
+		$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i".$uid_string.$keyword_string." and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
+		/*elseif($jsondata->uid==""&&$keyword!=""){
+			$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and `title` like '%$keyword%' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
 		}
 		else{
 			$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
-		}
+		}*/
         $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
         while ($row = mysqli_fetch_assoc($res)) {
@@ -62,14 +80,16 @@ if(is_array($type)){
     }
 }
 else{
-$sql = "select * from ".getTablePrefix()."_articles where `type` = $type and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
-
-if($jsondata->uid!=""){
-	$uid=$jsondata->uid;
-	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and authorid='$uid' and deleted=0 and masked=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
-}else if($type==""){
-	$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and `type` !=10 and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+if($type!=""){
+	$type_string='`type` = $type';
 }
+else($type==""){
+	$type_string='';
+}
+
+$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and".$type_string..$uid_string.$keyword_string." deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+
+
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
 
 
