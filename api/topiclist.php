@@ -34,17 +34,15 @@ $db = getDb();
 //判断uid和keyword是否为空
 if($jsondata->uid!=""){
 	$uid=$jsondata->uid;
-	$uid_string=' and authorid='$uid'' ;
+	$uid_string=' and authorid='.$uid ;
 	//$sql = "select * from ".getTablePrefix()."_articles where `type` = $type_i and authorid='$uid' and `title` like '%$keyword%' and deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page_i.",$limit";
-}
-else{
+}else{
 	$uid_string='' ;
 }
 if($keyword!=""){
-	$keyword_string=' and `title` like '%$keyword%''; 
-}
-else{
-	$keyword_string='';
+$keyword_string=' and `title` like '.$keyword; 
+}else{
+$keyword_string='';
 }
 		
 
@@ -81,13 +79,12 @@ if(is_array($type)){
 }
 else{
 if($type!=""){
-	$type_string='`type` = $type';
-}
-else($type==""){
-	$type_string='';
+$type_string='`type` = $type';
+}else{
+$type_string='';
 }
 
-$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and".$type_string..$uid_string.$keyword_string." deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
+$sql = "select * from ".getTablePrefix()."_articles where `type` <99 and".$type_string.$uid_string.$keyword_string." deleted=0 order by updatetime desc,createdate desc LIMIT ".$limit*$page.",$limit";
 
 
 $res=mysqli_query($db, $sql) or die(mysqli_error($db));
