@@ -1,5 +1,5 @@
 /* pages/requirement/create.wxss */
-page
-{
- 
+
+page {
+  background: #f2f2f2;
 }

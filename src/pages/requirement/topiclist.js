@@ -11,30 +11,46 @@ Page({
     inputVal: "",
     searchResult: [],
     canloadmore: false,
-    page: 0,
-    area: ["全部", "未分类", "数码", "化妆品", "其他"],
+    area: ["全部", "物品需求", "代购", "拼单", "交友"],
     areaIndex: 0,
+    type: [10, 11, 12, 13],
+    page: [0, 0, 0, 0],
   },
-
-  showInput: function () {
+  bindPickerChange: function(e) {
+    if (e.detail.value == 0) {
+      this.setData({
+        areaIndex: e.detail.value,
+        type: [10, 11, 12, 13],
+        page: [0, 0, 0, 0],
+      })
+    } else {
+      this.setData({
+        areaIndex: e.detail.value,
+        type: Number(e.detail.value) + Number(9),
+        page:0
+      })
+    }
+    this.updateTopics(this.data.page, '', this.data.type);
+  },
+  showInput: function() {
     this.setData({
       inputShowed: true
     });
   },
-  hideInput: function () {
+  hideInput: function() {
     this.setData({
       inputVal: "",
       inputShowed: false
     });
-    this.updateTopics(0, '', this.data.areaIndex);
+    this.updateTopics(this.data.page,'', this.data.type);
   },
-  clearInput: function () {
+  clearInput: function() {
     this.setData({
       inputVal: ""
     });
-    this.updateTopics(0, '', this.data.areaIndex);
+    this.updateTopics(this.data.page,'', this.data.type);
   },
-  inputTyping: function (e) {
+  inputTyping: function(e) {
     if (util.trimStr(e.detail.value) != "") {
       this.setData({
         inputVal: util.trimStr(e.detail.value)
@@ -44,8 +60,8 @@ Page({
       this.clearInput();
     }
   },
-  searchBy: function (keyword) {
-    this.updateTopics(0, keyword, this.data.areaIndex);
+  searchBy: function(keyword) {
+    this.updateTopics(this.data.page, keyword, this.data.type);
   },
 
   btnBackSubmit: function(e) {
@@ -113,10 +129,10 @@ Page({
   btnLoadMore: function() {
     if (this.data.canloadmore) {
       this.data.page += 1;
-      this.updateTopics(this.data.type, this.data.page);
+      this.updateTopics(this.data.page,'', this.data.type);
     }
   },
-  updateTopics: function (tp, kw = '', page = 0) {
+  updateTopics: function(page = 0, kw = '', tp) {
     var that = this;
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
@@ -165,39 +181,23 @@ Page({
 
         }
         //
-        
+
       }
-      
+
     });
 
   },
 
 
   refresh: function() {
-    this.updateTopics([13, 12, 11, 10], [0, 0, 0, 0]);
+    this.updateTopics(this.data.page,'',this.data.type);
   },
   onLoad: function(options) {
     var that = this;
-    
-    /*var list1 = this.updateTopics(10);
-    var list2 = this.updateTopics(11);
-    var list3 = this.updateTopics(12);
-    var list4 = this.updateTopics(13);
-    //var list = this.data.list1.concat(list2);
-    var list =[];
-    console.log(list1)*/
-
     wx.setNavigationBarTitle({
-      title: "需求"//options.title
+      title: "需求" 
     });
-    that.setData({
-      //title: options.title,
-      //title:"需求",
-      //type: options.type,
-      
-     
-    });
-    this.updateTopics([13, 12, 11, 10], [0, 0, 0, 0])
+    this.updateTopics(this.data.page, '', this.data.type)
     //this.updateTopics(this.data.type);
 
   },
@@ -234,7 +234,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.updateTopics(this.data.type);
+    this.updateTopics(this.data.page, '', this.data.type);
   },
 
   /**
