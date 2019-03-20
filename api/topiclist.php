@@ -79,7 +79,7 @@ if(is_array($type)){
 }
 else{
 if($type!=""){
-$type_string="`type` = $type";
+$type_string=" and `type` = $type";
 }else{
 $type_string='';
 }
