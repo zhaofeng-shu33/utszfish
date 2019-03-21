@@ -94,13 +94,13 @@ Page({
       this.refreshTimeLine();
     }
     else if (this.data.activeIndex == 1) {
-      this.updateTopicList([0,1,2,3,4,5,6,7,8,9],[0,0,0,0,0,0,0,0,0,0]);
+      this.updateTopicList([0,1,2,3,4,5,6,7,8,9],0);
     }
     else if (this.data.activeIndex == 2) {
       this.updateMarketList();
     } else if (this.data.activeIndex == 3) {
       //this.updaterequirementList();
-      this.updateTopicList([10,11,12,13], [0,0,0,0]);
+      this.updateTopicList([10,11,12,13],0);
     }
   },
   tabClick: function (e) {

@@ -92,7 +92,7 @@ Page({
     if (e.detail.value == 0) {
       this.setData({
         areaIndex: e.detail.value,
-        type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        type:[9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
         page:0,
       })
     } else {
@@ -506,10 +506,11 @@ Page({
             billboardlist: billboardlist,
             nowweather: nowweather,
             weather: weather,
-            loginlist: res.data.result.loginlist
+            loginlist: res.data.result.loginlist,
+            type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+            page: 0,
           });
-
-          that.updateTopics(this.data.page,'',this.data.type);
+          that.updateTopics(that.data.page,'',that.data.type);
         }
       }
     });

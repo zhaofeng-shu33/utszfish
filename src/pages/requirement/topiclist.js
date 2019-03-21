@@ -20,8 +20,8 @@ Page({
     if (e.detail.value == 0) {
       this.setData({
         areaIndex: e.detail.value,
-        type: [10, 11, 12, 13],
-        page: 0,
+        type:[10, 11, 12, 13],
+        page:0,
       })
     } else {
       this.setData({
@@ -131,6 +131,7 @@ Page({
       this.data.page += 1;
       this.updateTopics(this.data.page,'', this.data.type);
     }
+    console.log(this.data.page)
   },
   updateTopics: function(page = 0, kw = '', tp) {
     var that = this;
@@ -193,9 +194,7 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
-    wx.setNavigationBarTitle({
-      title: "需求" 
-    });
+
     this.updateTopics(this.data.page, '', this.data.type)
     //this.updateTopics(this.data.type);
 
