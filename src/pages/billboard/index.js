@@ -102,6 +102,7 @@ Page({
         page: 0,
       })
     }
+    console.log(this.data.type)
     this.updateTopics(this.data.page, '', this.data.type);
   },
   //搜索功能函数
@@ -374,7 +375,7 @@ Page({
       }
     })
   },
-  updateBillBoard: function() {
+  updateBillBoard: function (pg,kw,tp) {
     var that = this;
     wx.showLoading({
       title: '请求中',
@@ -507,8 +508,9 @@ Page({
             nowweather: nowweather,
             weather: weather,
             loginlist: res.data.result.loginlist,
-            type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-            page: 0,
+            type: tp,
+            page: pg,
+            keyword:kw,
           });
           that.updateTopics(that.data.page,'',that.data.type);
         }
@@ -562,7 +564,7 @@ Page({
     })
   },
   refresh: function() {
-    this.updateBillBoard();
+    this.updateBillBoard(this.data.page, '', this.data.type);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -592,7 +594,7 @@ Page({
         url: '/pages/webview/index?url=' + escape(options.url),
       })
     }
-    this.updateBillBoard();
+    this.updateBillBoard(this.data.page, '', this.data.type);
   },
 
   /**
@@ -630,7 +632,7 @@ Page({
    */
   onPullDownRefresh: function() {
     console.log("触发下来");
-    this.updateBillBoard();
+    this.updateBillBoard(this.data.page,'',this.data.type);
   },
 
   /**

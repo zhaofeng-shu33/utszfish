@@ -164,7 +164,7 @@ Page({
           if (page <= 0) {
             list = newlist;
           } else {
-            list = newlist;
+            list = that.data.list.concat(newlist);
           }
 
           for (var i = 0; i < list.length; i++) {
