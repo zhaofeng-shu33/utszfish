@@ -7,17 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    inputShowed: false,
+    inputVal: "",
+    searchResult: [],
     page:0,
     canloadmore: false,
-    area: ["全部", "未分类", "数码", "美妆二手", "其他"],
-    areaIndex: 0,
+    type_title: ["全部", "未分类", "数码", "美妆二手", "其他"],
   },
-  bindPickerChange: function (e) {
-    this.setData({
-      areaIndex: e.detail.value
-    })
-    this.updateMarketList(0, '', e.detail.value);
-  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -28,13 +25,13 @@ Page({
       inputVal: "",
       inputShowed: false
     });
-    this.updateMarketList(0, '', this.data.areaIndex);
+    this.updateMarketList(0, '', this.data.type_titleIndex);
   },
   clearInput: function () {
     this.setData({
       inputVal: ""
     });
-    this.updateMarketList(0, '', this.data.areaIndex);
+    this.updateMarketList(0, '', this.data.type_titleIndex);
   },
   inputTyping: function (e) {
     if (util.trimStr(e.detail.value) != "") {
@@ -47,7 +44,7 @@ Page({
     }
   },
   searchBy:function(keyword){
-    this.updateMarketList(0, keyword, this.data.areaIndex);
+    this.updateMarketList(0, keyword, this.data.type_titleIndex);
   },
 
   btnCreateSubmit: function (e) {
@@ -62,13 +59,13 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: '/pages/talent/create',
+      url: '/pages/talent/create?type={{this.data.type}}',
     })
   },
   btnLoadMore: function () {
     if (this.data.canloadmore) {
       this.data.page += 1;
-      this.updateMarketList(this.data.page, '', this.data.areaIndex);
+      this.updateMarketList(this.data.page, '', this.data.type_titleIndex);
     }
   },
   // type = 0, ALL; type > 0, talent_id = type - 1
@@ -112,7 +109,7 @@ Page({
             
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].index = i;
-            list[i].talent_name = that.data.area[parseInt(list[i].talent_type) + 1];
+            list[i].talent_name = that.data.type_title[parseInt(list[i].talent_type) + 1];
           }
 
           that.setData({
@@ -128,17 +125,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   refresh:function(){
-    this.updateMarketList(0, '', this.data.areaIndex);
+
   },
   onLoad: function (options) {
+    var type = options.type
+    this.setData({
+      type: type,
+      type_titleIndex: Number(type) + Number(1)
+    });
     if(options.keyword){
       this.setData({
         inputVal: options.keyword,
         inputShowed:true
       });
-      this.updateMarketList(0, options.keyword);
+      this.updateMarketList(this.data.page, options.keyword,this.data.type_titleIndex);
     }else{
-      this.updateMarketList();
+      this.updateMarketList(this.data.page,'', this.data.type_titleIndex);
     };
     
   },
@@ -175,7 +177,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.updateMarketList(this.data.page, this.data.keyword, this.data.areaIndex);
+    this.updateMarketList();
   },
 
   /**

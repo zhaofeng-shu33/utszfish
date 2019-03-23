@@ -12,8 +12,8 @@ Page({
     inputVal: "",
     searchResult: [],
     canloadmore: false,
-    area: ["全部","生活杂谈","摄影分享","宿舍租赁","实习招聘","运动健康","美食烹饪","匿名曝光台","建议投诉"],
-    areaIndex: 0,
+    type_title: ["全部", "生活杂谈", "摄影分享", "失物招领", "宿舍租赁", "实习招聘", "运动健康", "美食烹饪", "保留位置", "匿名曝光台","意见反馈"],
+    type_titleIndex: 0,
     type: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
     page:0,
     typelist: [{
@@ -60,10 +60,8 @@ Page({
   },
 //跳转到市集的化妆品界面
   navigateToShop:function(e){
-    app.globalData.areaIndex=3;
-    wx.switchTab({
-      url: '../talent/index',
-
+    wx.navigateTo({
+      url: 'talentlist?type=2',
     })
 
   },
@@ -91,18 +89,17 @@ Page({
   bindPickerChange: function (e) {
     if (e.detail.value == 0) {
       this.setData({
-        areaIndex: e.detail.value,
+        type_titleIndex: e.detail.value,
         type:[9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
         page:0,
       })
     } else {
       this.setData({
-        areaIndex: e.detail.value,
+        type_titleIndex: e.detail.value,
         type: Number(e.detail.value) - Number(1),
         page: 0,
       })
     }
-    console.log(this.data.type)
     this.updateTopics(this.data.page, '', this.data.type);
   },
   //搜索功能函数
@@ -326,6 +323,7 @@ Page({
   },
   updateTopics: function (page = 0, kw = '', tp) {
     var that = this;
+    var type_title = this.data.type_title;
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
       method: 'POST',
@@ -364,6 +362,7 @@ Page({
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].authorInfo.lastlogindistance = util.getTimeDistance(list[i].authorInfo.lastlogin);
             list[i].index = i;
+            list[i].title = type_title[Number(list[i].type) + Number(1)];
           }
 
           that.setData({

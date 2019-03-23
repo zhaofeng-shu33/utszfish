@@ -11,21 +11,21 @@ Page({
     inputVal: "",
     searchResult: [],
     canloadmore: false,
-    area: ["全部", "物品需求", "代购", "拼单", "交友"],
-    areaIndex: 0,
+    type_title: ["全部", "物品需求", "代购", "拼单", "交友"],
+    type_titleIndex: 0,
     type: [10, 11, 12, 13],
     page: 0,
   },
   bindPickerChange: function(e) {
     if (e.detail.value == 0) {
       this.setData({
-        areaIndex: e.detail.value,
+        type_titleIndex: e.detail.value,
         type:[10, 11, 12, 13],
         page:0,
       })
     } else {
       this.setData({
-        areaIndex: e.detail.value,
+        type_titleIndex: e.detail.value,
         type: Number(e.detail.value) + Number(9),
         page:0
       })
@@ -135,6 +135,7 @@ Page({
   },
   updateTopics: function(page = 0, kw = '', tp) {
     var that = this;
+    var type_title = this.data.type_title
     wx.request({
       url: app.ServerUrl() + '/api/topiclist.php',
       method: 'POST',
@@ -172,6 +173,7 @@ Page({
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].authorInfo.lastlogindistance = util.getTimeDistance(list[i].authorInfo.lastlogin);
             list[i].index = i;
+            list[i].title = type_title[Number(list[i].type) - Number(9)];
           }
 
           that.setData({

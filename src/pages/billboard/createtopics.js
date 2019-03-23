@@ -13,7 +13,7 @@ Page({
     gps: '',
     gpscity: '',
     text: '',
-    topic: ["生活杂谈","摄影分享","宿舍租赁","实习招聘","运动健康","美食烹饪","匿名曝光台","建议投诉"],
+    topic: ["生活杂谈", "摄影分享", "失物招领", "宿舍租赁", "实习招聘", "运动健康", "美食烹饪", "保留位置", "匿名曝光台", "意见反馈"],
     topicIndex:0,
   },
   bindPickerChange: function (e) {
@@ -209,8 +209,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var type=options.type
     this.setData({
-      type:0
+      type:type,
+      topicIndex:type
     });
   },
 

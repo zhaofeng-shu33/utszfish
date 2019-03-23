@@ -139,6 +139,5 @@ App({
     userInfo:{
       islogin:false
     },
-    areaIndex:0,
   }
 })

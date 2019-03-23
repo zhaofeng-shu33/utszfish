@@ -45,7 +45,9 @@ $category[]=array("title"=>"美食烹饪","type"=>6,"subtitle"=>"煎炸炒蒸烘
 $category[]=array("title"=>"宿舍租赁","type"=>3,"subtitle"=>"大学城宿舍出租寻租资讯","icon"=> $imagePrefix . "banner3.jpg");
 $category[]=array("title"=>"实习招聘","type"=>4,"subtitle"=>"为大学生提供优质工作招聘信息","icon"=>"");
 $category[]=array("title"=>"版务区","type"=>9,"subtitle"=>"欢迎同学提建议帮助我们做得更好","icon"=>"");
-
+$category[]=array("title"=>"代购","type"=>11,"subtitle"=>"","icon"=>"");
+$category[]=array("title"=>"拼单","type"=>12,"subtitle"=>"","icon"=>"");
+$category[]=array("title"=>"交友","type"=>13,"subtitle"=>"","icon"=>"");
 if(!isDitributionMode($jsondata->bv)){
 	$category=array();
 }

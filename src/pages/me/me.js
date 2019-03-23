@@ -18,7 +18,9 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    sliderWidth:96
+    sliderWidth:96,
+    type_title: ["生活杂谈", "摄影分享", "失物招领", "宿舍租赁", "实习招聘", "运动健康", "美食烹饪", "保留位置", "匿名曝光台", "意见反馈", "物品需求", "代购", "拼单", "交友"],
+    
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -468,6 +470,7 @@ Page({
   },
   updateTopicList: function (tp,page=0) {
     var that = this;
+    var type_title = this.data.type_title
     wx.request({
       url: app.ServerUrl()+'/api/topiclist.php',
       method: 'POST',
@@ -496,6 +499,7 @@ Page({
           for (var i = 0; i < list.length; i++) {
             list[i].timedistance = util.getTimeDistance(list[i].createdate);
             list[i].index = i;
+            list[i].title = type_title[list[i].type];
           }
 
           that.setData({

@@ -107,7 +107,7 @@
 
         <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
           <block wx:for="{{topiclist}}" wx:key="{{}}">
-            <template is="articleitem-navitem" data="{{...item}}"></template>
+            <template is="articleitem-navitem-requirement" data="{{...item}}"></template>
           </block>
         </view>
 

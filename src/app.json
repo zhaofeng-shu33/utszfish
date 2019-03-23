@@ -6,6 +6,7 @@
     "pages/billboard/search",
     "pages/billboard/requirementlist",
     "pages/billboard/createtopics",
+    "pages/billboard/talentlist",
     "pages/book/index",
     "pages/book/create",
     "pages/book/detail",
