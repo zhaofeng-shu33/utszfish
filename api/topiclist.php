@@ -32,14 +32,14 @@ $limit=5;
 
 $db = getDb();
 //判断uid和keyword是否为空
-if($jsondata->uid!==""){
+if($jsondata->uid!=""){
 	$uid=$jsondata->uid;
 	$uid_string=" and authorid='$uid'";
 }else{
 	$uid_string='';
 }
 
-if($keyword!==""){
+if($keyword!=""){
 $keyword_string=" and `text` like '%$keyword%'"; 
 }else{
 $keyword_string='';
